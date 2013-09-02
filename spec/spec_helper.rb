@@ -40,3 +40,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+def stub_logged_in!(user=nil)
+  user ||= FactoryGirl.build(:user, :id)
+  controller.stub(:current_user).and_return(user)
+end

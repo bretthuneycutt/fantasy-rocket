@@ -1,0 +1,17 @@
+%h1 Name Your League
+
+= form_for @league do |f|
+  - if @league.errors.any?
+    .error_messages
+      %h2 Form is invalid
+      %ul
+      - @league.errors.full_messages.each do |message|
+        %li= message
+
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+
+  .actions
+    = f.submit "Create League"
