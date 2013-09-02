@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, email: true
 
   has_many :commissioned_leagues, class_name: "League", foreign_key: "commissioner_id", inverse_of: :commissioner
+
+  has_many :leagues, through: :league_memberships
 end

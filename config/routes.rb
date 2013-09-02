@@ -1,4 +1,6 @@
 FantasyRocket::Application.routes.draw do
+  resources :league_memberships
+
   resources :users
   resources :leagues
   resources :sessions
