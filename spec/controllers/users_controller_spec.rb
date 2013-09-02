@@ -11,7 +11,7 @@ describe UsersController do
           'password_confirmation' => 'password',
         }
 
-        expect(response).to redirect_to("/")
+        expect(response).to redirect_to(new_league_path)
       end
     end
 
