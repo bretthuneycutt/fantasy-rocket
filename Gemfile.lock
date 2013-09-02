@@ -27,6 +27,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.13)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -36,8 +37,22 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
+    email_validator (1.4.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.0.1)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
+    haml (4.0.3)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.1)
@@ -55,6 +70,8 @@ GEM
     multi_json (1.7.9)
     pg (0.16.0)
     polyglot (0.3.3)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -120,10 +137,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 4.0.0)
+  email_validator
+  factory_girl
+  factory_girl_rails
+  haml-rails
   jbuilder (~> 1.2)
   jquery-rails
   pg
+  quiet_assets
   rails (= 4.0.0)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)

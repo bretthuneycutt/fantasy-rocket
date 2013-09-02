@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem "pg"
+gem 'email_validator'
+gem 'haml-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -30,12 +32,18 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem 'quiet_assets'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
