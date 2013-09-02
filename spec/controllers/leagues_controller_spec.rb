@@ -21,7 +21,7 @@ describe LeaguesController do
           'name' => "League name",
         }
 
-        expect(response).to redirect_to("/")
+        expect(response).to redirect_to(league_path(assigns(:league)))
       end
     end
 
