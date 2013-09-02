@@ -1,6 +1,8 @@
 %h1 Log In
 
 = form_tag sessions_path do
+  = hidden_field_tag :redirect_to, params[:redirect_to]
+
   .field
     = label_tag :email
     %br
