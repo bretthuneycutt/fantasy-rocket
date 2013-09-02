@@ -1,0 +1,6 @@
+%h1= @league.name
+%p Commissioner: #{@league.commissioner.name}
+%ul
+  Members
+  - @league.members.each do |member|
+    %li= member.name

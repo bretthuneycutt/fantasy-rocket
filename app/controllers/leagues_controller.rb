@@ -9,10 +9,14 @@ class LeaguesController < ApplicationController
     @league = current_user.commissioned_leagues.new(league_params)
     if @league.save
       # TODO - where should this redirect to?
-      redirect_to "/", notice: "Your league has been created!"
+      redirect_to league_path(@league), notice: "Your league has been created!"
     else
       render "new"
     end
+  end
+
+  def show
+    @league = League.find(params[:id])
   end
 
 private
