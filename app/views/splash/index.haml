@@ -1,1 +1,27 @@
-Hello, world.
+.splash
+  .intro
+    %h1 Home of the infamous NFL Win Pool
+    %h2 NFL Win Pool is the simplest and most addictive NFL win pool you can play with your football-loving friends.
+    .create-league= link_to "Create a league", new_user_path, class: "btn btn-main btn-xlg"
+  .quote
+    .container
+      .clearfix
+        .quote-text "I love this pool. My friends love this pool. And now, you can love this pool."
+        .quote-author - Bill Simmons, ESPN, Grantland
+      = link_to "Read more", "http://www.grantland.com/blog/the-triangle/post/_/id/36155/you-should-have-an-nfl-wins-pool", class: "read-more"
+  .how-it-works
+    .container
+      .row
+        .col-md-12
+          %h3 How It Works
+      .row
+        .col-md-4
+          %h4 1. Create a league
+          %p Create a league, invite your friends (we allow between 2-15 players), agree on an entry fee and prize money, and we'll do the rest.
+        .col-md-4
+          %h4 2. Draft your teams
+          %p We randomly assign each player a number that determines draft order. Each player picks the NFL teams they think will win the most games until there are no teams left. We use our special algorithm to determine when each player gets to draft in order to even the probability fairly.
+        .col-md-4
+          %h4 3. Win
+          %p The highest number of victories for those three teams wins the pool. Enjoy a season full of competition with your friends.
+    .create-league= link_to "Create a league", new_user_path, class: "btn btn-main btn-xlg"

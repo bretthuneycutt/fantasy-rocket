@@ -1,0 +1,49 @@
+body {
+  background-color: black;
+  color: white;
+  @include font-primary;
+}
+
+// Override bootstrap fonts
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  @include font-primary;
+}
+
+// btn overrides from Rudy
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  // TODO - get font from Rudy
+  &.btn-xlg {
+    padding: 20px 40px;
+    font-size: 20px;
+  }
+}
+
+.btn.btn-main {
+  background-color: $orange;
+  color: white;
+  &:hover {
+    background-color: darken($orange, 3%);
+  }
+}
+
+.input-lg {
+  height: 60px;
+  font-size: 18px;
+}
+
+.centered-form {
+  margin: 120px auto;
+  text-align: center;
+  max-width: 300px;
+  .form-title {
+    font-size: 24px;
+    font-weight: normal;
+    padding-bottom: 16px;
+  }
+  input[type=submit] {
+    margin-top: 8px;
+    width: 88%;
+  }
+}

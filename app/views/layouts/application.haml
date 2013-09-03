@@ -2,16 +2,23 @@
 %html
   %head
     %title Fantasy Rocket
+    %link{href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700', rel: 'stylesheet'}
+
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
   %body
     .header
-      - if current_user
-        Logged in as #{current_user.name}
-        = link_to "Log out", session_path("current"), method: "delete"
-      - else
-        = link_to "Sign up", new_user_path
-        = link_to "Log in", new_session_path
+      .container
+        .row
+          .col-md-12
+            = link_to image_tag('logo.png', alt: 'Fantasy Rocket', class: "logo"), root_path
+            .links
+              - if current_user
+                Logged in as #{current_user.name}
+                = link_to "Log out", session_path("current"), method: "delete"
+              - else
+                = link_to "Create a league", new_user_path
+                = link_to "Sign in", new_session_path
     = yield
