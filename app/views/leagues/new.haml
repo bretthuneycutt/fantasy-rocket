@@ -8,10 +8,9 @@
       - @league.errors.full_messages.each do |message|
         %li= message
 
-  .field
+  .form-group
     = f.label :name
-    %br
-    = f.text_field :name
+    = f.text_field :name, class: 'form-control'
 
   .actions
-    = f.submit "Create League"
+    = f.submit "Create League", class: "btn btn-default"
