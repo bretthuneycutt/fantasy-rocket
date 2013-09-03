@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  # Model.build(:model, :id) to get fake ID
+  trait :id do
+    id { rand(1000000) }
+  end
+
   sequence(:random_string) {|n| rand(10**10).to_s }
 
   factory :user do
@@ -11,5 +16,11 @@ FactoryGirl.define do
   factory :league do
     name "League Name"
     association :commissioner, factory: :user
+  end
+
+  factory :draft_pick do
+    league
+    association :member, factory: :user
+    order { rand(0..31) }
   end
 end

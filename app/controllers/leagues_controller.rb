@@ -17,6 +17,15 @@ class LeaguesController < ApplicationController
 
   def show
     @league = League.find(params[:id])
+
+    template = case @league.draft.status
+    when :not_started
+      'leagues/show'
+    else
+      'drafts/show'
+    end
+
+    render template
   end
 
 private

@@ -4,5 +4,7 @@
   Members
   - @league.members.each do |member|
     %li= member.name
-- unless @league.members.include? current_user
+- if @league.commissioner == current_user
+  = link_to "Start draft", league_drafts_path(@league), method: "post"
+- elsif !@league.members.include? current_user
   = link_to "Join", league_memberships_path(@league), method: "post"
