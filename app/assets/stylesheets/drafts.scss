@@ -7,6 +7,10 @@
     font-size: 20px;
     padding: 20px;
     margin: 32px 1px 0;
+    &.your-turn {
+      background-color: $orange;
+      border: none;
+    }
   }
   .draft-view-toggle {
     .toggle-button {

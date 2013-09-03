@@ -3,9 +3,9 @@
     %h1.league-name= @league.name
     .member-count #{@league.members.size} players
 
-  .current-pick
+  .current-pick{class: @draft.current_picker == current_user ? "your-turn" : ""}
     - if @draft.current_picker == current_user
-      It's your pick! Select a team to draft now.
+      It's your turn! Pick a team to draft.
     - else
       / TODO - pluralize correctly
       It's #{@draft.current_picker.name}'s turn to pick.
