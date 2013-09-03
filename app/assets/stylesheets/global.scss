@@ -1,0 +1,17 @@
+// btn overrides from Rudy
+.btn {
+  text-transform: uppercase;
+  // TODO - get font from Rudy
+  &.btn-xlg {
+    padding: 20px 40px;
+    font-size: 20px;
+  }
+}
+
+.btn.btn-main {
+  background-color: $orange;
+  color: white;
+  &:hover {
+    background-color: darken($orange, 3%);
+  }
+}
