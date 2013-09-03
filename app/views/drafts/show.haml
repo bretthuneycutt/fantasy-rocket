@@ -20,14 +20,21 @@
         %th.pick-header Pick
         %th Team
     %tbody
+      / TODO - move this logic out of view (e.g. into decorator)
+      - shown_drafting_now = false
       - @draft.picks.each_with_index do |pick, i|
-        %tr
+        - if !shown_drafting_now && !pick.team && pick.member == @draft.current_picker
+          - should_show_drafting_now = true
+          - shown_drafting_now = true
+        %tr{class: should_show_drafting_now ? "drafting-now" : ""}
           %td.pick= i + 1
           %td.clearfix
             - if pick.team
               .team
                 .team-icon{class: pick.team.css_class}
                 .team-name= pick.team.name
+            - elsif should_show_drafting_now
+              .notification Drafting now!
             .member-name= pick.member.name
 
   %table.draft-table.table.available-view.hidden
