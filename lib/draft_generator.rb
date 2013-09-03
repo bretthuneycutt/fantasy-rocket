@@ -1,3 +1,5 @@
+require 'team'
+
 class DraftGenerator
   attr_accessor :league, :members
 

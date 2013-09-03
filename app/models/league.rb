@@ -1,3 +1,5 @@
+require 'draft'
+
 class League < ActiveRecord::Base
   validates :name, presence: true
   validates :commissioner_id, presence: true
@@ -11,6 +13,10 @@ class League < ActiveRecord::Base
   has_many :draft_picks, inverse_of: :league
 
   after_create :add_commissioner_as_member
+
+  def draft
+    @draft = Draft.new(self)
+  end
 
 private
 
