@@ -30,8 +30,33 @@
   }
   .draft-table {
     @include black-table;
+    th {
+      font-size: 16px;
+      font-weight: 300;
+    }
     .rank-header, .pick-header {
       width: 100px;
+    }
+    .rank, .pick {
+      font-size: 20px;
+      line-height: $draft-table-line-height;
+    }
+    .team-name {
+      float: left;
+      font-size: 20px;
+      line-height: $draft-table-line-height;
+    }
+    .member-name {
+      float: right;
+      font-size: 16px;
+      line-height: $draft-table-line-height;
+    }
+    .pick-link {
+      float: right;
+      line-height: $draft-table-line-height;
+      font-size: 20px;
+      color: $orange;
+      text-transform: uppercase;
     }
   }
 }

@@ -19,13 +19,13 @@
       %tr
         %th.pick-header Pick
         %th Team
-        %th Player
     %tbody
       - @draft.picks.each_with_index do |pick, i|
         %tr
-          %td= i + 1
-          %td= pick.team.andand.name
-          %td= pick.member.name
+          %td.pick= i + 1
+          %td.clearfix
+            .team-name= pick.team.andand.name
+            .member-name= pick.member.name
 
   %table.draft-table.table.available-view.hidden
     %thead
@@ -35,11 +35,11 @@
     %tbody
       - @draft.available_teams.each_with_index do |team, i|
         %tr.available-team
-          %td= i + 1 + (@draft.unavailable_teams.andand.size || 0)
-          %td
-            = team.name
+          %td.rank= i + 1 + (@draft.unavailable_teams.andand.size || 0)
+          %td.clearfix
+            .team-name= team.name
             - if current_user == @draft.current_picker
-              = link_to "Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put"
+              = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "pick-link"
 
 :coffee
   $ ->
