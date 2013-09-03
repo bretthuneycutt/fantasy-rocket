@@ -70,6 +70,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.7.9)
+    newrelic_rpm (3.6.6.147)
     pg (0.16.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -158,6 +159,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  newrelic_rpm
   pg
   quiet_assets
   rails (= 4.0.0)

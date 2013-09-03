@@ -1,15 +1,11 @@
-%h1 Log In
+.centered-form
+  %h1.form-title Sign in
 
-= form_tag sessions_path do
-  = hidden_field_tag :redirect_to, params[:redirect_to]
-
-  .field
-    = label_tag :email
-    %br
-    = text_field_tag :email, params[:email]
-  .field
-    = label_tag :password
-    %br
-    = password_field_tag :password
-  .actions
-    = submit_tag "Log In"
+  = form_tag sessions_path do
+    = hidden_field_tag :redirect_to, params[:redirect_to]
+    .form-group
+      = text_field_tag :email, params[:email], class: "form-control input-lg", placeholder: "Email address"
+    .form-group
+      = password_field_tag :password, nil, class: "form-control input-lg", placeholder: "Password"
+    .actions
+      = submit_tag "Submit", class: "btn btn-main btn-xlg"

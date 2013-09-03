@@ -1,3 +1,4 @@
+ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -6,6 +7,7 @@ gem "pg"
 gem 'email_validator'
 gem 'haml-rails'
 gem 'unicorn'
+gem 'newrelic_rpm'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
