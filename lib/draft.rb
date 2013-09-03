@@ -30,9 +30,7 @@ class Draft
   def unavailable_teams
     return  unless status == :in_progress
 
-    @unavailable_teams ||= Team.all.select do |team|
-      picked_team_ids.include? team.id
-    end
+    @unavailable_teams ||= Team.all - available_teams
   end
 
   def available_teams
