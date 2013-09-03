@@ -1,6 +1,5 @@
 class DraftGenerator
   attr_accessor :league, :members
-  NUMBER_OF_TEAMS = 32
 
   def initialize(league)
     @league = league
@@ -22,6 +21,6 @@ class DraftGenerator
   end
 
   def picks_per_member
-    NUMBER_OF_TEAMS / members.size
+    Team.size / members.size
   end
 end
