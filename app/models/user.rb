@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :commissioned_leagues, class_name: "League", foreign_key: "commissioner_id", inverse_of: :commissioner
 
   has_many :leagues, through: :league_memberships
+  has_many :draft_picks, foreign_key: "member_id", inverse_of: :member
 end

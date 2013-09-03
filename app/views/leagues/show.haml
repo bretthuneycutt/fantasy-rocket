@@ -7,10 +7,10 @@
   .league-header
     %h1.league-name= @league.name
     .member-count #{@league.members.size} members
-    - if current_user == @league.commissioner
-      = link_to "Start the draft", "#TODO", class: "btn btn-main btn-xlg"
+    - if current_user == @league.commissioner && @league.members.size > 1 && @league.draft.status == :not_started
+      = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
       .start-draft-description Press "start the draft" after all your friends have joined.
-    - elsif !@league.members.include? current_user
+    - if !@league.members.include?(current_user) && @league.draft.status == :not_started
       = link_to "Join league", league_memberships_path(@league), method: "post", class: "btn btn-main btn-xlg"
   %ul
     Members

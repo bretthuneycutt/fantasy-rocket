@@ -36,6 +36,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    database_cleaner (1.1.1)
     diff-lcs (1.2.4)
     email_validator (1.4.0)
       activemodel
@@ -151,6 +152,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 4.0.0)
+  database_cleaner
   email_validator
   factory_girl
   factory_girl_rails
