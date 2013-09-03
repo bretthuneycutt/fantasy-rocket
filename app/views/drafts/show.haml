@@ -24,7 +24,10 @@
         %tr
           %td.pick= i + 1
           %td.clearfix
-            .team-name= pick.team.andand.name
+            - if pick.team
+              .team
+                .team-icon{class: pick.team.css_class}
+                .team-name= pick.team.name
             .member-name= pick.member.name
 
   %table.draft-table.table.available-view.hidden
@@ -37,7 +40,9 @@
         %tr.available-team
           %td.rank= i + 1 + (@draft.unavailable_teams.andand.size || 0)
           %td.clearfix
-            .team-name= team.name
+            .team
+              .team-icon{class: team.css_class}
+              .team-name= team.name
             - if current_user == @draft.current_picker
               = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "btn btn-main pick-link"
 

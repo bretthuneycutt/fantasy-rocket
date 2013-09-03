@@ -41,10 +41,13 @@
       font-size: 20px;
       line-height: $draft-table-line-height;
     }
-    .team-name {
+    .team {
       float: left;
       font-size: 20px;
       line-height: $draft-table-line-height;
+    }
+    .team-name {
+      display: inline-block;
     }
     .member-name {
       float: right;
