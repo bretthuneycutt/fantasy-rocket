@@ -10,7 +10,7 @@
   }
   .links {
     float: right;
-    a {
+    .logged-in, a {
       color: white;
       text-transform: uppercase;
       line-height: $header-height;

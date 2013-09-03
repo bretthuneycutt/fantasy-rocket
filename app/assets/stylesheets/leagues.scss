@@ -1,0 +1,26 @@
+.leagues-show {
+  max-width: $narrow-page-width;
+  .notification {
+    background: $light-gray;
+    color: black;
+    font-size: 16px;
+    padding: 20px 28px;
+    .url-input {
+      width: 50%;
+    }
+  }
+  .league-header {
+    text-align: center;
+  }
+  .league-name {
+    font-size: 40px;
+    margin: 20px 0 4px;
+  }
+  .member-count {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .btn-main {
+    margin: 16px 0 8px;
+  }
+}
