@@ -1,27 +1,24 @@
-%h1 Sign Up
+.centered-form
+  %h1.form-title Sign Up
 
-= form_for @user do |f|
-  = hidden_field_tag :redirect_to, params[:redirect_to]
+  = form_for @user do |f|
+    = hidden_field_tag :redirect_to, params[:redirect_to]
 
-  - if @user.errors.any?
-    .error_messages
-      %h2 Form is invalid
-      %ul
-      - @user.errors.full_messages.each do |message|
-        %li= message
+    - if @user.errors.any?
+      .error_messages
+        %h2 Form is invalid
+        %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
 
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-  .form-group
-    = f.label :email
-    = f.text_field :email, class: "form-control"
-  .form-group
-    = f.label :password
-    = f.password_field :password, class: "form-control"
-  .form-group
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, class: "form-control"
+    .form-group
+      = f.text_field :name, class: "form-control input-lg", placeholder: "First and Last name"
+    .form-group
+      = f.text_field :email, class: "form-control input-lg", placeholder: "Email address"
+    .form-group
+      = f.password_field :password, class: "form-control input-lg", placeholder: "Password"
+    .form-group
+      = f.password_field :password_confirmation, class: "form-control input-lg", placeholder: "Confirm password"
 
-  .actions
-    = f.submit "Sign Up", class: "btn btn-default"
+    .actions
+      = f.submit "Sign Up", class: "btn btn-main btn-xlg"
