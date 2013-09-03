@@ -12,7 +12,14 @@
       .start-draft-description Press "start the draft" after all your friends have joined.
     - if !@league.members.include?(current_user) && @league.draft.status == :not_started
       = link_to "Join league", league_memberships_path(@league), method: "post", class: "btn btn-main btn-xlg"
-  %ul
-    Members
-    - @league.members.each do |member|
-      %li= member.name
+  %table.table.black-table.league-members
+    %thead
+      %tr
+        %th.rank-header Rank
+        %th Team
+    %tbody
+      - @league.members.each do |member|
+        %tr
+          / TODO - show rank here
+          %td -
+          %td= member.name
