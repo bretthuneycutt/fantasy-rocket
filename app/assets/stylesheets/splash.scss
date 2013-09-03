@@ -15,4 +15,23 @@
       margin: 28px auto;
     }
   }
+  .quote {
+    background-color: black;
+    color: white;
+    height: 120px;
+    padding: 40px 0;
+    .quote-text {
+      float: left;
+      font-style: italic;
+      font-size: 20px;
+    }
+    .quote-author {
+      float: right;
+      font-size: 18px;
+    }
+    .read-more {
+      text-transform: uppercase;
+      color: $orange;
+    }
+  }
 }
