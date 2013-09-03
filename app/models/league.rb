@@ -19,7 +19,7 @@ class League < ActiveRecord::Base
   end
 
   def hmac
-    "hmac_key"
+    HMAC.id(id.to_s)
   end
 
 private
