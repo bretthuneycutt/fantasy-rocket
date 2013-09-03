@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from Unauthorized do
-    render text: "unauthorized", status: 403
+    render text: "Unauthorized (403)", status: 403
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    render text: "Not found (404)", status: 404
   end
 
 private
