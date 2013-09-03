@@ -22,12 +22,22 @@
         .row
           .col-md-12
             = link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_path
-            .links
-              = link_to "How it works", "http://faq.fantasyrocket.com"
+            .links.clearfix
+              = link_to "How it works", "http://faq.fantasyrocket.com", class: "header-link"
               - if current_user
-                %span.logged-in #{current_user.name}
-                = link_to "Log out", session_path("current"), method: "delete"
+                .dropdown.navbar-right
+                  %a.header-link{href: "#", 'data-toggle' => "dropdown"}
+                    = current_user.name
+                    %b.caret
+                  %ul.dropdown-menu
+                    - if current_user.leagues.size > 0
+                      - current_user.leagues.each do |league|
+                        %li= link_to league.name, league
+                      %li.divider
+                    %li= link_to "+ Create a League", new_league_path
+                    %li.divider
+                    %li= link_to "Log Out", session_path("current"), method: "delete"
               - else
-                = link_to "Create a league", new_user_path
-                = link_to "Sign in", new_session_path
+                = link_to "Create a league", new_user_path, class: "header-link"
+                = link_to "Sign in", new_session_path, class: "header-link"
     = yield
