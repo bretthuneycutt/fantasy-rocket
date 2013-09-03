@@ -1,13 +1,11 @@
 %h1 Log In
 
 = form_tag sessions_path do
-  .field
+  .form-group
     = label_tag :email
-    %br
-    = text_field_tag :email, params[:email]
-  .field
+    = text_field_tag :email, params[:email], class: "form-control"
+  .form-group
     = label_tag :password
-    %br
-    = password_field_tag :password
+    = password_field_tag :password, nil, class: "form-control"
   .actions
-    = submit_tag "Log In"
+    = submit_tag "Log In", class: "btn btn-default"
