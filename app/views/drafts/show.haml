@@ -1,6 +1,13 @@
 %h1= @league.name
 %p Draft page
 
+.current_pick
+  - if @draft.current_picker == current_user
+    It's your pick! Select a team to draft now.
+  - else
+    It's #{@draft.current_picker.name}'s turn to pick.
+
+
 %h2 Picks
 %ol
   - @draft.picks.each_with_index do |pick, i|

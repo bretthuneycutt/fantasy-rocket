@@ -8,12 +8,19 @@ describe Draft do
 
     its(:status) { should == :not_started}
     its(:available_teams) { should be_nil }
+    its(:current_pick) { should be_nil }
   end
 
   context "for a league with draft picks not yet selected" do
     let(:league) { FactoryGirl.create(:league) }
-    let!(:draft_pick) { FactoryGirl.create(:draft_pick, league: league) }
-    let!(:selected_draft_pick) { FactoryGirl.create(:draft_pick, league: league, team_id: 26) }
+
+    let(:commissioner) { league.commissioner }
+    let(:other_member) { FactoryGirl.create(:user) }
+
+    let!(:pick4) { FactoryGirl.create(:draft_pick, league: league, member: other_member, order: 4) }
+    let!(:pick1) { FactoryGirl.create(:draft_pick, league: league, member: commissioner, order: 1, team_id: 26) }
+    let!(:pick2) { FactoryGirl.create(:draft_pick, league: league, member: other_member, order: 2) }
+    let!(:pick3) { FactoryGirl.create(:draft_pick, league: league, member: commissioner, order: 3) }
 
     its(:status) { should == :in_progress}
 
@@ -27,6 +34,8 @@ describe Draft do
         subject.available_teams.map(&:name).should include "New England Patriots", "Baltimore Ravens"
       end
     end
+
+    its(:current_pick) { should == pick2 }
   end
 
   context "for a league with all draft picks selected" do
@@ -35,5 +44,6 @@ describe Draft do
 
     its(:status) { should == :complete}
     its(:available_teams) { should be_nil }
+    its(:current_pick) { should be_nil }
   end
 end

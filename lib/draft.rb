@@ -24,10 +24,22 @@ class Draft
   end
 
   def available_teams
-    @available_teams ||= if status == :in_progress
-      Team.all.select do |team|
+    return  unless status == :in_progress
+
+    @available_teams ||= Team.all.select do |team|
         !picked_team_ids.include? team.id
-      end
     end
+  end
+
+  def current_pick
+    return  unless status == :in_progress
+
+    @current_picker ||= picks.where(:team_id => nil).first
+  end
+
+  def current_picker
+    return  unless status == :in_progress
+
+    current_pick.member
   end
 end
