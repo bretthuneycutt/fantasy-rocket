@@ -3,8 +3,12 @@ require 'spec_helper'
 describe DraftGenerator do
   let(:league) do
     members = []
-    10.times { members << FactoryGirl.create(:user) }
-    FactoryGirl.create(:league, members: members)
+    league = FactoryGirl.create(:league)
+    # commissioner + 9 others
+    9.times do
+      league.members << FactoryGirl.create(:user)
+    end
+    league
   end
 
   subject { described_class.new(league) }
