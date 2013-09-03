@@ -4,3 +4,5 @@
   Members
   - @league.members.each do |member|
     %li= member.name
+- unless @league.members.include? current_user
+  = link_to "Join", league_memberships_path(@league), method: "post"
