@@ -1,4 +1,6 @@
 class Team
+  TOTAL_NUMBER = 32
+
   attr_reader :id, :name
 
   def self.all
@@ -10,10 +12,6 @@ class Team
   def initialize(attributes = {})
     @id = attributes['id']
     @name = attributes['name']
-  end
-
-  def self.size
-    @size ||= all.size
   end
 
   def self.find_by_id(team_id)
