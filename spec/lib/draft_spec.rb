@@ -49,6 +49,13 @@ describe Draft do
       end
     end
 
+    describe "#unavailable_teams" do
+      it "returns all selected teams" do
+        subject.unavailable_teams.size.should == 1
+        subject.unavailable_teams.first.name.should == "Arizona Cardinals"
+      end
+    end
+
     its(:current_pick) { should == pick2 }
   end
 

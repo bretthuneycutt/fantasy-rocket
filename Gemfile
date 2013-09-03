@@ -8,6 +8,7 @@ gem 'email_validator'
 gem 'haml-rails'
 gem 'unicorn'
 gem 'newrelic_rpm'
+gem 'andand'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
