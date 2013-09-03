@@ -20,4 +20,7 @@
               - else
                 = link_to "Create a league", new_user_path
                 = link_to "Sign in", new_session_path
+    - flash.each do |name, message|
+      - if message.is_a?(String)
+        %div{:id => "flash_#{name}"}= message
     = yield
