@@ -8,5 +8,4 @@ To make your pick, click here:
 = league_url(@league)
 
 DRAFT ORDER
-- @draft.picks.each_with_index do |pick, i|
-  #{i}. #{pick.member.name} - #{pick.team.andand.name}
+= render partial: "draft_pick", :collection => @draft.picks
