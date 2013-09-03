@@ -20,4 +20,5 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  site_name: "Fantasy Rocket"
+  description: "NFL Wins Pools, beloved by Bill Simmons of ESPN, is one of the simplest and most addictive fantasy pools you can play with your friends."
