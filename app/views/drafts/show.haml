@@ -1,26 +1,46 @@
-%h1= @league.name
-%p Draft page
+.drafts-show.container.container-under-header
+  .league-header
+    %h1.league-name= @league.name
+    .member-count #{@league.members.size} members
 
-.current_pick
-  - if @draft.current_picker == current_user
-    It's your pick! Select a team to draft now.
-  - else
-    It's #{@draft.current_picker.name}'s turn to pick.
+  .current-pick
+    - if @draft.current_picker == current_user
+      It's your pick! Select a team to draft now.
+    - else
+      / TODO - pluralize correctly
+      It's #{@draft.current_picker.name}'s turn to pick.
 
+  .draft-view-toggle.clearfix
+    .toggle-button.available-button Available
+    .toggle-button.drafted-button Drafted
 
-%h2 Picks
-%ol
-  - @draft.picks.each_with_index do |pick, i|
-    %li.pick
-      %p.pick_order
-        = pick.member.name
-      - if pick.team
-        %p.pick_team= pick.team.name
+  %table.draft-table.table.drafted-view.hidden
+    %thead
+      %tr
+        %th.pick-header Pick
+        %th Team
+    %tbody
+      - @draft.picks.each_with_index do |pick, i|
+        %tr
+          %td.pick= i + 1
+          %td.clearfix
+            .team-name= pick.team.andand.name
+            .member-name= pick.member.name
 
-%h2 Available teams
-%ul
-  - @draft.available_teams.each do |team|
-    %li.available_team
-      = team.name
-      - if current_user == @draft.current_picker
-        = link_to "Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put"
+  %table.draft-table.table.available-view.hidden
+    %thead
+      %tr
+        %th.rank-header FR Rank
+        %th Team
+    %tbody
+      - @draft.available_teams.each_with_index do |team, i|
+        %tr.available-team
+          %td.rank= i + 1 + (@draft.unavailable_teams.andand.size || 0)
+          %td.clearfix
+            .team-name= team.name
+            - if current_user == @draft.current_picker
+              = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "pick-link"
+
+:coffee
+  $ ->
+    new DraftView()
