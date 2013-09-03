@@ -1,10 +1,18 @@
 body {
   background-color: black;
+  color: white;
+  @include font-primary;
+}
+
+// Override bootstrap fonts
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  @include font-primary;
 }
 
 // btn overrides from Rudy
 .btn {
   text-transform: uppercase;
+  letter-spacing: 2px;
   // TODO - get font from Rudy
   &.btn-xlg {
     padding: 20px 40px;

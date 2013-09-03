@@ -6,6 +6,7 @@
     background: image-url('splash/banner.jpg') no-repeat center top;
     @include background-size-cover;
     h1 {
+      font-size: 44px;
       margin-top: 0;
       padding-top: 176px;
     }
@@ -48,6 +49,9 @@
     h4 {
       padding-top: 20px;
       font-size: 24px;
+    }
+    p {
+      font-size: 16px;
     }
     .create-league {
       margin: 36px;
