@@ -21,6 +21,18 @@ describe SessionsController do
 
         expect(response).to redirect_to("/")
       end
+
+      context "and redirect_to specified" do
+        it "redirects to specified path" do
+          post :create, {
+            'redirect_to' => '/leagues/1',
+            'email' => user.email,
+            'password' => "password",
+          }
+
+          expect(response).to redirect_to('/leagues/1')
+        end
+      end
     end
 
     context "with invalid password" do

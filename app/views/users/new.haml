@@ -1,6 +1,8 @@
 %h1 Sign Up
 
 = form_for @user do |f|
+  = hidden_field_tag :redirect_to, params[:redirect_to]
+
   - if @user.errors.any?
     .error_messages
       %h2 Form is invalid
