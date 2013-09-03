@@ -19,6 +19,7 @@
           .col-md-12
             = link_to image_tag('logo.png', alt: 'Fantasy Rocket', class: "logo"), root_path
             .links
+              = link_to "How it works", "http://faq.fantasyrocket.com"
               - if current_user
                 %span.logged-in #{current_user.name}
                 = link_to "Log out", session_path("current"), method: "delete"
