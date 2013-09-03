@@ -10,8 +10,8 @@ class DraftMailer < ActionMailer::Base
     @draft = @league.draft
 
     mail({
-      to: "#{@user.name} <@user.email>",
-      subject: DraftEmailSubject.new(@draft, @user).to_s,
+      to: @user.email,
+      subject: "Your NFL Wins Pool draft has started! #{@draft.current_picker.name} is up!",
     })
   end
 end

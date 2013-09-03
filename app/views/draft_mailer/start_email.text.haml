@@ -1,7 +1,12 @@
 Hi #{@user.name},
 
-Your draft has started! Click here to participate:
+#{@league.commissioner.name} has started your NFL Wins Pool draft for your league, #{@league.name}. Remember, when it is your turn to draft, select the team that you think is going to win the most regular season games. The player with the most total regular season wins after Week 16 will be the winner.
+
+Every player has been assigned a randomized  draft order, which you can see below. #{@draft.current_picker.name} has the first pick! Make your picks quickly! Players take turns making picks, so the faster you make your pick, the faster the next player can make theirs.
+
+To make your pick, click here:
 = league_url(@league)
 
-Thanks,
-FantasyRocket
+DRAFT ORDER
+- @draft.picks.each_with_index do |pick, i|
+  #{i}. #{pick.member.name} - #{pick.team.andand.name}
