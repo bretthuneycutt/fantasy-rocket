@@ -1,10 +1,25 @@
-%h1= @league.name
-%p Commissioner: #{@league.commissioner.name}
-%ul
-  Members
-  - @league.members.each do |member|
-    %li= member.name
-- if @league.commissioner == current_user && @draft.ready_to_start?
-  = link_to "Start draft", league_drafts_path(@league), method: "post"
-- elsif !@league.eligible_to_be_member?(current_user)
-  = link_to "Join", league_memberships_path(@league), method: "post"
+.container.container-under-header.leagues-show
+  - if current_user == @league.commissioner
+    .notification
+      %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends ASAP so you can start the draft.
+      %p
+        %input.url-input.form-control{type: "text", value: league_url(@league), rel: "select-on-click"}
+  .league-header
+    %h1.league-name= @league.name
+    .member-count #{@league.members.size} members
+    - if current_user == @league.commissioner && @league.members.size > 1 && @draft.ready_to_start?
+      = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
+      .start-draft-description Press "start the draft" after all your friends have joined.
+    - if @league.eligible_to_be_member?(current_user) && @league.draft.status == :not_started
+      = link_to "Join league", league_memberships_path(@league), method: "post", class: "btn btn-main btn-xlg"
+  %table.table.black-table.league-members
+    %thead
+      %tr
+        %th.rank-header Rank
+        %th Team
+    %tbody
+      - @league.members.each do |member|
+        %tr
+          / TODO - show rank here
+          %td -
+          %td= member.name
