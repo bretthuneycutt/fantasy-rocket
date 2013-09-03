@@ -19,8 +19,18 @@ class Draft
     end
   end
 
+  def ready_to_start?
+    status == :not_started && league.members.count > 1
+  end
+
   def picked_team_ids
     @picked_ids ||= picks.map(&:team_id).compact
+  end
+
+  def unavailable_teams
+    return  unless status == :in_progress
+
+    @unavailable_teams ||= Team.all - available_teams
   end
 
   def available_teams
