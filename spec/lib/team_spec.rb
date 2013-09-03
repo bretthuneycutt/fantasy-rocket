@@ -12,10 +12,4 @@ describe Team do
       end
     end
   end
-
-  describe '.size' do
-    it "equals 32" do
-      Team.size.should == 32
-    end
-  end
 end

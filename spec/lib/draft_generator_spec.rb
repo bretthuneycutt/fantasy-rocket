@@ -13,8 +13,6 @@ describe DraftGenerator do
 
   subject { described_class.new(league) }
 
-  its(:picks_per_member) { should == 3 }
-
   describe "#generate_picks!" do
     it "creates the right number of DraftPicks" do
       expect { subject.generate_picks! }.to change { DraftPick.count }.by(30)
@@ -35,3 +33,38 @@ describe DraftGenerator do
     end
   end
 end
+
+describe "DraftGenerator::DRAFT_POSITIONS_BY_LEAGUE_SIZE" do
+  DraftGenerator::DRAFT_POSITIONS_BY_LEAGUE_SIZE.each do |size, positions|
+    describe "leagues of size #{size}" do
+      let(:picks_per_member) do
+        positions.inject({}) do |ppm, member|
+          ppm[member] ||= 0
+          ppm[member] += 1
+          ppm
+        end
+      end
+
+      let(:aggregate_draft_positions) do
+        adp = Array.new(size) { 0 }
+        positions.each_with_index do |member, i|
+          adp[member] += i
+        end
+        adp
+      end
+
+      it "maximizes picks_per_member" do
+        picks_per_member.values.min.should == Team::TOTAL_NUMBER / size
+      end
+
+      it "distributes same number of picks to members" do
+        picks_per_member.values.min.should == picks_per_member.values.max
+      end
+
+      it "distributes picks fairly to members (aggregate draft positions do not diverge by more than 1)" do
+        aggregate_draft_positions.max.should <=aggregate_draft_positions.min + 1
+      end
+    end
+  end
+end
+
