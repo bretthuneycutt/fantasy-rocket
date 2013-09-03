@@ -4,9 +4,9 @@ class DraftMailer < ActionMailer::Base
   default from: "hi@fantasyrocket.com",
           content_type: "text/plain"
 
-  def start_email(user_id, league_id)
-    @user = User.find(user_id)
-    @league = League.find(league_id)
+  def start_email(user, league)
+    @user = user
+    @league = league
     @draft = @league.draft
 
     mail({
@@ -15,9 +15,9 @@ class DraftMailer < ActionMailer::Base
     })
   end
 
-  def pick_made_email(user_id, league_id)
-    @user = User.find(user_id)
-    @league = League.find(league_id)
+  def pick_made_email(user, league)
+    @user = user
+    @league = league
     @draft = @league.draft
 
     mail({
@@ -26,9 +26,9 @@ class DraftMailer < ActionMailer::Base
     })
   end
 
-  def draft_complete_email(user_id, league_id)
-    @user = User.find(user_id)
-    @league = League.find(league_id)
+  def draft_complete_email(user, league)
+    @user = user
+    @league = league
     @draft = @league.draft
 
     mail({

@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 FantasyRocket::Application.routes.draw do
   resources :users
   resources :leagues do
@@ -6,6 +8,8 @@ FantasyRocket::Application.routes.draw do
   end
   resources :draft_picks
   resources :sessions
+
+  mount Sidekiq::Web, at: '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
