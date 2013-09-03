@@ -8,10 +8,7 @@ class LeagueMembershipsController < ApplicationController
       return
     end
 
-    unless @league.members.include? current_user
-      @league.members << current_user
-    end
-
+    @league.add_member(current_user)
     redirect_to league_path(@league)
   end
 end

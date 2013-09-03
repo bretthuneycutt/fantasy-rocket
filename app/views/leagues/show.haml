@@ -6,5 +6,5 @@
     %li= member.name
 - if @league.commissioner == current_user && @draft.ready_to_start?
   = link_to "Start draft", league_drafts_path(@league), method: "post"
-- elsif !@league.members.include? current_user
+- elsif !@league.eligible_to_be_member?(current_user)
   = link_to "Join", league_memberships_path(@league), method: "post"
