@@ -18,6 +18,10 @@ class League < ActiveRecord::Base
     @draft = Draft.new(self)
   end
 
+  def hmac
+    "hmac_key"
+  end
+
 private
 
   def add_commissioner_as_member
