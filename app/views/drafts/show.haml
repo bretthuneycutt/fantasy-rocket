@@ -1,2 +1,16 @@
 %h1= @league.name
 %p Draft page
+
+%h2 Picks
+%ol
+  - @draft.picks.each_with_index do |pick, i|
+    %li.pick
+      %p.pick_order
+        = pick.member.name
+      - if pick.team
+        %p.pick_team= pick.team.name
+
+%h2 Available teams
+%ul
+  - @draft.available_teams.each do |team|
+    %li.available_team= team.name

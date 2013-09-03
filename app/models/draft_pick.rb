@@ -5,4 +5,8 @@ class DraftPick < ActiveRecord::Base
   def selected?
     !!team_id
   end
+
+  def team
+    @team ||= Team.find_by_id(team_id)  if team_id
+  end
 end

@@ -15,4 +15,9 @@ class Team
   def self.size
     @size ||= all.size
   end
+
+  def self.find_by_id(team_id)
+    @teams_by_id ||= {}
+    @teams_by_id[team_id] ||= all.detect {|t| t.id == team_id }
+  end
 end

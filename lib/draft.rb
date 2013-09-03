@@ -18,4 +18,16 @@ class Draft
       :complete
     end
   end
+
+  def picked_team_ids
+    @picked_ids ||= picks.map(&:team_id).compact
+  end
+
+  def available_teams
+    @available_teams ||= if status == :in_progress
+      Team.all.select do |team|
+        !picked_team_ids.include? team.id
+      end
+    end
+  end
 end
