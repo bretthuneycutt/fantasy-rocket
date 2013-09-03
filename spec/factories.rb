@@ -12,4 +12,10 @@ FactoryGirl.define do
     name "League Name"
     association :commissioner, factory: :user
   end
+
+  factory :draft_pick do
+    league
+    association :member, factory: :user
+    order { rand(0..31) }
+  end
 end

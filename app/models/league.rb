@@ -7,4 +7,5 @@ class League < ActiveRecord::Base
   has_many :league_memberships
 
   has_many :members, through: :league_memberships, class_name: "User"
+  has_many :draft_picks, inverse_of: :league
 end
