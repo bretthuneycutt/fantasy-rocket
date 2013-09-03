@@ -13,10 +13,10 @@ describe DraftsController do
         league.reload.draft.status.should == status
       end
 
-      it "redirects to the league page" do
+      it "returns forbidden" do
         post :create, :league_id => league.id
 
-        expect(response).to redirect_to(league_path(league))
+        expect(response).to be_forbidden
       end
     end
 
