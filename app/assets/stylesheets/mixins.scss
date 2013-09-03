@@ -17,3 +17,19 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+@mixin black-table{
+  width: 100%;
+  th, td {
+    background: $dark-gray;
+  }
+  tr, td, thead, tbody, & {
+    border-color: black;
+  }
+  th {
+    border-bottom: none;
+  }
+  th, td {
+    border-right: 1px solid black;
+  }
+}

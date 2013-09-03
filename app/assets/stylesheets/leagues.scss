@@ -13,29 +13,17 @@
     margin: 16px 0 8px;
   }
   .league-members {
-    width: 100%;
     margin: 32px 0 60px;
     .rank-header {
       width: 88px;
     }
+    @include black-table;
     thead {
       font-size: 16px;
     }
     tbody tr {
       height: 86px;
       font-size: 20px;
-    }
-    th, td {
-      background: $dark-gray;
-    }
-    tr, td, thead, tbody, & {
-      border-color: black;
-    }
-    th {
-      border-bottom: none;
-    }
-    th, td {
-      border-right: 1px solid black;
     }
   }
 }

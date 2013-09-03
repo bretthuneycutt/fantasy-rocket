@@ -28,4 +28,10 @@
       }
     }
   }
+  .draft-table {
+    @include black-table;
+    .rank-header, .pick-header {
+      width: 100px;
+    }
+  }
 }

@@ -27,6 +27,14 @@ class Draft
     @picked_ids ||= picks.map(&:team_id).compact
   end
 
+  def unavailable_teams
+    return  unless status == :in_progress
+
+    @unavailable_teams ||= Team.all.select do |team|
+      picked_team_ids.include? team.id
+    end
+  end
+
   def available_teams
     return  unless status == :in_progress
 
