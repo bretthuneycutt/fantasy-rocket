@@ -11,10 +11,10 @@
       It's #{@draft.current_picker.name}'s turn to pick.
 
   .draft-view-toggle.clearfix
-    .toggle-button.available-button.active Available
+    .toggle-button.available-button Available
     .toggle-button.drafted-button Drafted
 
-  %ol.drafted-view
+  %ol.drafted-view.hidden
     - @draft.picks.each_with_index do |pick, i|
       %li.pick
         %p.pick_order
@@ -22,9 +22,13 @@
         - if pick.team
           %p.pick_team= pick.team.name
 
-  %ul.available-view
+  %ul.available-view.hidden
     - @draft.available_teams.each do |team|
       %li.available_team
         = team.name
         - if current_user == @draft.current_picker
           = link_to "Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put"
+
+:coffee
+  $ ->
+    new DraftView()
