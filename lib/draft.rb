@@ -19,6 +19,10 @@ class Draft
     end
   end
 
+  def ready_to_start?
+    status == :not_started && league.members.count > 1
+  end
+
   def picked_team_ids
     @picked_ids ||= picks.map(&:team_id).compact
   end

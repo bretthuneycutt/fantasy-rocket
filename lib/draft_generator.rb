@@ -10,7 +10,7 @@ class DraftGenerator
   end
 
   def generate_picks!
-    return  unless @league.draft.status == :not_started
+    return  unless @league.draft.ready_to_start?
 
     # TODO - implement better algorithm here to make it fair
     # Right now it is sequential

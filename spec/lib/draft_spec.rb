@@ -6,9 +6,22 @@ describe Draft do
   context "for a league without any draft picks" do
     let(:league) { FactoryGirl.build(:league) }
 
-    its(:status) { should == :not_started}
+    its(:status) { should == :not_started }
     its(:available_teams) { should be_nil }
     its(:current_pick) { should be_nil }
+
+    context "with only one member" do
+      its(:ready_to_start?) { should be_false }
+    end
+
+    context "with multiple members" do
+      before :each do
+        league.save!
+        league.members << FactoryGirl.create(:user)
+      end
+
+      its(:ready_to_start?) { should be_true }
+    end
   end
 
   context "for a league with draft picks not yet selected" do
@@ -23,6 +36,7 @@ describe Draft do
     let!(:pick3) { FactoryGirl.create(:draft_pick, league: league, member: commissioner, order: 3) }
 
     its(:status) { should == :in_progress}
+    its(:ready_to_start?) { should be_false }
 
     describe "#available_teams" do
       it "returns all teams not selected" do
@@ -45,5 +59,6 @@ describe Draft do
     its(:status) { should == :complete}
     its(:available_teams) { should be_nil }
     its(:current_pick) { should be_nil }
+    its(:ready_to_start?) { should be_false }
   end
 end
