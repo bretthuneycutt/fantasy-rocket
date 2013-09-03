@@ -17,5 +17,4 @@ private
   def add_commissioner_as_member
     members << commissioner
   end
->>>>>>> master
 end
