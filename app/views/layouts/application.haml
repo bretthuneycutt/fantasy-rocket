@@ -8,6 +8,11 @@
     = csrf_meta_tags
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
   %body
+    - flash.each do |name, message|
+      - if message.is_a?(String)
+        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          %a.close{"data-dismiss" => "alert"} ×
+          %div{:id => "flash_#{name}"}= message
     .header
       .container
         .row
@@ -20,9 +25,4 @@
               - else
                 = link_to "Create a league", new_user_path
                 = link_to "Sign in", new_session_path
-    - flash.each do |name, message|
-      - if message.is_a?(String)
-        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
-          %a.close{"data-dismiss" => "alert"} ×
-          %div{:id => "flash_#{name}"}= message
     = yield
