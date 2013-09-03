@@ -22,5 +22,7 @@
                 = link_to "Sign in", new_session_path
     - flash.each do |name, message|
       - if message.is_a?(String)
-        %div{:id => "flash_#{name}"}= message
+        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          %a.close{"data-dismiss" => "alert"} ×
+          %div{:id => "flash_#{name}"}= message
     = yield
