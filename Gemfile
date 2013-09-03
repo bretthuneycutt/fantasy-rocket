@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 gem "pg"
 gem 'email_validator'
 gem 'haml-rails'
+gem 'unicorn'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -41,6 +42,10 @@ group :development, :test do
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password

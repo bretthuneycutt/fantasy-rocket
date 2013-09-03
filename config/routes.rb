@@ -1,8 +1,8 @@
 FantasyRocket::Application.routes.draw do
-  resources :league_memberships
-
   resources :users
-  resources :leagues
+  resources :leagues do
+    resources :league_memberships, as: 'memberships'
+  end
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
