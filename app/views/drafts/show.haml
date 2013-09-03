@@ -1,7 +1,7 @@
 .drafts-show.container.container-under-header
   .league-header
     %h1.league-name= @league.name
-    .member-count #{@league.members.size} members
+    .member-count #{@league.members.size} players
 
   .current-pick
     - if @draft.current_picker == current_user
