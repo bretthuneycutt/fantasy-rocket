@@ -22,6 +22,8 @@ describe Draft do
 
       its(:ready_to_start?) { should be_true }
     end
+
+    its(:last_pick) { should be_nil }
   end
 
   context "for a league with draft picks not yet selected" do
@@ -57,6 +59,7 @@ describe Draft do
     end
 
     its(:current_pick) { should == pick2 }
+    its(:last_pick) { should == pick1 }
   end
 
   context "for a league with all draft picks selected" do
@@ -67,5 +70,6 @@ describe Draft do
     its(:available_teams) { should be_nil }
     its(:current_pick) { should be_nil }
     its(:ready_to_start?) { should be_false }
+    its(:last_pick) { should be_nil }
   end
 end

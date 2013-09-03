@@ -1,4 +1,5 @@
 class Team
+  ARIZONA_CARDINALS = 26
   TOTAL_NUMBER = 32
 
   attr_reader :id, :name
