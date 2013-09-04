@@ -58,9 +58,7 @@ describe DraftPicksController do
 
         context "if it's the last pick" do
           it "sends the draft-complete email to all members" do
-            league.members.each do |m|
-              DraftCompleteMailerWorker.should_receive(:perform_async).with(m.id, league.id)
-            end
+            DraftCompleteMailerWorker.should_receive(:perform_async).with(league.id)
 
             put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
           end
@@ -70,9 +68,7 @@ describe DraftPicksController do
           let!(:next_pick) { FactoryGirl.create(:draft_pick, league: league, order: 2) }
 
           it "sends the pick-made email to all members" do
-            league.members.each do |m|
-              DraftPickMadeMailerWorker.should_receive(:perform_async).with(m.id, league.id)
-            end
+            DraftPickMadeMailerWorker.should_receive(:perform_async).with(league.id)
 
             put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
           end
