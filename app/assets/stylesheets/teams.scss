@@ -1,0 +1,40 @@
+.team-icon {
+  background-image: image-url('teams.png');
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: bottom;
+  &.arizona-cardinals { background-position: 0 0; }
+  &.atlanta-falcons { background-position: 0 -36px; }
+  &.baltimore-ravens { background-position: 4px -66px; }
+  &.buffalo-bills { background-position: 2px -100px; }
+  &.carolina-panthers { background-position: 2px -133px; }
+  &.chicago-bears { background-position: 2px -167px; }
+  &.cincinnati-bengals { background-position: 2px -199px; }
+  &.cleveland-browns { background-position: 2px -234px; }
+  &.dallas-cowboys { background-position: 2px -266px; }
+  &.denver-broncos { background-position: 2px -297px; }
+  &.detroit-lions { background-position: 2px -331px; }
+  &.green-bay-packers { background-position: 2px -363px; }
+  &.houston-texans { background-position: 2px -397px; }
+  &.indianapolis-colts { background-position: 2px -430px; }
+  &.jacksonville-jaguars { background-position: 2px -462px; }
+  &.kansas-city-chiefs { background-position: 2px -496px; }
+  &.miami-dolphins { background-position: 2px -527px; }
+  &.minnesota-vikings { background-position: 2px -564px; }
+  &.new-england-patriots { background-position: 2px -595px; }
+  &.new-orleans-saints { background-position: 2px -631px; }
+  &.new-york-giants { background-position: 2px -660px; }
+  &.new-york-jets { background-position: 2px -694px; }
+  &.oakland-raiders { background-position: 2px -728px; }
+  &.philadelphia-eagles { background-position: 2px -760px; }
+  &.pittsburgh-steelers { background-position: 2px -794px; }
+  &.san-diego-chargers { background-position: 2px -827px; }
+  &.san-francisco-49ers { background-position: 2px -859px; }
+  &.seattle-seahawks { background-position: 2px -892px; }
+  &.st-louis-rams { background-position: 2px -926px; }
+  &.tampa-bay-buccaneers { background-position: 2px -959px; }
+  &.tennessee-titans { background-position: 2px -992px; }
+  &.washington-redskins { background-position: 2px -1024px; }
+}

@@ -7,6 +7,10 @@
     font-size: 20px;
     padding: 20px;
     margin: 32px 1px 0;
+    &.your-turn {
+      background-color: $orange;
+      border: none;
+    }
   }
   .draft-view-toggle {
     .toggle-button {
@@ -34,6 +38,10 @@
       font-size: 16px;
       font-weight: 300;
     }
+    .drafting-now td {
+      background-color: $orange;
+      color: white;
+    }
     .rank-header, .pick-header {
       width: 100px;
     }
@@ -41,10 +49,16 @@
       font-size: 20px;
       line-height: $draft-table-line-height;
     }
-    .team-name {
+    .team, .notification {
       float: left;
       font-size: 20px;
       line-height: $draft-table-line-height;
+    }
+    .notification {
+      text-transform: uppercase;
+    }
+    .team-name {
+      display: inline-block;
     }
     .member-name {
       float: right;

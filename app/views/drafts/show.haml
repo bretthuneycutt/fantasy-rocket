@@ -1,18 +1,18 @@
 .drafts-show.container.container-under-header
   .league-header
     %h1.league-name= @league.name
-    .member-count #{@league.members.size} members
+    .member-count #{@league.members.size} players
 
-  .current-pick
+  .current-pick{class: @draft.current_picker == current_user ? "your-turn" : ""}
     - if @draft.current_picker == current_user
-      It's your pick! Select a team to draft now.
+      It's your turn! Pick a team to draft.
     - else
       / TODO - pluralize correctly
       It's #{@draft.current_picker.name}'s turn to pick.
 
   .draft-view-toggle.clearfix
     .toggle-button.available-button Available
-    .toggle-button.drafted-button Drafted
+    .toggle-button.drafted-button Picks
 
   %table.draft-table.table.drafted-view.hidden
     %thead
@@ -20,11 +20,21 @@
         %th.pick-header Pick
         %th Team
     %tbody
+      / TODO - move this logic out of view (e.g. into decorator)
+      - shown_drafting_now = false
       - @draft.picks.each_with_index do |pick, i|
-        %tr
+        - if !shown_drafting_now && !pick.team && pick.member == @draft.current_picker
+          - should_show_drafting_now = true
+          - shown_drafting_now = true
+        %tr{class: should_show_drafting_now ? "drafting-now" : ""}
           %td.pick= i + 1
           %td.clearfix
-            .team-name= pick.team.andand.name
+            - if pick.team
+              .team
+                .team-icon{class: pick.team.css_class}
+                .team-name= pick.team.name
+            - elsif should_show_drafting_now
+              .notification Drafting now!
             .member-name= pick.member.name
 
   %table.draft-table.table.available-view.hidden
@@ -37,10 +47,12 @@
         %tr.available-team
           %td.rank= i + 1 + (@draft.unavailable_teams.andand.size || 0)
           %td.clearfix
-            .team-name= team.name
+            .team
+              .team-icon{class: team.css_class}
+              .team-name= team.name
             - if current_user == @draft.current_picker
               = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "btn btn-main pick-link"
 
 :coffee
   $ ->
-    new DraftView()
+    new DraftView(shouldShowDraftedView: #{!!params[:show_drafted]})
