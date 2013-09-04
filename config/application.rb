@@ -22,14 +22,5 @@ module FantasyRocket
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir[config.root, "app", "workers"]
-
-    if ENV['HOSTNAME']
-      config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
-        r301 %r{.*}, "http://#{ENV['HOSTNAME']}$&", :if => Proc.new { |rack_env|
-          rack_env['SERVER_NAME'] != ENV['HOSTNAME']
-        }
-      end
-    end
-
   end
 end

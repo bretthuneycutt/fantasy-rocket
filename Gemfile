@@ -10,7 +10,6 @@ gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'andand'
 gem 'honeybadger'
-gem 'rack-rewrite'
 
 # sidekiq
 gem 'sidekiq'
