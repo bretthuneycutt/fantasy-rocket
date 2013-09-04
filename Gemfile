@@ -9,6 +9,7 @@ gem 'haml-rails'
 gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'andand'
+gem 'honeybadger'
 
 # sidekiq
 gem 'sidekiq'
