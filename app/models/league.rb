@@ -20,6 +20,10 @@ class League < ActiveRecord::Base
     @draft = Draft.new(self)
   end
 
+  def hmac
+    HMAC.id(id.to_s)
+  end
+
   def eligible_to_be_member?(user)
     members.count < MEMBER_LIMIT && !members.include?(user)
   end
