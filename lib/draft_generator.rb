@@ -16,9 +16,7 @@ class DraftGenerator
       league.draft_picks.create!(member: members[member_index], order: position)
     end
 
-    league.members.each do |m|
-      StartDraftMailerWorker.perform_async(m.id, league.id)
-    end
+    StartDraftMailerWorker.perform_async(league.id)
   end
 
   DRAFT_POSITIONS_BY_LEAGUE_SIZE = {

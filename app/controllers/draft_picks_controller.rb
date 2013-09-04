@@ -22,9 +22,7 @@ class DraftPicksController < ApplicationController
         DraftCompleteMailerWorker
       end
 
-      @league.members.each do |m|
-        mailer_worker_class.perform_async(m.id, @league.id)
-      end
+      mailer_worker_class.perform_async(@league.id)
     end
 
     redirect_to league_path(@league, show_drafted: "true")

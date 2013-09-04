@@ -1,8 +1,7 @@
 class StartDraftMailerWorker
   include Sidekiq::Worker
 
-  def perform(user_id, league_id)
-    user = User.find(user_id)
+  def perform(league_id)
     league = League.find(league_id)
 
     DraftMailer.start_email(user, league).deliver
