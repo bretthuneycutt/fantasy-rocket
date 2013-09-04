@@ -1,9 +1,12 @@
 The draft for your league, #{@league.name}, has now begun. Remember, when it is your turn to pick, choose the team you think will win the most regular season games. The player with the most total regular season wins after Week 16 will be the winner.
 
+
 Every player has been assigned a randomized  draft order, which you can see below. #{@draft.current_picker.name} has the first pick! Make your picks quickly! Players take turns making picks, so the faster you make your pick, the faster the next player can make theirs.
 
+
 To make your pick, visit:
-= league_url(@league, h: @league.hmac)
+= league_url(@league, h: @league.hmac, source: 'start_draft_email', medium: 'email')
+
 
 DRAFT ORDER
 = render partial: "draft_pick", :collection => @draft.picks
