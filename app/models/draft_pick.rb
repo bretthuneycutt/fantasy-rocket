@@ -18,4 +18,8 @@ class DraftPick < ActiveRecord::Base
     return  unless draft.available_teams.include? team
     update_attribute(:team_id, team_id)
   end
+
+  def as_ordinal
+    (order + 1).ordinalize
+  end
 end
