@@ -12,11 +12,11 @@
     %meta{property: "og:site_name", content: t(:site_name)}
     %meta{property: "og:image", content: asset_url('og_image.jpg')}
   %body
-    - flash.each do |name, message|
-      - if message.is_a?(String)
-        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
-          %a.close{"data-dismiss" => "alert"} &times;
-          %div{:id => "flash_#{name}"}= message
+    .flash-messages
+      - flash.each do |name, message|
+        - if message.is_a?(String)
+          .flash-message{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+            %div{:id => "flash_#{name}"}= message
     .header
       .container
         .row
@@ -66,3 +66,7 @@
 
       ga('create', 'UA-43758213-1', 'fantasyrocket.com');
       ga('send', 'pageview');
+
+    :coffee
+      $ ->
+        new FlashView()
