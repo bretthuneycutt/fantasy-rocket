@@ -1,12 +1,43 @@
-.header {
+.logo-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -$logo-width / 2;
+  z-index: 2;
+}
+
+.navbar {
   background: $orange;
   height: $header-height;
-  position: relative;
-  .logo {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -$logo-width / 2;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  // bootstrap navbar overrides
+  border: 0;
+  border-radius: 0;
+  .nav > li > a, .navbar-nav > li > a {
+    padding: 0;
+  }
+  .nav a:hover .caret {
+    border-top-color: white;
+  }
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: transparent;
+  }
+  &.navbar-default .navbar-nav > li > a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  .navbar-toggle {
+    background: darken($orange, 3%);
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 18px;
+    &:hover {
+      background: darken($orange, 5%);
+    }
   }
   .links {
     float: right;
@@ -33,6 +64,26 @@
         &:hover {
           background-color: black;
         }
+      }
+    }
+  }
+  @media only screen and (max-width: $mobile-width) {
+    &.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: white;
+    }
+    .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+      background: lighten($orange, 5%);
+    }
+    .links {
+      float: none;
+      background: darken($orange, 5%);
+      a, .header-link {
+        width: 100%;
+        padding: 0 32px;
+      }
+      .dropdown-menu {
+        position: relative;
+        top: 8px;
       }
     }
   }

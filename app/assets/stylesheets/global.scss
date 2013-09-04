@@ -2,6 +2,7 @@ body {
   background-color: black;
   color: white;
   @include font-primary;
+  padding-top: $header-height;
 }
 
 // Override bootstrap fonts
