@@ -12,4 +12,10 @@ describe Team do
       end
     end
   end
+
+  describe "#css_class" do
+    it "returns the correct CSS class name" do
+      Team.all.first.css_class.should == "atlanta-falcons"
+    end
+  end
 end
