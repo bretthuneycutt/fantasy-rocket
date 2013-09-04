@@ -19,8 +19,18 @@ class Draft
     end
   end
 
+  def ready_to_start?
+    status == :not_started && league.members.count > 1
+  end
+
   def picked_team_ids
     @picked_ids ||= picks.map(&:team_id).compact
+  end
+
+  def unavailable_teams
+    return  unless status == :in_progress
+
+    @unavailable_teams ||= Team.all - available_teams
   end
 
   def available_teams
@@ -31,10 +41,22 @@ class Draft
     end
   end
 
+  def last_pick
+    return  unless status == :in_progress
+
+    @last_pick ||= picks.where('team_id IS NOT NULL').last
+  end
+
+  def last_picker
+    return  unless status == :in_progress
+
+    last_pick.member
+  end
+
   def current_pick
     return  unless status == :in_progress
 
-    @current_picker ||= picks.where(:team_id => nil).first
+    @current_pick ||= picks.where(:team_id => nil).first
   end
 
   def current_picker

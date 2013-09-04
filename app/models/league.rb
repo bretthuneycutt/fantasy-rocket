@@ -1,6 +1,8 @@
 require 'draft'
 
 class League < ActiveRecord::Base
+  MEMBER_LIMIT = 15
+
   validates :name, presence: true
   validates :commissioner_id, presence: true
 
@@ -22,9 +24,18 @@ class League < ActiveRecord::Base
     HMAC.id(id.to_s)
   end
 
+  def eligible_to_be_member?(user)
+    members.count < MEMBER_LIMIT && !members.include?(user)
+  end
+
+  def add_member(user)
+    return  unless eligible_to_be_member?(user)
+    members << user
+  end
+
 private
 
   def add_commissioner_as_member
-    members << commissioner
+    add_member commissioner
   end
 end

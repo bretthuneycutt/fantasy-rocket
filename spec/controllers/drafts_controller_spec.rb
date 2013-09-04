@@ -42,6 +42,10 @@ describe DraftsController do
     end
 
     context "by commissioner if draft hasn't been started" do
+      before :each do
+        league.members << FactoryGirl.create(:user)
+      end
+
       it "starts the draft" do
         league.draft.status.should == :not_started
 
