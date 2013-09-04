@@ -17,6 +17,8 @@ class DraftGenerator
     end
 
     StartDraftMailerWorker.perform_async(league.id)
+
+    league.update_attributes!(:draft_started_at => Time.now)
   end
 
   DRAFT_POSITIONS_BY_LEAGUE_SIZE = {
