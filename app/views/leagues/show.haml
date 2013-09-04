@@ -29,7 +29,9 @@
         %tr
           / TODO - show rank here
           %td -
-          %td= member.name
+          %td
+            .member-name= member.name
+            .team-names= @league.team_names(member)
 
 :coffee
   mixpanel.track("League Show")

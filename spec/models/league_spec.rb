@@ -50,4 +50,48 @@ describe League do
       end
     end
   end
+
+  describe "#team_names" do
+    context "user does not have draft picks" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      before(:each) do
+        subject.add_member(user)
+      end
+
+      it "returns nil" do
+        subject.team_names(user).should be_nil
+      end
+    end
+
+    context "user has draft picks that do not have teams" do
+      let(:user) do
+        FactoryGirl.create(:user, draft_picks: [
+          FactoryGirl.create(:draft_pick, league: subject),
+        ])
+      end
+
+      before(:each) do
+        subject.add_member(user)
+      end
+
+      it "returns nil" do
+        subject.team_names(user).should be_nil
+      end
+    end
+
+    context "user has draft picks that have teams" do
+      let(:user) do
+        FactoryGirl.create(:user, draft_picks: [
+          FactoryGirl.create(:draft_pick, league: subject, team_id: 1),
+          FactoryGirl.create(:draft_pick, league: subject, team_id: 2),
+          FactoryGirl.create(:draft_pick, league: subject, team_id: 3),
+        ])
+      end
+
+      it "returns a sentence of team names" do
+        subject.team_names(user).should == "Atlanta Falcons, Denver Broncos, and Houston Texans"
+      end
+    end
+  end
 end
