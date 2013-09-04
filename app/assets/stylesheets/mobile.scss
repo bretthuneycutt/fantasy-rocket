@@ -1,4 +1,7 @@
 @media only screen and (max-width: 760px) {
+  .hidden-for-mobile {
+    display: none;
+  }
   #uvTabLabel {
     display: none !important;
   }
