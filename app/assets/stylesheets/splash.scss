@@ -13,14 +13,14 @@
     h2 {
       font-size: 28px;
       font-weight: 300;
-      width: 480px;
+      max-width: 480px;
       margin: 28px auto;
     }
   }
   .quote {
     background-color: black;
     color: white;
-    height: 120px;
+    min-height: 120px;
     padding: 40px 0;
     .quote-text {
       float: left;
