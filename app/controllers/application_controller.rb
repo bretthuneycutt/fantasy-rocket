@@ -21,13 +21,14 @@ private
   end
   helper_method :current_user
 
-  def league_url(league)
-    root_url[0..-2] + league_path(league)
+  def league_url(league, params = {})
+    root_url[0..-2] + league_path(league, params)
   end
   helper_method :league_url
 
-  def league_path(league)
-    "/leagues/#{league.to_param}?h=#{league.hmac}"
+  def league_path(league, params = {})
+    params[:h] = league.hmac
+    "/leagues/#{league.to_param}?#{params.to_param}"
   end
   helper_method :league_path
 end

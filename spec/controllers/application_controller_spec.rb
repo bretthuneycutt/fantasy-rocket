@@ -7,6 +7,11 @@ describe ApplicationController do
     it "returns correct path with hmac key" do
       subject.send(:league_path, league).should == "/leagues/#{league.to_param}?h=#{league.hmac}"
     end
+
+    it "returns correct path with hmac key and optional parameters" do
+      subject.send(:league_path, league, show_drafted: true).should == "/leagues/#{league.to_param}?h=#{league.hmac}&show_drafted=true"
+    end
+
   end
 
   describe "#league_url" do
