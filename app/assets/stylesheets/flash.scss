@@ -1,0 +1,14 @@
+.flash-messages {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  font-size: 16px;
+  text-align: center;
+  width: $flash-message-width;
+  left: 50%;
+  margin-left: -$flash-message-width / 2;
+  .flash-message {
+    border-radius: 0;
+  }
+}
