@@ -33,9 +33,7 @@ describe DraftGenerator do
     end
 
     it "sends start draft email to all league members" do
-      league.members.each do |m|
-        StartDraftMailerWorker.should_receive(:perform_async).with(m.id, league.id)
-      end
+      StartDraftMailerWorker.should_receive(:perform_async).with(league.id)
 
       subject.generate_picks!
     end

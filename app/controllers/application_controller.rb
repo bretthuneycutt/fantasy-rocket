@@ -21,6 +21,8 @@ private
   end
   helper_method :current_user
 
+  # TODO override these methods elsewhere so they work in mailer
+
   def league_url(league, params = {})
     root_url[0..-2] + league_path(league, params)
   end
