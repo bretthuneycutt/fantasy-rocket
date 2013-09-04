@@ -11,7 +11,7 @@ class DraftMailer < ActionMailer::Base
 
     mail({
       to: @user.email,
-      subject: "Your NFL Wins Pool draft has started! #{@draft.current_picker.name} is up!",
+      subject: "The draft has started! #{@draft.current_picker.name} is up!",
     })
   end
 
@@ -22,7 +22,7 @@ class DraftMailer < ActionMailer::Base
 
     mail({
       to: @user.email,
-      subject: "#{@draft.last_pick.team.name} has been selected! #{@draft.current_picker.name} is up!",
+      subject: "#{@draft.last_pick.team.name} picked #{@draft.last_pick.as_ordinal}! #{@draft.current_picker.name} is up!",
     })
   end
 
@@ -33,7 +33,7 @@ class DraftMailer < ActionMailer::Base
 
     mail({
       to: @user.email,
-      subject: "Draft for #{@league.name} is now complete!",
+      subject: "'#{@league.name}' draft is now complete!",
     })
   end
 end

@@ -13,7 +13,7 @@ describe DraftMailer do
     subject { DraftMailer.start_email(user, league) }
 
     it 'sets the subject correctly' do
-      subject.subject.should == "Your NFL Wins Pool draft has started! #{league.draft.current_picker.name} is up!"
+      subject.subject.should == "The draft has started! #{league.draft.current_picker.name} is up!"
     end
 
     it 'sends to the correct recipient' do
@@ -39,7 +39,7 @@ describe DraftMailer do
     subject { DraftMailer.pick_made_email(user, league) }
 
     it 'sets the subject correctly' do
-      subject.subject.should == "Arizona Cardinals has been selected! #{league.draft.current_picker.name} is up!"
+      subject.subject.should == "Arizona Cardinals picked 1st! #{league.draft.current_picker.name} is up!"
     end
 
     it 'sends to the correct recipient' do
@@ -67,7 +67,7 @@ describe DraftMailer do
     subject { DraftMailer.draft_complete_email(user, league) }
 
     it 'sets the subject correctly' do
-      subject.subject.should == "Draft for #{league.name} is now complete!"
+      subject.subject.should == "'#{league.name}' draft is now complete!"
     end
 
     it 'sends to the correct recipient' do
