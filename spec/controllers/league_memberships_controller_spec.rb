@@ -5,16 +5,6 @@ describe LeagueMembershipsController do
   let(:league) { FactoryGirl.create(:league) }
 
   describe "POST 'create'" do
-    context "if not logged in" do
-      it "redirects to sign up page" do
-        post :create, :league_id => league.id
-
-        redirect_path = new_user_path(redirect_to: league_path(league))
-
-        expect(response).to redirect_to(redirect_path)
-      end
-    end
-
     context "if logged in and not a member" do
       def go!
         post :create, {:league_id => league.id}, {:user_id => user.id}
