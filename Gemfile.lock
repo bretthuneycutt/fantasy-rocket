@@ -59,6 +59,8 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hike (1.2.3)
+    honeybadger (1.8.0)
+      json
     i18n (0.6.5)
     jbuilder (1.5.1)
       activesupport (>= 3.0.0)
@@ -182,6 +184,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   haml-rails
+  honeybadger
   jbuilder (~> 1.2)
   jquery-rails
   newrelic_rpm
