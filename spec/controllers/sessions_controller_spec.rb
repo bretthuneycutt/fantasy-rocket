@@ -13,6 +13,15 @@ describe SessionsController do
     let!(:user) { FactoryGirl.create(:user) }
 
     context "with valid email and password" do
+      it "logs in the user" do
+        post :create, {
+          'email' => user.email,
+          'password' => "password",
+        }
+
+        session[:user_id].should == user.id
+      end
+
       it "redirects to the home page" do
         post :create, {
           'email' => user.email,
@@ -32,6 +41,19 @@ describe SessionsController do
 
           expect(response).to redirect_to('/leagues/1')
         end
+      end
+    end
+
+    context "with valid email of different case" do
+      let!(:user) { FactoryGirl.create(:user, email: "example@example.com") }
+
+      it "logs in the user" do
+        post :create, {
+          'email' => "EXAMPLE@EXAMPLE.COM",
+          'password' => "password",
+        }
+
+        session[:user_id].should == user.id
       end
     end
 
