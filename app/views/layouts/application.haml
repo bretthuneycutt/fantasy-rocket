@@ -34,11 +34,11 @@
                       - current_user.leagues.each do |league|
                         %li= link_to league.name, league
                       %li.divider
-                    %li= link_to "+ Create a League", new_league_path
+                    %li= link_to "+ Start a League", new_league_path
                     %li.divider
                     %li= link_to "Log Out", session_path("current"), method: "delete"
               - else
-                = link_to "Create a league", new_user_path, class: "header-link"
+                = link_to "Start a league", new_user_path, class: "header-link"
                 = link_to "Sign in", new_session_path, class: "header-link"
     = yield
 
