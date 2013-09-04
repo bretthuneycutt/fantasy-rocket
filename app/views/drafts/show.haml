@@ -11,8 +11,8 @@
       It's #{@draft.current_picker.name}'s turn to pick.
 
   .draft-view-toggle.clearfix
-    .toggle-button.available-button Available
     .toggle-button.drafted-button Picks
+    .toggle-button.available-button Available
 
   %table.draft-table.table.drafted-view.hidden
     %thead
@@ -55,4 +55,4 @@
 
 :coffee
   $ ->
-    new DraftView(shouldShowDraftedView: #{!!params[:show_drafted]})
+    new DraftView()
