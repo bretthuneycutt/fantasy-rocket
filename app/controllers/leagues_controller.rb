@@ -17,8 +17,10 @@ class LeaguesController < ApplicationController
 
   def show
     @league = League.find(params[:id])
-    @draft = @league.draft
 
+    raise ActiveRecord::RecordNotFound  unless params[:h] == @league.hmac
+
+    @draft = @league.draft
     template = case @draft.status
     when :not_started
       'leagues/show'
