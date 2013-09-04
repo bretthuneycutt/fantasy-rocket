@@ -1,3 +1,7 @@
+- if @league.draft.status == :not_started
+  - content_for :title do
+    Join my NFL Wins Pool league!
+
 .container.container-under-header.leagues-show
   - if current_user == @league.commissioner
     .notification

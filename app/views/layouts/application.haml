@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 %html
   %head
-    %title= t(:site_name)
+    %title= yield(:title).presence || "#{t(:site_name)} - Home of the NFL Wins Pool"
     %link{href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700', rel: 'stylesheet'}
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
