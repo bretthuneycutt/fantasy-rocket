@@ -18,8 +18,7 @@
       = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
       .start-draft-description Press "start the draft" after all your friends have joined.
     - if @league.eligible_to_be_member?(current_user) && @league.draft.status == :not_started
-      = form_tag league_memberships_path(@league), method: 'post', class: 'join-league-form' do
-        = submit_tag "Join league", class: "btn btn-main btn-xlg join-league-link"
+      = link_to_join_league(@league)
   %table.table.black-table.league-members
     %thead
       %tr
@@ -34,4 +33,5 @@
 
 :coffee
   mixpanel.track("League Show")
-  mixpanel.track_forms(".leagues-show .join-league-form", "League Join Click")
+  mixpanel.track_links(".leagues-show .join-league-link", "League Join Click", data: {signed_in: false})
+  mixpanel.track_forms(".leagues-show .join-league-form", "League Join Click", data: {signed_in: true})
