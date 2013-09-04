@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe DraftPicksController do
-  let!(:previous_pick) { FactoryGirl.create(:draft_pick, league: pick.league, team_id: 1) }
-  let(:pick) { FactoryGirl.create(:draft_pick) }
+  let(:league) { pick.league }
+  let!(:previous_pick) { FactoryGirl.create(:draft_pick, league: league, team_id: 1, order: 0) }
+  let(:pick) { FactoryGirl.create(:draft_pick, order: 1) }
 
   describe "PUT 'update'" do
     context "for someone not the picker" do
@@ -54,6 +55,29 @@ describe DraftPicksController do
 
           expect(response).to redirect_to(league_path(pick.league))
         end
+
+        context "if it's the last pick" do
+          it "sends the draft-complete email to all members" do
+            league.members.each do |m|
+              DraftCompleteMailerWorker.should_receive(:perform_async).with(m.id, league.id)
+            end
+
+            put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
+          end
+        end
+
+        context "if it's not the last pick" do
+          let!(:next_pick) { FactoryGirl.create(:draft_pick, league: league, order: 2) }
+
+          it "sends the pick-made email to all members" do
+            league.members.each do |m|
+              DraftPickMadeMailerWorker.should_receive(:perform_async).with(m.id, league.id)
+            end
+
+            put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
+          end
+        end
+
       end
     end
   end

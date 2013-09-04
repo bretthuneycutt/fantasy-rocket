@@ -3,6 +3,10 @@ require 'spec_helper'
 describe DraftPick do
   it_behaves_like "a FactoryGirl class"
 
+  subject { FactoryGirl.build(:draft_pick, order: 20) }
+
+  its(:as_ordinal) { should == "21st" }
+
   context "with team not yet selected" do
     subject { FactoryGirl.build(:draft_pick) }
 

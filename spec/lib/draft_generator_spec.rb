@@ -31,6 +31,14 @@ describe DraftGenerator do
       pick_numbers.should == pick_numbers.uniq
       pick_numbers.should == (0..29).to_a
     end
+
+    it "sends start draft email to all league members" do
+      league.members.each do |m|
+        StartDraftMailerWorker.should_receive(:perform_async).with(m.id, league.id)
+      end
+
+      subject.generate_picks!
+    end
   end
 end
 
