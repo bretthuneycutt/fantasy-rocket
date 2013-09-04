@@ -80,4 +80,21 @@
       text-transform: uppercase;
     }
   }
+  @media only screen and (max-width: $mobile-width) {
+    .available-view {
+      td {
+        text-align: center;
+      }
+      .team {
+        padding: 8px 0;
+      }
+      .team, .pick-link {
+        float: none;
+      }
+      .pick-link {
+        width: 68%;
+        font-size: 18px;
+      }
+    }
+  }
 }
