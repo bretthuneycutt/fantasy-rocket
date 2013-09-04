@@ -3,6 +3,8 @@
 
   = form_for @user do |f|
     = hidden_field_tag :redirect_to, params[:redirect_to]
+    = hidden_field_tag :league_id, params[:league_id]
+    = hidden_field_tag :h, params[:h]
 
     - if @user.errors.any?
       .error_messages
