@@ -3,9 +3,12 @@
     Join my NFL Wins Pool league!
 
 .container.container-under-header.leagues-show
-  - if current_user == @league.commissioner
+  - if @league.draft.status == :not_started && @league.members.include?(current_user)
     .notification
-      %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends or post it on social media. You need at least 2 players in league but no more than 15.
+      - if current_user == @league.commissioner
+        %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends or post it on social media. You need between 2 and 15 members to play. If you are betting, don't forget to set your wager before the draft begins!
+      - else
+        %p This league is still accepting new members. If you'd like to invite someone to play, copy the unique URL below and send it to your friends or post it on social media. You need between 2 and 15 members to play.
       %p
         %input.url-input.form-control{type: "text", value: league_url(@league), rel: "select-on-click"}
   .league-header
@@ -27,3 +30,8 @@
           / TODO - show rank here
           %td -
           %td= member.name
+
+:coffee
+  mixpanel.track("League Show")
+  mixpanel.track_links(".leagues-show .join-league-link", "League Join Click", data: {signed_in: false})
+  mixpanel.track_forms(".leagues-show .join-league-form", "League Join Click", data: {signed_in: true})

@@ -11,19 +11,22 @@
     %meta{property: "og:description", content: t(:description)}
     %meta{property: "og:site_name", content: t(:site_name)}
     %meta{property: "og:image", content: asset_url('og_image.jpg')}
+    :javascript
+      (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+      mixpanel.init("#{ENV['MIXPANEL_API_KEY'] || 'e68b22111bfe9c0cd6b8fc54d6f4a480'}");
   %body
-    - flash.each do |name, message|
-      - if message.is_a?(String)
-        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
-          %a.close{"data-dismiss" => "alert"} &times;
-          %div{:id => "flash_#{name}"}= message
+    .flash-messages
+      - flash.each do |name, message|
+        - if message.is_a?(String)
+          .flash-message{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+            %div{:id => "flash_#{name}"}= message
     .header
       .container
         .row
           .col-md-12
             = link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_path
             .links.clearfix
-              = link_to "How it works", "http://faq.fantasyrocket.com", class: "header-link", target: "_blank"
+              = link_to "How it works", "http://faq.fantasyrocket.com", class: "header-link how-it-works", target: "_blank"
               - if current_user
                 .dropdown.navbar-right
                   %a.header-link{href: "#", 'data-toggle' => "dropdown"}
@@ -34,11 +37,11 @@
                       - current_user.leagues.each do |league|
                         %li= link_to league.name, league
                       %li.divider
-                    %li= link_to "+ Start a League", new_league_path
+                    %li= link_to "+ Start a League", new_league_path, class: "dropdown-create-league"
                     %li.divider
                     %li= link_to "Log Out", session_path("current"), method: "delete"
               - else
-                = link_to "Start a league", new_user_path, class: "header-link"
+                = link_to "Start a league", new_user_path, class: "header-link create-league"
                 = link_to "Sign in", new_session_path, class: "header-link"
     = yield
 
@@ -66,3 +69,10 @@
 
       ga('create', 'UA-43758213-1', 'fantasyrocket.com');
       ga('send', 'pageview');
+
+    :coffee
+      mixpanel.track_links(".header .create-league", "Header CreateLeague Click")
+      mixpanel.track_links(".header .how-it-works", "Header HowItWorks Click")
+      mixpanel.track_links(".header .dropdown-create-league", "Header Dropdown CreateLeague Click")
+      $ ->
+        new FlashView()

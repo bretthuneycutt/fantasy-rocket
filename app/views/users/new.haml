@@ -24,3 +24,7 @@
 
     .actions
       = f.submit "Sign Up", class: "btn btn-main btn-xlg"
+
+:coffee
+  mixpanel.track("SignUpForm Show")
+  mixpanel.track_forms(".centered-form form", "SignUpForm Submit")

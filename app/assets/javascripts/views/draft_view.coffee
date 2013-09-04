@@ -5,16 +5,13 @@ class @DraftView extends Backbone.View
     'click .available-button': 'showAvailableView'
     'click .drafted-button': 'showDraftedView'
 
-  initialize: ({shouldShowDraftedView}) =>
+  initialize: =>
     @$draftedButton = @$el.find(".drafted-button")
     @$availableButton = @$el.find(".available-button")
     @$draftedView = @$el.find(".drafted-view")
     @$availableView = @$el.find(".available-view")
 
-    if shouldShowDraftedView
-      @showDraftedView()
-    else
-      @showAvailableView()
+    @showDraftedView()
 
   showAvailableView: =>
     @$draftedButton.removeClass("active")

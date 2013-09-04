@@ -25,6 +25,6 @@ class DraftPicksController < ApplicationController
       mailer_worker_class.perform_async(@league.id)
     end
 
-    redirect_to league_path(@league, show_drafted: "true")
+    redirect_to league_path(@league)
   end
 end
