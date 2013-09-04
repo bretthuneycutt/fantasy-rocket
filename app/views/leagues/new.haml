@@ -14,3 +14,7 @@
 
     .actions
       = f.submit "Create League", class: "btn btn-main btn-xlg"
+
+:javascript
+  mixpanel.track("NewLeagueForm Show")
+  mixpanel.track_forms(".centered-form form", "NewLeagueForm Submit")
