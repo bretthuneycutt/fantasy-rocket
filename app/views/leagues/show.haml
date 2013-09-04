@@ -15,7 +15,7 @@
       = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
       .start-draft-description Press "start the draft" after all your friends have joined.
     - if @league.eligible_to_be_member?(current_user) && @league.draft.status == :not_started
-      = link_to "Join league", league_memberships_path(@league), method: "post", class: "btn btn-main btn-xlg"
+      = link_to_join_league(@league)
   %table.table.black-table.league-members
     %thead
       %tr
