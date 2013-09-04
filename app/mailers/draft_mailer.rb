@@ -1,7 +1,7 @@
 require 'haml/template/plugin'
 
 class DraftMailer < ActionMailer::Base
-  default from: "hi@fantasyrocket.com",
+  default from: "FantasyRocket <hi@fantasyrocket.com>",
           content_type: "text/plain"
 
   def start_email(user, league)
