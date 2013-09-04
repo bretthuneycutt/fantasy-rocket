@@ -25,3 +25,7 @@
           %h4 3. Win
           %p The member whose teams win the most regular season games wins the pool. And that's it! No agonizing over benching players every game day. Just sit back and watch who wins.
     .create-league= link_to "Start a league. It's free!", new_user_path, class: "btn btn-main btn-xlg"
+
+:coffee
+  mixpanel.track("Splash Show")
+  mixpanel.track_links(".splash .create-league a", "Splash CreateLeague Click")

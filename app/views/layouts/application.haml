@@ -26,7 +26,7 @@
           .col-md-12
             = link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_path
             .links.clearfix
-              = link_to "How it works", "http://faq.fantasyrocket.com", class: "header-link", target: "_blank"
+              = link_to "How it works", "http://faq.fantasyrocket.com", class: "header-link how-it-works", target: "_blank"
               - if current_user
                 .dropdown.navbar-right
                   %a.header-link{href: "#", 'data-toggle' => "dropdown"}
@@ -37,11 +37,11 @@
                       - current_user.leagues.each do |league|
                         %li= link_to league.name, league
                       %li.divider
-                    %li= link_to "+ Start a League", new_league_path
+                    %li= link_to "+ Start a League", new_league_path, class: "dropdown-create-league"
                     %li.divider
                     %li= link_to "Log Out", session_path("current"), method: "delete"
               - else
-                = link_to "Start a league", new_user_path, class: "header-link"
+                = link_to "Start a league", new_user_path, class: "header-link create-league"
                 = link_to "Sign in", new_session_path, class: "header-link"
     = yield
 
@@ -69,3 +69,8 @@
 
       ga('create', 'UA-43758213-1', 'fantasyrocket.com');
       ga('send', 'pageview');
+
+    :coffee
+      mixpanel.track_links(".header .create-league", "Header CreateLeague Click")
+      mixpanel.track_links(".header .how-it-works", "Header HowItWorks Click")
+      mixpanel.track_links(".header .dropdown-create-league", "Header Dropdown CreateLeague Click")
