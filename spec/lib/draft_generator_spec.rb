@@ -37,6 +37,16 @@ describe DraftGenerator do
 
       subject.generate_picks!
     end
+
+    it "sets draft_started_at time" do
+      league.draft_started_at.should be_nil
+
+      subject.generate_picks!
+
+      league.draft_started_at.should_not be_nil
+      league.draft_started_at.should > 1.minute.ago
+      league.draft_started_at.should < Time.now
+    end
   end
 end
 
