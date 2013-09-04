@@ -2,17 +2,18 @@ class Team
   ARIZONA_CARDINALS = 26
   TOTAL_NUMBER = 32
 
-  attr_reader :id, :name
+  attr_reader :id, :name, :expected_wins
 
   def self.all
     @all ||= YAML.load_file("./data/nfl_teams.yml").map do |attributes|
       Team.new(attributes)
-    end
+    end.sort_by(&:expected_wins).reverse
   end
 
   def initialize(attributes = {})
     @id = attributes['id']
     @name = attributes['name']
+    @expected_wins = attributes['ew']
   end
 
   def self.find_by_id(team_id)

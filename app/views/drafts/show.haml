@@ -40,12 +40,12 @@
   %table.draft-table.table.available-view.hidden
     %thead
       %tr
-        %th.rank-header FR Rank
+        %th.rank-header= link_to "Exp. wins", "http://www.cbssports.com/nfl/writer/pat-kirwan/23268807/nfl-teambyteam-record-predictions", target: "_blank"
         %th Team
     %tbody
       - @draft.available_teams.each_with_index do |team, i|
         %tr.available-team
-          %td.rank= i + 1 + (@draft.unavailable_teams.andand.size || 0)
+          %td.rank= team.expected_wins
           %td.clearfix
             .team
               .team-icon{class: team.css_class}

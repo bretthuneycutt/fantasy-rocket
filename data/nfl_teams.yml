@@ -1,65 +1,97 @@
 ---
 - id: 1
   name: Atlanta Falcons
+  ew: 11
 - id: 2
   name: Denver Broncos
+  ew: 11
 - id: 3
   name: Houston Texans
+  ew: 10
 - id: 4
   name: New England Patriots
+  ew: 11
 - id: 5
   name: San Francisco 49ers
+  ew: 11
 - id: 6
   name: Green Bay Packers
+  ew: 10
 - id: 7
   name: Indianapolis Colts
+  ew: 9
 - id: 8
   name: Seattle Seahawks
+  ew: 11
 - id: 9
   name: Baltimore Ravens
+  ew: 10
 - id: 10
   name: Chicago Bears
+  ew: 9
 - id: 11
   name: Cincinnati Bengals
+  ew: 10
 - id: 12
   name: Minnesota Vikings
+  ew: 8
 - id: 13
   name: Washington Redskins
+  ew: 9
 - id: 14
   name: New York Giants
+  ew: 9
 - id: 15
   name: Dallas Cowboys
+  ew: 8
 - id: 16
   name: Pittsburgh Steelers
+  ew: 10
 - id: 17
   name: St. Louis Rams
+  ew: 8
 - id: 18
   name: Carolina Panthers
+  ew: 8
 - id: 19
   name: Miami Dolphins
+  ew: 7
 - id: 20
   name: New Orleans Saints
+  ew: 10
 - id: 21
   name: San Diego Chargers
+  ew: 6
 - id: 22
   name: Tampa Bay Buccaneers
+  ew: 6
 - id: 23
   name: Buffalo Bills
+  ew: 6
 - id: 24
   name: New York Jets
+  ew: 4
 - id: 25
   name: Tennessee Titans
+  ew: 6
 - id: 26
   name: Arizona Cardinals
+  ew: 6
 - id: 27
   name: Cleveland Browns
+  ew: 5
 - id: 28
   name: Detroit Lions
+  ew: 8
 - id: 29
   name: Oakland Raiders
+  ew: 2
 - id: 30
   name: Philadelphia Eagles
+  ew: 5
 - id: 31
   name: Jacksonville Jaguars
+  ew: 3
 - id: 32
   name: Kansas City Chiefs
+  ew: 9
