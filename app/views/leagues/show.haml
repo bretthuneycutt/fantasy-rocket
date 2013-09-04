@@ -7,6 +7,7 @@
     .notification
       - if current_user == @league.commissioner
         %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends or post it on social media. You need between 2 and 15 members to play. If you are betting, don't forget to set your wager before the draft begins!
+        %p Once the draft begins, an email will be sent to league members with the draft order.
       - else
         %p This league is still accepting new members. If you'd like to invite someone to play, copy the unique URL below and send it to your friends or post it on social media. You need between 2 and 15 members to play.
       %p
