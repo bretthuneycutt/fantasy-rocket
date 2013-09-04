@@ -26,6 +26,7 @@
 
 @mixin black-table{
   width: 100%;
+  border-left: 1px solid black;
   th, td {
     background: $dark-gray;
   }
