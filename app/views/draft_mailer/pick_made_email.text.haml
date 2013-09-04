@@ -1,8 +1,8 @@
 Hi #{@user.name},
 
-With the #{@draft.last_pick.as_ordinal} in the draft, #{@draft.last_picker.name} selected #{@draft.last_pick.team.name}!
+With the #{@draft.last_pick.as_ordinal} pick in the draft, #{@draft.last_picker.name} selected #{@draft.last_pick.team.name}!
 
-#{@draft.current_picker.name} is up next with the #{@draft.current_pick.as_ordinal}. To make your pick, click here:
+#{@draft.current_picker.name} is up next with the #{@draft.current_pick.as_ordinal} pick. To make your pick, click here:
 = league_url(@league)
 
 DRAFT SO FAR:

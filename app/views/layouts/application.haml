@@ -15,7 +15,7 @@
     - flash.each do |name, message|
       - if message.is_a?(String)
         %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
-          %a.close{"data-dismiss" => "alert"} ×
+          %a.close{"data-dismiss" => "alert"} &times;
           %div{:id => "flash_#{name}"}= message
     .header
       .container
