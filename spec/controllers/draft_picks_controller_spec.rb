@@ -62,6 +62,16 @@ describe DraftPicksController do
 
             put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
           end
+
+          it "sets drated_completed_at time" do
+            league.draft_completed_at.should be_nil
+
+            put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
+
+            league.reload.draft_completed_at.should_not be_nil
+            league.draft_completed_at.should > 1.minute.ago
+            league.draft_completed_at.should < Time.now
+          end
         end
 
         context "if it's not the last pick" do
@@ -72,8 +82,15 @@ describe DraftPicksController do
 
             put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
           end
-        end
 
+          it "does not set drated_completed_at time" do
+            league.draft_completed_at.should be_nil
+
+            put :update, {:id => pick.id, :team_id => 2}, {:user_id => pick.member_id}
+
+            league.reload.draft_completed_at.should be_nil
+          end
+        end
       end
     end
   end

@@ -23,6 +23,8 @@ class DraftPicksController < ApplicationController
       end
 
       mailer_worker_class.perform_async(@league.id)
+
+      @league.update_attributes!(draft_completed_at: Time.now)  if @draft.status == :complete
     end
 
     redirect_to league_path(@league)
