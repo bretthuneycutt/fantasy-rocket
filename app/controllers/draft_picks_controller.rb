@@ -27,6 +27,6 @@ class DraftPicksController < ApplicationController
       end
     end
 
-    redirect_to league_path(@league)
+    redirect_to league_path(@league, show_drafted: "true")
   end
 end

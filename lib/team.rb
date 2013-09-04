@@ -20,4 +20,8 @@ class Team
     @teams_by_id ||= {}
     @teams_by_id[team_id] ||= all.detect {|t| t.id == team_id }
   end
+
+  def css_class
+    name.downcase.gsub(/[\s\.]+/, "-")
+  end
 end

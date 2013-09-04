@@ -1,16 +1,16 @@
-%h1 Name Your League
+.centered-form
+  %h1.form-title Name Your League
 
-= form_for @league do |f|
-  - if @league.errors.any?
-    .error_messages
-      %h2 Form is invalid
-      %ul
-      - @league.errors.full_messages.each do |message|
-        %li= message
+  = form_for @league do |f|
+    - if @league.errors.any?
+      .error_messages
+        %h2 Form is invalid
+        %ul
+        - @league.errors.full_messages.each do |message|
+          %li= message
 
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.text_field :name, class: 'form-control input-lg', placeholder: "League name"
 
-  .actions
-    = f.submit "Create League", class: "btn btn-default"
+    .actions
+      = f.submit "Create League", class: "btn btn-main btn-xlg"

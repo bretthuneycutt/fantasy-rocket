@@ -18,6 +18,12 @@
   user-select: none;
 }
 
+@mixin ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @mixin black-table{
   width: 100%;
   th, td {

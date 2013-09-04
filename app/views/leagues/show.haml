@@ -1,12 +1,16 @@
+- if @league.draft.status == :not_started
+  - content_for :title do
+    Join my NFL Wins Pool league!
+
 .container.container-under-header.leagues-show
   - if current_user == @league.commissioner
     .notification
-      %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends ASAP so you can start the draft.
+      %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends or post it on social media. You need at least 2 players in league but no more than 15.
       %p
         %input.url-input.form-control{type: "text", value: league_url(@league), rel: "select-on-click"}
   .league-header
     %h1.league-name= @league.name
-    .member-count #{@league.members.size} members
+    .member-count #{@league.members.size} players
     - if current_user == @league.commissioner && @league.members.size > 1 && @draft.ready_to_start?
       = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
       .start-draft-description Press "start the draft" after all your friends have joined.
