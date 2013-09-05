@@ -2,6 +2,7 @@
   .league-header
     %h1.league-name= @league.name
     .member-count #{@league.members.size} players
+    .how-the-draft-works
 
   .current-pick{class: @draft.current_picker == current_user ? "your-turn" : ""}
     - if @draft.current_picker == current_user
@@ -9,6 +10,11 @@
     - else
       / TODO - pluralize correctly
       It's #{@draft.current_picker.name}'s turn to pick.
+    %br
+    Read more about
+    = link_to "how it works", "http://blog.fantasyrocket.com/post/60366262131/how-to-create-a-fair-nfl-wins-pool-draft-with-advanced", target: "_blank"
+    = '.'
+
 
   .draft-view-toggle.clearfix
     .toggle-button.drafted-button Picks

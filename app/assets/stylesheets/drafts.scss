@@ -11,6 +11,10 @@
       background-color: $orange;
       border: none;
     }
+    a {
+      color: white;
+      text-decoration: underline;
+    }
   }
   .draft-view-toggle {
     .toggle-button {
