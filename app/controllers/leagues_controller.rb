@@ -7,8 +7,8 @@ class LeaguesController < ApplicationController
 
   def create
     @league = current_user.commissioned_leagues.new(league_params)
-
     if @league.save
+
       redirect_to league_path(@league), notice: "Your league has been created!"
     else
       render "new"
@@ -16,9 +16,9 @@ class LeaguesController < ApplicationController
   end
 
   def show
-    @league = League.where(id: params[:id]).includes(:members, {draft_picks: :members}).first
+    @league = League.find(params[:id])
 
-    raise ActiveRecord::RecordNotFound  unless @league && params[:h] == @league.hmac
+    raise ActiveRecord::RecordNotFound  unless params[:h] == @league.hmac
 
     @draft = @league.draft
     template = case @draft.status
