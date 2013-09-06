@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(version: 20130906141215) do
     t.datetime "updated_at"
   end
 
-  add_index "league_memberships", ["league_id"], name: "index_league_memberships_on_league_id", using: :btree
-  add_index "league_memberships", ["member_id"], name: "index_league_memberships_on_member_id", using: :btree
+  add_index "league_memberships", ["league_id", "member_id"], name: "index_league_memberships_on_league_id_and_member_id", unique: true, using: :btree
 
   create_table "leagues", force: true do |t|
     t.string   "name",               null: false
@@ -55,6 +54,6 @@ ActiveRecord::Schema.define(version: 20130906141215) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
