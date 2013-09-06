@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904211302) do
+ActiveRecord::Schema.define(version: 20130906005208) do
 
   create_table "draft_picks", force: true do |t|
-    t.integer "league_id", null: false
-    t.integer "member_id", null: false
-    t.integer "order",     null: false
-    t.integer "team_id"
+    t.integer  "league_id",  null: false
+    t.integer  "member_id",  null: false
+    t.integer  "order",      null: false
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "draft_picks", ["league_id", "team_id"], name: "index_draft_picks_on_league_id_and_team_id", unique: true, using: :btree
