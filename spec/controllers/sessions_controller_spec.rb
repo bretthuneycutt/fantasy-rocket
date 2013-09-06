@@ -19,7 +19,7 @@ describe SessionsController do
           'password' => "password",
         }
 
-        session[:user_id].should == user.id
+        cookies[:auth_token].should == user.auth_token
       end
 
       it "redirects to the home page" do
@@ -53,7 +53,7 @@ describe SessionsController do
           'password' => "password",
         }
 
-        session[:user_id].should == user.id
+        cookies[:auth_token].should == user.auth_token
       end
     end
 
