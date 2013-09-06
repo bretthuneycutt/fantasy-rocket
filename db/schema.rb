@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906005208) do
+ActiveRecord::Schema.define(version: 20130906141215) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20130906005208) do
   end
 
   add_index "draft_picks", ["league_id", "team_id"], name: "index_draft_picks_on_league_id_and_team_id", unique: true, using: :btree
+  add_index "draft_picks", ["league_id"], name: "index_draft_picks_on_league_id", using: :btree
+  add_index "draft_picks", ["member_id"], name: "index_draft_picks_on_member_id", using: :btree
 
   create_table "league_memberships", force: true do |t|
     t.integer  "league_id"
@@ -30,6 +32,9 @@ ActiveRecord::Schema.define(version: 20130906005208) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "league_memberships", ["league_id"], name: "index_league_memberships_on_league_id", using: :btree
+  add_index "league_memberships", ["member_id"], name: "index_league_memberships_on_member_id", using: :btree
 
   create_table "leagues", force: true do |t|
     t.string   "name",               null: false
@@ -40,6 +45,8 @@ ActiveRecord::Schema.define(version: 20130906005208) do
     t.datetime "draft_completed_at"
   end
 
+  add_index "leagues", ["commissioner_id"], name: "index_leagues_on_commissioner_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -47,5 +54,7 @@ ActiveRecord::Schema.define(version: 20130906005208) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
 end
