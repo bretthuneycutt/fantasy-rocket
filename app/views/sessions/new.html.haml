@@ -7,5 +7,6 @@
       = text_field_tag :email, params[:email], class: "form-control input-lg", placeholder: "Email address"
     .form-group
       = password_field_tag :password, nil, class: "form-control input-lg", placeholder: "Password"
+      %p.forgot-password= link_to "forgot password?", new_password_reset_path
     .actions
       = submit_tag "Submit", class: "btn btn-main btn-xlg"

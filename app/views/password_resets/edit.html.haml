@@ -1,0 +1,10 @@
+.centered-form
+  %h1.form-title Enter new password
+
+  = form_for @user, url: password_reset_path(params[:id]) do |f|
+    .form-group
+      = f.password_field :password, class: "form-control input-lg", placeholder: "New password"
+    .form-group
+      = f.password_field :password_confirmation, class: "form-control input-lg", placeholder: "Password confirmation"
+    .actions
+      = submit_tag "Update password", class: "btn btn-main btn-xlg"
