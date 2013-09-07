@@ -8,6 +8,7 @@ FantasyRocket::Application.routes.draw do
   end
   resources :draft_picks
   resources :sessions
+  resources :password_resets
 
   mount Sidekiq::Web, at: '/sidekiq'
 

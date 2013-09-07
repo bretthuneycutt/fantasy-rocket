@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
     user = User.find_by_email(email)
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+      cookies.permanent[:auth_token] = user.auth_token
       redirect_to params[:redirect_to].presence || root_url
     else
       flash.now.alert = "Email or password is invalid"

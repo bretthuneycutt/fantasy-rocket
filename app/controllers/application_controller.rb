@@ -17,7 +17,15 @@ class ApplicationController < ActionController::Base
 private
 
   def current_user
-    @current_user ||= User.find(session[:user_id])  if session[:user_id]
+    @current_user ||= if cookies[:auth_token]
+      User.find_by_auth_token!(cookies[:auth_token])
+    elsif session[:user_id]
+      # Legacy
+      # Cookies implemented 9/6/2013
+      # Can remove session a few weeks later
+
+      User.find(session[:user_id])
+    end
   end
   helper_method :current_user
 
