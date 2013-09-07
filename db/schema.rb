@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906141215) do
+ActiveRecord::Schema.define(version: 20130906210141) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(version: 20130906141215) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
