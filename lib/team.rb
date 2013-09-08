@@ -1,5 +1,6 @@
 class Team
   ARIZONA_CARDINALS = 26
+  DENVER_BRONCOS = 2
   TOTAL_NUMBER = 32
 
   attr_reader :id, :name, :expected_wins
