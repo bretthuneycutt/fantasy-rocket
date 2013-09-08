@@ -33,11 +33,8 @@ class League < ActiveRecord::Base
     members << user
   end
 
-  def team_names(user)
-    picks = draft_picks.where(member: user).where('team_id IS NOT NULL')
-    return unless picks.size > 0
-
-    picks.map { |pick| pick.team.name }.sort.to_sentence
+  def standings
+    @standings ||= members.map { |m| Standing.new(self, m) }.sort_by(&:win_count).reverse
   end
 
 private

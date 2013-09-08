@@ -11,6 +11,11 @@ class Team
     end.sort_by(&:expected_wins).reverse
   end
 
+  def self.win_counts
+    # TODO memoize
+    RegularSeasonGame.group(:winner_id).count
+  end
+
   def initialize(attributes = {})
     @id = attributes['id']
     @name = attributes['name']
@@ -25,5 +30,9 @@ class Team
 
   def css_class
     name.downcase.gsub(/[\s\.]+/, "-")
+  end
+
+  def win_count
+    Team.win_counts[id] || 0
   end
 end

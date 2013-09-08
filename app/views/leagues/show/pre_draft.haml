@@ -1,9 +1,8 @@
-- if @league.draft.status == :not_started
-  - content_for :title do
-    Join my NFL Wins Pool league!
+- content_for :title do
+  Join my NFL Wins Pool league!
 
 .container.container-under-header.leagues-show
-  - if @league.draft.status == :not_started && @league.members.include?(current_user)
+  - @league.members.include?(current_user)
     .notification
       - if current_user == @league.commissioner
         %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends or post it on social media. You need between 2 and 15 members to play. If you are betting, don't forget to set your wager before the draft begins!
@@ -18,7 +17,7 @@
     - if current_user == @league.commissioner && @league.members.size > 1 && @draft.ready_to_start?
       = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
       .start-draft-description Press "start the draft" after all your friends have joined.
-    - if @league.eligible_to_be_member?(current_user) && @league.draft.status == :not_started
+    - if @league.eligible_to_be_member?(current_user)
       = link_to_join_league(@league)
   %table.table.black-table.league-members
     %thead
@@ -28,11 +27,9 @@
     %tbody
       - @league.members.each do |member|
         %tr
-          / TODO - show rank here
           %td -
           %td
             .member-name= member.name
-            .team-names= @league.team_names(member)
 
 :coffee
   mixpanel.track("League Show")
