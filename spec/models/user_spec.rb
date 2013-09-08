@@ -8,6 +8,11 @@ describe User do
     user.email.should == "example@example.com"
   end
 
+  it "strips email on create" do
+    user = FactoryGirl.create(:user, email: "example@example.com  ")
+    user.email.should == "example@example.com"
+  end
+
   it "generates a unique user token on create" do
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
