@@ -22,10 +22,12 @@ class LeaguesController < ApplicationController
 
     @draft = @league.draft
     template = case @draft.status
-    when :not_started, :complete
-      'leagues/show'
-    else
+    when :not_started
+      'leagues/show/pre_draft'
+    when :in_progress
       'drafts/show'
+    when :complete
+      'leagues/show/post_draft'
     end
 
     render template
