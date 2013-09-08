@@ -1,0 +1,4 @@
+.container.container-under-header.regular-season-games-index
+  %ul
+    = @games.each do |g|
+      %li= "#{g.winner.name} - week #{g.week}"

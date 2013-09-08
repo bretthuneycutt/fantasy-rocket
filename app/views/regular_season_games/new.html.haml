@@ -1,0 +1,10 @@
+.centered-form
+  %h1.form-title Select a winner and week
+
+  = form_for @regular_season_game do |f|
+    .form-group
+      = f.select :winner_id, options_for_select(Team.all.sort_by(&:name).map { |t| [t.name, t.id ] })
+    .form-group
+      = f.select :week, options_for_select(1..17)
+    .actions
+      = submit_tag "Submit", class: "btn btn-main btn-xlg"
