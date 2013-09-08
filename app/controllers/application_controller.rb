@@ -29,6 +29,7 @@ private
   rescue ActiveRecord::RecordNotFound
     reset_session
     cookies.delete(:auth_token)
+    nil
   end
   helper_method :current_user
 
