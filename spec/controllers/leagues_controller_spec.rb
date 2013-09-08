@@ -52,7 +52,7 @@ describe LeaguesController do
         get :show, :id => league.id, :h => league.hmac
 
         response.should be_ok
-        expect(response).to render_template("show")
+        expect(response).to render_template("pre_draft")
       end
     end
   end

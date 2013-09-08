@@ -1,0 +1,23 @@
+.container.container-under-header.leagues-show
+  .league-header
+    %h1.league-name= @league.name
+    .member-count #{@league.members.size} players
+  %table.table.black-table.league-members
+    %thead
+      %tr
+        %th.rank-header Rank
+        %th.wins-header Wins
+        %th Team
+    %tbody
+      - @league.standings.each do |standing|
+        %tr
+          %td= standing.rank
+          %td= standing.wins
+          %td
+            .member-name= standing.member_name
+            .team-names= standing.teams_and_results
+
+:coffee
+  mixpanel.track("League Show")
+  mixpanel.track_links(".leagues-show .join-league-link", "League Join Click", data: {signed_in: false})
+  mixpanel.track_forms(".leagues-show .join-league-form", "League Join Click", data: {signed_in: true})

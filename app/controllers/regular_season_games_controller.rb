@@ -2,7 +2,6 @@ class RegularSeasonGamesController < ApplicationController
   http_basic_authenticate_with name: "fantasyrocket", password: ENV['BASIC_AUTH_PW']  if ENV['BASIC_AUTH_PW']
 
   def index
-    puts "hello"
     @games = RegularSeasonGame.all
   end
 

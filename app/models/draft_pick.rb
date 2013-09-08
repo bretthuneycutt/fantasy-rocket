@@ -2,6 +2,8 @@ class DraftPick < ActiveRecord::Base
   belongs_to :member, class_name: "User", inverse_of: :draft_picks
   belongs_to :league, inverse_of: :draft_picks
 
+  scope :picked, -> { where('team_id IS NOT NULL') }
+
   # TODO rename to picked?
   def selected?
     !!team_id
