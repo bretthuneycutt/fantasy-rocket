@@ -2,7 +2,7 @@
   Join my NFL Wins Pool league!
 
 .container.container-under-header.leagues-show
-  - @league.members.include?(current_user)
+  - if @league.members.include?(current_user)
     .notification
       - if current_user == @league.commissioner
         %p Congrats! You've successfully created your NFL Wins Pool league. Copy the unique URL below and send it to your friends or post it on social media. You need between 2 and 15 members to play. If you are betting, don't forget to set your wager before the draft begins!
