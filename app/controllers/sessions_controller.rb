@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    cookies[:auth_token] = nil
     redirect_to root_url
   end
 end

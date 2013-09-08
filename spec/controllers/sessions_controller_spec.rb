@@ -69,4 +69,20 @@ describe SessionsController do
 
     end
   end
+
+  describe "DELETE 'destory" do
+    let!(:user) { FactoryGirl.create(:user) }
+
+    before :each do
+      post :create, email: user.email, password: 'password'
+    end
+
+    it "logs out the user" do
+      cookies[:auth_token].should == user.auth_token
+
+      delete :destroy, id: 'current'
+
+      cookies[:auth_token].should be_nil
+    end
+  end
 end
