@@ -10,6 +10,8 @@ FantasyRocket::Application.routes.draw do
   resources :sessions
   resources :password_resets
 
+  resources :regular_season_games
+
   mount Sidekiq::Web, at: '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.

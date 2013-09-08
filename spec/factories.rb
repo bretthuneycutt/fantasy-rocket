@@ -28,4 +28,9 @@ FactoryGirl.define do
     association :member, factory: :user
     order { rand(0..31) }
   end
+
+  factory :regular_season_game do
+    sequence(:winner_id) { |n| n }
+    week 1
+  end
 end
