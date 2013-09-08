@@ -13,9 +13,25 @@ describe Team do
     end
   end
 
+  subject { Team.all.first }
+
   describe "#css_class" do
     it "returns the correct CSS class name" do
-      Team.all.first.css_class.should == "atlanta-falcons"
+      subject.css_class.should == "atlanta-falcons"
+    end
+  end
+
+  describe "#win_count" do
+    context "if no wins recorded" do
+      its(:win_count) { should == 0 }
+    end
+
+    context "if 1 win recorded" do
+      before :each do
+        FactoryGirl.create(:regular_season_game, winner_id: subject.id)
+      end
+
+      its(:win_count) { should == 1 }
     end
   end
 end

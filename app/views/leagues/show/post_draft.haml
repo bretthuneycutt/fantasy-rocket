@@ -6,15 +6,16 @@
     %thead
       %tr
         %th.rank-header Rank
+        %th.rank-header Wins
         %th Team
     %tbody
-      - @league.members.each do |member|
+      - @league.standings.each do |standing|
         %tr
-          / TODO - show rank here
-          %td -
+          %td= standing.rank
+          %td= standing.wins
           %td
-            .member-name= member.name
-            .team-names= @league.team_names(member)
+            .member-name= standing.member_name
+            .team-names= standing.teams_and_results
 
 :coffee
   mixpanel.track("League Show")
