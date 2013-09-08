@@ -9,8 +9,9 @@ shared_examples "a FactoryGirl class" do
   end
 
   context "two factories that are saved" do
-    let(:model1) { factory.tap(&:save) }
-    let(:model2) { factory.tap(&:save) }
+    let(:model1) { factory.tap(&:save!) }
+    let(:model2) { factory.tap(&:save!) }
+
     it "are persisted" do
       model1.should be_persisted
       model2.should be_persisted
