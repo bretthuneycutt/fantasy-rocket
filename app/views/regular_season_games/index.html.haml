@@ -1,4 +1,6 @@
 .container.container-under-header.regular-season-games-index
+  %p= link_to "add a new game", new_regular_season_game_path
+
   %ul
-    = @games.each do |g|
+    - @games.each do |g|
       %li= "#{g.winner.name} - week #{g.week}"
