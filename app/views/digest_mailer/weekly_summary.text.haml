@@ -1,0 +1,6 @@
+Here are your pool's win totals from week #{@week}:
+= render partial: "standing", :collection => @league.standings
+
+
+For the latest, visit:
+= league_url(@league, h: @league.hmac, source: 'weekly-summary-#{@week}', medium: 'email')
