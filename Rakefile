@@ -17,7 +17,7 @@ namespace :digest do
     puts "Week #{week} - starting to send weekly digests"
 
     League.draft_complete.find_each do |l|
-      puts "- sending to league #{l.d} - #{l.name}"
+      puts "- sending to league #{l.id} - #{l.name}"
 
       WeeklyDigestMailerWorker.perform_async(week, l.id)
 
