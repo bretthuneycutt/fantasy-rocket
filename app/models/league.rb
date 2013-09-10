@@ -16,6 +16,8 @@ class League < ActiveRecord::Base
 
   after_create :add_commissioner_as_member
 
+  scope :draft_complete, -> { where('draft_completed_at IS NOT NULL') }
+
   def draft
     @draft = Draft.new(self)
   end
