@@ -21,4 +21,23 @@ class User < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
+
+  # helps combine user accounts (common if someone mistypes email address)
+  # TODO remove when we add proper email validation and confirmation
+  def assimilate_user!(user)
+    League.where(commissioner_id: user.id).each do |l|
+      l.update_attributes!(commissioner_id: id)
+    end
+    LeagueMembership.where(member_id: user.id).each do |lm|
+      begin
+        lm.update_attributes!(member_id: id)
+      rescue ActiveRecord::RecordInvalid
+        lm.destroy!
+      end
+    end
+    DraftPick.where(member_id: user.id).each do |lm|
+      lm.update_attributes!(member_id: id)
+    end
+    user.destroy!
+  end
 end
