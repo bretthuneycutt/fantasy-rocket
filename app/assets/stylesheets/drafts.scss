@@ -28,11 +28,8 @@
       border: 1px solid black;
       background-color: $light-gray-green;
       cursor: pointer;
-      &.active, &.active:hover {
+      &.active, &:hover {
         background-color: $green;
-      }
-      &:hover {
-        background-color: darken($light-gray-green, 3%);
       }
     }
   }
