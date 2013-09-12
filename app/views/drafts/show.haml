@@ -47,7 +47,7 @@
               .team-icon{class: team.css_class}
               .team-name
                 = team.name
-                - if Team.season_started?
+                - if Season.started?
                   (#{pluralize(team.win_count, 'win')} so far)
             - if current_user == @draft.current_picker
               = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "btn btn-main pick-link"
