@@ -21,20 +21,15 @@
         %th.pick-header Pick
         %th Team
     %tbody
-      / TODO - move this logic out of view (e.g. into decorator)
-      - shown_drafting_now = false
       - @draft.picks.each_with_index do |pick, i|
-        - if !shown_drafting_now && !pick.team && pick.member == @draft.current_picker
-          - should_show_drafting_now = true
-          - shown_drafting_now = true
-        %tr{class: should_show_drafting_now ? "drafting-now" : ""}
+        %tr{class: pick == @draft.current_pick ? "drafting-now" : ""}
           %td.pick= i + 1
           %td.clearfix
             - if pick.team
               .team
                 .team-icon{class: pick.team.css_class}
                 .team-name= pick.team.name
-            - elsif should_show_drafting_now
+            - elsif pick == @draft.current_pick
               .notification Drafting now!
             .member-name= pick.member.name
 
@@ -50,7 +45,10 @@
           %td.clearfix
             .team
               .team-icon{class: team.css_class}
-              .team-name= team.name
+              .team-name
+                = team.name
+                - if Season.started?
+                  (#{pluralize(team.win_count, 'win')} so far)
             - if current_user == @draft.current_picker
               = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "btn btn-main pick-link"
 
