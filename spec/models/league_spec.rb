@@ -51,3 +51,8 @@ describe League do
     end
   end
 end
+
+describe NBALeague, :focus do
+  it_behaves_like "a FactoryGirl class"
+
+end

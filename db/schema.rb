@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908152450) do
+ActiveRecord::Schema.define(version: 20130914215813) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(version: 20130908152450) do
   add_index "league_memberships", ["league_id", "member_id"], name: "index_league_memberships_on_league_id_and_member_id", unique: true, using: :btree
 
   create_table "leagues", force: true do |t|
-    t.string   "name",               null: false
-    t.integer  "commissioner_id",    null: false
+    t.string   "name",                                     null: false
+    t.integer  "commissioner_id",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "draft_started_at"
     t.datetime "draft_completed_at"
+    t.string   "type",               default: "NFLLeague"
   end
 
   add_index "leagues", ["commissioner_id"], name: "index_leagues_on_commissioner_id", using: :btree
@@ -67,7 +68,6 @@ ActiveRecord::Schema.define(version: 20130908152450) do
     t.datetime "password_reset_sent_at"
   end
 
-  add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

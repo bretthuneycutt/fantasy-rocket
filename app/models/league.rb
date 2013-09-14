@@ -6,6 +6,8 @@ class League < ActiveRecord::Base
   validates :name, presence: true
   validates :commissioner_id, presence: true
 
+  validate :valid_type?
+
   belongs_to :commissioner, class_name: "User", inverse_of: :commissioned_leagues
 
   has_many :league_memberships
@@ -43,5 +45,9 @@ private
 
   def add_commissioner_as_member
     add_member commissioner
+  end
+
+  def valid_type?
+    false
   end
 end
