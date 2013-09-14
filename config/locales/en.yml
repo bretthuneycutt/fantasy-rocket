@@ -22,3 +22,13 @@
 en:
   site_name: "Fantasy Rocket"
   description: "NFL Wins Pools, beloved by Bill Simmons of ESPN, is one of the simplest and most addictive fantasy pools you can play with your friends."
+
+  nfl:
+    splash:
+      title: "Home of the NFL Wins Pool"
+      subtitle: "NFL Wins Pool is one of the simplest and most addictive fantasy games you can play with your friends. And it's free!"
+
+  nba:
+    splash:
+      title: "Home of the NBA Wins Pool"
+      subtitle: "NBA Wins Pool is one of the simplest and most addictive fantasy games you can play with your friends. And it's free!"

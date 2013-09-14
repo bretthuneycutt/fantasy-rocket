@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :set_sport
 
   rescue_from Unauthorized do
     render text: "Unauthorized (403)", status: 403
@@ -32,6 +33,17 @@ private
     nil
   end
   helper_method :current_user
+
+  def set_sport
+    sport = case request.subdomain
+    when 'nba'
+      :nba
+    else
+      :nfl
+    end
+
+    Sport.key = sport
+  end
 
   # TODO override these methods elsewhere so they work in mailer
 
