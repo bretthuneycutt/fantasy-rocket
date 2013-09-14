@@ -5,8 +5,17 @@ class Team
 
   attr_reader :id, :name, :expected_wins
 
+  def self.filename
+    case Sport.key
+    when :nba
+      "nba_teams"
+    else
+      "nfl_teams"
+    end
+  end
+
   def self.all
-    @all ||= YAML.load_file("./data/nfl_teams.yml").map do |attributes|
+    @all ||= YAML.load_file("./data/#{filename}.yml").map do |attributes|
       Team.new(attributes)
     end.sort_by(&:expected_wins).reverse
   end
