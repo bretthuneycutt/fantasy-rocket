@@ -4,6 +4,8 @@ module UrlHelper
     options[:action] = 'show'
     options[:id] = league.id
     options[:h] = league.hmac
+    options[:subdomain] = league.subdomain
+
     options[:only_path] ||= false
 
     url_for(options)

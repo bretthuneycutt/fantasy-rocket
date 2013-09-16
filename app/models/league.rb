@@ -41,6 +41,10 @@ class League < ActiveRecord::Base
     @standings ||= members.map { |m| Standing.new(self, m) }.sort_by(&:win_count).reverse
   end
 
+  def subdomain
+    "" #TODO raise error here, and define "nfl" in subclss
+  end
+
 private
 
   def add_commissioner_as_member

@@ -18,5 +18,13 @@ describe ApplicationController do
     it "returns correct path with hmac key" do
       subject.send(:league_url, league).should == "http://test.host/leagues/#{league.to_param}?h=#{league.hmac}"
     end
+
+    context "for NBA league" do
+      let(:league) { FactoryGirl.build(:nba_league, :id) }
+
+      it "returns correct url with hmac key" do
+        subject.send(:league_url, league).should == "http://nba.test.host/leagues/#{league.to_param}?h=#{league.hmac}"
+      end
+    end
   end
 end
