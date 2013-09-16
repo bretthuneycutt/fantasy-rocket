@@ -16,12 +16,38 @@ describe LeaguesController do
 
   describe "POST create" do
     context "with valid parameters" do
-      it "renders the new template with errors" do
+      it "redirects to the league path" do
         post :create, 'league' => {
           'name' => "League name",
         }
 
         expect(response).to redirect_to(league_path(assigns(:league)))
+      end
+
+      it "creates an nfl league" do
+        post :create, 'league' => {
+          'name' => "League name",
+        }
+
+        league = assigns(:league)
+        league.should be_persisted
+        league.should be_a NFLLeague
+      end
+
+      context "on nba subdomain" do
+        before :each do
+          @request.host = "nba.test.host"
+        end
+
+        it "creates an nba league" do
+          post :create, 'league' => {
+            'name' => "League name",
+          }
+
+          league = assigns(:league)
+          league.should be_persisted
+          league.should be_a NBALeague
+        end
       end
     end
 

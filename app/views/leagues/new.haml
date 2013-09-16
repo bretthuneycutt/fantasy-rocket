@@ -1,7 +1,7 @@
 .centered-form
   %h1.form-title Name Your League
 
-  = form_for @league do |f|
+  = form_for @league, as: :league do |f|
     - if @league.errors.any?
       .error_messages
         %h2 Form is invalid

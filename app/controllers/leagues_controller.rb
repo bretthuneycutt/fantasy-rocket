@@ -2,13 +2,15 @@ class LeaguesController < ApplicationController
   # TODO - ensure user is logged in before_filter
 
   def new
-    @league = League.new
+    @league = League.build_by_sport
   end
 
   def create
-    @league = current_user.commissioned_leagues.new(league_params)
-    if @league.save
+    @league = League.build_by_sport
+    @league.commissioner = current_user
+    @league.attributes = league_params
 
+    if @league.save
       redirect_to league_path(@league), notice: "Your league has been created!"
     else
       render "new"

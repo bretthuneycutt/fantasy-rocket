@@ -45,6 +45,15 @@ class League < ActiveRecord::Base
     "" #TODO raise error here, and define "nfl" in subclss
   end
 
+  def self.build_by_sport
+    case Sport.key
+    when :nba
+      NBALeague.new
+    else
+      NFLLeague.new
+    end
+  end
+
 private
 
   def add_commissioner_as_member
