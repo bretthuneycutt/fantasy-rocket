@@ -22,6 +22,11 @@ class LeaguesController < ApplicationController
 
     raise ActiveRecord::RecordNotFound  unless params[:h] == @league.hmac
 
+    unless request.url == league_url(@league)
+      redirect_to league_url(@league), status: 301
+      return
+    end
+
     @draft = @league.draft
     template = case @draft.status
     when :not_started

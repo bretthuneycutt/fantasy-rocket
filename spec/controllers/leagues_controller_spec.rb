@@ -79,6 +79,27 @@ describe LeaguesController do
 
         response.should be_ok
         expect(response).to render_template("pre_draft")
+        assigns(:league).should == league
+      end
+    end
+
+    context "for an NBA league" do
+      let(:league) { FactoryGirl.create(:nba_league) }
+
+      it "redirects to the right subdomain if on the wrong subdomain" do
+        get :show, :id => league.id, :h => league.hmac
+
+        expect(response).to redirect_to(league_url(league))
+      end
+
+      it "redirects to the right subdomain if on the right subdomain" do
+        @request.host = "nba." + @request.host
+
+        get :show, :id => league.id, :h => league.hmac
+
+        response.should be_ok
+        expect(response).to render_template("pre_draft")
+        assigns(:league).should == league
       end
     end
   end
