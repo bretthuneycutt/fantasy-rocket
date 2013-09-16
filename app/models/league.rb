@@ -5,8 +5,7 @@ class League < ActiveRecord::Base
 
   validates :name, presence: true
   validates :commissioner_id, presence: true
-
-  validate :valid_type?
+  validates :sport, presence: true
 
   belongs_to :commissioner, class_name: "User", inverse_of: :commissioned_leagues
 
@@ -41,26 +40,22 @@ class League < ActiveRecord::Base
     @standings ||= members.map { |m| Standing.new(self, m) }.sort_by(&:win_count).reverse
   end
 
+  def sport
+    read_attribute(:sport).andand.to_sym
+  end
+
   def subdomain
-    "" #TODO raise error here, and define "nfl" in subclss
+    #TODO NFL
+    "nba"  if sport == :nba
   end
 
   def self.build_by_sport
-    case Sport.key
-    when :nba
-      NBALeague.new
-    else
-      NFLLeague.new
-    end
+    new(sport: Sport.key)
   end
 
 private
 
   def add_commissioner_as_member
     add_member commissioner
-  end
-
-  def valid_type?
-    false
   end
 end

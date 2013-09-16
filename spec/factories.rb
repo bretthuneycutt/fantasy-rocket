@@ -18,14 +18,16 @@ FactoryGirl.define do
     end
   end
 
-  factory :league, class: NFLLeague do
+  factory :league do
     name "League Name"
     association :commissioner, factory: :user
+    sport 'nfl'
   end
 
-  factory :nba_league, class: NBALeague do
+  factory :nba_league, class: League do
     name "League Name"
     association :commissioner, factory: :user
+    sport 'nba'
   end
 
   factory :draft_pick do

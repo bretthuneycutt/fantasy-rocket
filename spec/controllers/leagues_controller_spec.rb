@@ -31,7 +31,7 @@ describe LeaguesController do
 
         league = assigns(:league)
         league.should be_persisted
-        league.should be_a NFLLeague
+        league.sport.should == :nfl
       end
 
       context "on nba subdomain" do
@@ -46,7 +46,7 @@ describe LeaguesController do
 
           league = assigns(:league)
           league.should be_persisted
-          league.should be_a NBALeague
+          league.sport.should == :nba
         end
       end
     end

@@ -51,8 +51,3 @@ describe League do
     end
   end
 end
-
-describe NBALeague do
-  it_behaves_like "a FactoryGirl class"
-
-end

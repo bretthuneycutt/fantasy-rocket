@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 20130914215813) do
   add_index "league_memberships", ["league_id", "member_id"], name: "index_league_memberships_on_league_id_and_member_id", unique: true, using: :btree
 
   create_table "leagues", force: true do |t|
-    t.string   "name",                                     null: false
-    t.integer  "commissioner_id",                          null: false
+    t.string   "name",                               null: false
+    t.integer  "commissioner_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "draft_started_at"
     t.datetime "draft_completed_at"
-    t.string   "type",               default: "NFLLeague"
+    t.string   "sport",              default: "nfl"
   end
 
   add_index "leagues", ["commissioner_id"], name: "index_leagues_on_commissioner_id", using: :btree
