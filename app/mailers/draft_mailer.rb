@@ -1,6 +1,7 @@
 require 'haml/template/plugin'
 
 class DraftMailer < ActionMailer::Base
+  add_template_helper(UrlHelper)
   default from: "FantasyRocket <hi@fantasyrocket.com>",
           content_type: "text/plain"
 

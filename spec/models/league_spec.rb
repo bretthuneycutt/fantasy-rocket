@@ -52,7 +52,7 @@ describe League do
   end
 end
 
-describe NBALeague, :focus do
+describe NBALeague do
   it_behaves_like "a FactoryGirl class"
 
 end
