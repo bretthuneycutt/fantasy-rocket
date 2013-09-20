@@ -18,7 +18,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :league do
+  factory :league, aliases: [:nfl_league] do
     name "League Name"
     association :commissioner, factory: :user
     sport 'nfl'
