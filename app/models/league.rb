@@ -13,7 +13,7 @@ class League < ActiveRecord::Base
 
   has_many :members, through: :league_memberships, class_name: "User"
 
-  has_many :draft_picks, inverse_of: :league, order: 'draft_picks.order'
+  has_many :draft_picks, -> { order('draft_picks.order') }, inverse_of: :league
 
   after_create :add_commissioner_as_member
 
