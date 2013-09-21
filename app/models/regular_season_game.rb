@@ -1,3 +1,5 @@
+require 'team'
+
 class RegularSeasonGame < ActiveRecord::Base
   # TODO change week to date
   validates :week, presence: true, inclusion: { in: 1..17, message: "should span 1 to 17"}
