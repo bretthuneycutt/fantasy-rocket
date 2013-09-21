@@ -45,4 +45,16 @@ private
 
     Sport.key = sport
   end
+
+  def login_user(user)
+    cookies[:auth_token] = {
+      :value => user.auth_token,
+      :domain => request.domain.prepend("."),
+      :expires => 20.years.from_now.utc,
+    }
+  end
+
+  def logout
+    cookies.delete(:auth_token, domain: request.domain.prepend("."))
+  end
 end

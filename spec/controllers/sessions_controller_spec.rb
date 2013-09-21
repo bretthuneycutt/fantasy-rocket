@@ -22,6 +22,30 @@ describe SessionsController do
         cookies[:auth_token].should == user.auth_token
       end
 
+      # TODO write this test so it fails
+      xit "logins in the user on all subdomains" do
+        @request.host = "nba.test.host"
+
+        get :new
+
+        cookies[:auth_token].should be_nil
+
+        @request.host = "nfl.test.host"
+
+        post :create, {
+          'email' => user.email,
+          'password' => "password",
+        }
+
+        cookies[:auth_token].should == user.auth_token
+
+        @request.host = "nba.test.host"
+
+        get :new
+
+        cookies[:auth_token].should == user.auth_token
+      end
+
       it "redirects to the home page" do
         post :create, {
           'email' => user.email,
