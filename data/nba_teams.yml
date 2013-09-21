@@ -1,0 +1,91 @@
+---
+- id: 1
+  name: Miami Heat
+  ew: 66
+- id: 2
+  name: Oklahoma City Thunder
+  ew: 60
+- id: 3
+  name: San Antonio Spurs
+  ew: 58
+- id: 4
+  name: Denver Nuggets
+  ew: 57
+- id: 5
+  name: Los Angeles Clippers
+  ew: 56
+- id: 6
+  name: Memphis Grizzlies
+  ew: 56
+- id: 7
+  name: New York Knicks
+  ew: 54
+- id: 8
+  name: Indiana Pacers
+  ew: 49
+- id: 9
+  name: Brooklyn Nets
+  ew: 49
+- id: 10
+  name: Golden State Warriors
+  ew: 47
+- id: 11
+  name: Chicago Bulls
+  ew: 45
+- id: 12
+  name: Los Angeles Lakers
+  ew: 45
+- id: 13
+  name: Houston Rockets
+  ew: 45
+- id: 14
+  name: Atlanta Hawks
+  ew: 44
+- id: 15
+  name: Utah Jazz
+  ew: 43
+- id: 16
+  name: Boston Celtics
+  ew: 41
+- id: 17
+  name: Dallas Mavericks
+  ew: 41
+- id: 18
+  name: Milwaukee Bucks
+  ew: 38
+- id: 19
+  name: Philadelphia 76ers
+  ew: 34
+- id: 20
+  name: Toronto Raptors
+  ew: 34
+- id: 21
+  name: Portland Trail Blazers
+  ew: 33
+- id: 22
+  name: Minnesota Timberwolves
+  ew: 31
+- id: 23
+  name: Detroit Pistons
+  ew: 29
+- id: 24
+  name: Washington Wizards
+  ew: 29
+- id: 25
+  name: Sacramento Kings
+  ew: 28
+- id: 26
+  name: New Orleans Pelicans
+  ew: 27
+- id: 27
+  name: Phoenix Suns
+  ew: 25
+- id: 28
+  name: Cleveland Cavaliers
+  ew: 24
+- id: 29
+  name: Charlotte Bobcats
+  ew: 21
+- id: 30
+  name: Orlando Magic
+  ew: 20

@@ -22,5 +22,6 @@ module FantasyRocket
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths += Dir[config.root, "app", "workers"]
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
   end
 end

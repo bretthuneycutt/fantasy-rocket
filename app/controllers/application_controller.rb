@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  include UrlHelper
+  include I18nHelper
+  include CurrentContextHelper
+
   rescue_from Unauthorized do
     render text: "Unauthorized (403)", status: 403
   end
@@ -16,33 +20,15 @@ class ApplicationController < ActionController::Base
 
 private
 
-  def current_user
-    @current_user ||= if cookies[:auth_token]
-      User.find_by_auth_token!(cookies[:auth_token])
-    elsif session[:user_id]
-      # Legacy
-      # Cookies implemented 9/6/2013
-      # Can remove session a few weeks later
-
-      User.find(session[:user_id])
-    end
-  rescue ActiveRecord::RecordNotFound
-    reset_session
-    cookies.delete(:auth_token)
-    nil
+  def login_user(user)
+    cookies[:auth_token] = {
+      :value => user.auth_token,
+      :domain => request.domain.prepend("."),
+      :expires => 20.years.from_now.utc,
+    }
   end
-  helper_method :current_user
 
-  # TODO override these methods elsewhere so they work in mailer
-
-  def league_url(league, params = {})
-    root_url[0..-2] + league_path(league, params)
+  def logout
+    cookies.delete(:auth_token, domain: request.domain.prepend("."))
   end
-  helper_method :league_url
-
-  def league_path(league, params = {})
-    params[:h] = league.hmac
-    "/leagues/#{league.to_param}?#{params.to_param}"
-  end
-  helper_method :league_path
 end

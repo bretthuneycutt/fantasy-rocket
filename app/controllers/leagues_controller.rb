@@ -2,13 +2,15 @@ class LeaguesController < ApplicationController
   # TODO - ensure user is logged in before_filter
 
   def new
-    @league = League.new
+    @league = League.new(sport: current_sport)
   end
 
   def create
-    @league = current_user.commissioned_leagues.new(league_params)
-    if @league.save
+    @league = League.new(sport: current_sport)
+    @league.commissioner = current_user
+    @league.attributes = league_params
 
+    if @league.save
       redirect_to league_path(@league), notice: "Your league has been created!"
     else
       render "new"
@@ -19,6 +21,11 @@ class LeaguesController < ApplicationController
     @league = League.find(params[:id])
 
     raise ActiveRecord::RecordNotFound  unless params[:h] == @league.hmac
+
+    unless request.url == league_url(@league)
+      redirect_to league_url(@league), status: 301
+      return
+    end
 
     @draft = @league.draft
     template = case @draft.status

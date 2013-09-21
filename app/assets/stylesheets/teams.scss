@@ -1,5 +1,8 @@
 .team-icon {
-  background-image: image-url('teams.png');
+  background-image: image-url('nfl/teams.png');
+  &.nba {
+    background-image: image-url('nba/teams.png');
+  }
   background-repeat: no-repeat;
   width: 40px;
   height: 32px;
@@ -37,4 +40,35 @@
   &.tampa-bay-buccaneers { background-position: 2px -959px; }
   &.tennessee-titans { background-position: 2px -992px; }
   &.washington-redskins { background-position: 2px -1024px; }
+
+  &.atlanta-hawks { background-position: 0 -0px; }
+  &.boston-celtics { background-position: 0 -33px; }
+  &.brooklyn-nets { background-position: 0 -66px; }
+  &.charlotte-bobcats { background-position: 0 -99px; }
+  &.chicago-bulls { background-position: 0 -132px; }
+  &.cleveland-cavaliers { background-position: 0 -165px; }
+  &.dallas-mavericks { background-position: 0 -198px; }
+  &.denver-nuggets { background-position: 0 -231px; }
+  &.detroit-pistons { background-position: 0 -264px; }
+  &.golden-state-warriors { background-position: 0 -297px; }
+  &.houston-rockets { background-position: 0 -330px; }
+  &.indiana-pacers { background-position: 0 -363px; }
+  &.los-angeles-clippers { background-position: 0 -396px; }
+  &.los-angeles-lakers { background-position: 0 -429px; }
+  &.memphis-grizzlies { background-position: 0 -462px; }
+  &.miami-heat { background-position: 0 -495px; }
+  &.milwaukee-bucks { background-position: 0 -528px; }
+  &.minnesota-timberwolves { background-position: 0 -561px; }
+  &.new-orleans-pelicans { background-position: 0 -594px; }
+  &.new-york-knicks { background-position: 0 -627px; }
+  &.oklahoma-city-thunder { background-position: 0 -660px; }
+  &.orlando-magic { background-position: 0 -693px; }
+  &.philadelphia-76ers { background-position: 0 -726px; }
+  &.phoenix-suns { background-position: 0 -759px; }
+  &.portland-trail-blazers { background-position: 0 -792px; }
+  &.sacramento-kings { background-position: 0 -825px; }
+  &.san-antonio-spurs { background-position: 0 -858px; }
+  &.toronto-raptors { background-position: 0 -891px; }
+  &.utah-jazz { background-position: 0 -924px; }
+  &.washington-wizards { background-position: 0 -957px; }
 }

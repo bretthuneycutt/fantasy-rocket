@@ -51,35 +51,35 @@ describe DraftGenerator do
 end
 
 describe "DraftGenerator::DRAFT_POSITIONS_BY_LEAGUE_SIZE" do
-  DraftGenerator::DRAFT_POSITIONS_BY_LEAGUE_SIZE.each do |size, positions|
-    describe "leagues of size #{size}" do
-      let(:picks_per_member) do
-        positions.inject({}) do |ppm, member|
-          ppm[member] ||= 0
-          ppm[member] += 1
-          ppm
+  {
+    :nba => NBATeam,
+    :nfl => NFLTeam,
+  }.each do |sport, team_class|
+    DraftGenerator::DRAFT_POSITIONS_BY_SPORT_AND_LEAGUE_SIZE[sport].each do |size, positions|
+      describe "leagues of size #{size}" do
+        let(:picks_per_member) do
+          positions.inject({}) do |ppm, member|
+            ppm[member] ||= 0
+            ppm[member] += 1
+            ppm
+          end
         end
-      end
 
-      let(:aggregate_draft_positions) do
-        adp = Array.new(size) { 0 }
-        positions.each_with_index do |member, i|
-          adp[member] += i
+        let(:aggregate_draft_positions) do
+          adp = Array.new(size) { 0 }
+          positions.each_with_index do |member, i|
+            adp[member] += i
+          end
+          adp
         end
-        adp
-      end
 
-      it "maximizes picks_per_member" do
-        picks_per_member.values.min.should == Team::TOTAL_NUMBER / size
-      end
+        it "maximizes picks_per_member" do
+          picks_per_member.values.min.should == team_class::TOTAL_NUMBER / size
+        end
 
-      it "distributes same number of picks to members" do
-        picks_per_member.values.min.should == picks_per_member.values.max
-      end
-
-      # use empirical wins data from last 10 years instead of draft position
-      xit "distributes picks fairly to members (aggregate draft positions do not diverge by more than 1)" do
-        aggregate_draft_positions.max.should <=aggregate_draft_positions.min + 1
+        it "distributes same number of picks to members" do
+          picks_per_member.values.min.should == picks_per_member.values.max
+        end
       end
     end
   end
@@ -105,7 +105,7 @@ describe "DraftGenerator::LEGACY_DRAFT_POSITIONS_BY_LEAGUE_SIZE" do
       end
 
       it "maximizes picks_per_member" do
-        picks_per_member.values.min.should == Team::TOTAL_NUMBER / size
+        picks_per_member.values.min.should == NFLTeam::TOTAL_NUMBER / size
       end
 
       it "distributes same number of picks to members" do

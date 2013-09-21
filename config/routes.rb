@@ -2,10 +2,12 @@ require 'sidekiq/web'
 
 FantasyRocket::Application.routes.draw do
   resources :users
+
   resources :leagues do
     resources :league_memberships, as: 'memberships'
     resource :drafts
   end
+
   resources :draft_picks
   resources :sessions
   resources :password_resets

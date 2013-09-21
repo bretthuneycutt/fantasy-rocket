@@ -5,6 +5,7 @@ class League < ActiveRecord::Base
 
   validates :name, presence: true
   validates :commissioner_id, presence: true
+  validates :sport, presence: true
 
   belongs_to :commissioner, class_name: "User", inverse_of: :commissioned_leagues
 
@@ -12,7 +13,7 @@ class League < ActiveRecord::Base
 
   has_many :members, through: :league_memberships, class_name: "User"
 
-  has_many :draft_picks, inverse_of: :league, order: 'draft_picks.order'
+  has_many :draft_picks, -> { order('draft_picks.order') }, inverse_of: :league
 
   after_create :add_commissioner_as_member
 
@@ -35,8 +36,26 @@ class League < ActiveRecord::Base
     members << user
   end
 
+  def season
+    @season ||= Season.new(self)
+  end
+
   def standings
     @standings ||= members.map { |m| Standing.new(self, m) }.sort_by(&:win_count).reverse
+  end
+
+  def sport
+    read_attribute(:sport).andand.to_sym
+  end
+  alias_method :subdomain, :sport
+
+  def team_class
+    case sport
+    when :nba
+      NBATeam
+    else
+      NFLTeam
+    end
   end
 
 private
