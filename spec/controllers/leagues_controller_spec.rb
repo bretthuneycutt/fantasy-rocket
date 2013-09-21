@@ -94,7 +94,7 @@ describe LeaguesController do
         expect(response).to redirect_to(league_url(league))
       end
 
-      it "redirects to the right subdomain if on the right subdomain" do
+      it "renders the page if on the right subdomain" do
         @request.host = "nba.test.host"
 
         get :show, :id => league.id, :h => league.hmac
