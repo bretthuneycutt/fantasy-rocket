@@ -36,7 +36,7 @@
   %table.draft-table.table.available-view.hidden
     %thead
       %tr
-        %th.rank-header= link_to "Exp. wins", "http://www.cbssports.com/nfl/writer/pat-kirwan/23268807/nfl-teambyteam-record-predictions", target: "_blank"
+        %th.rank-header= link_to "Exp. wins", sport_t("draft.expected_wins_link"), target: "_blank"
         %th Team
     %tbody
       - @draft.available_teams.each_with_index do |team, i|
