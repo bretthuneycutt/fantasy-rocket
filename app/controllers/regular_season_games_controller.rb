@@ -1,3 +1,5 @@
+require 'team'
+
 class RegularSeasonGamesController < ApplicationController
   http_basic_authenticate_with name: "fantasyrocket", password: ENV['BASIC_AUTH_PW']  if ENV['BASIC_AUTH_PW']
 
@@ -27,11 +29,21 @@ private
   end
 
   def game_class
-    case params[:type]
-    when 'nba'
+    case Sport.key
+    when :nba
       NBARegularSeasonGame
     else
       NFLRegularSeasonGame
     end
   end
+
+  def team_class
+    case Sport.key
+    when :nba
+      NBATeam
+    else
+      NFLTeam
+    end
+  end
+  helper_method :team_class
 end
