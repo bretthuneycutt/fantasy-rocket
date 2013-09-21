@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_sport
 
   include UrlHelper
+  include I18nHelper
 
   rescue_from Unauthorized do
     render text: "Unauthorized (403)", status: 403
