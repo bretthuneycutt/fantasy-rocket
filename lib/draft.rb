@@ -1,13 +1,11 @@
 class Draft
   attr_reader :league
   delegate :team_class, to: :league
+  delegate :draft_picks, to: :league
+  alias_method :picks, :draft_picks
 
   def initialize(league)
     @league = league
-  end
-
-  def picks
-    league.draft_picks
   end
 
   def status
