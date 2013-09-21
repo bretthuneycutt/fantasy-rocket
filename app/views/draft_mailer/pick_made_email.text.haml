@@ -5,7 +5,7 @@ With the #{@draft.last_pick.as_ordinal} pick in the draft, #{@draft.last_picker.
 
 
 To make your pick, visit:
-= league_url(@league, h: @league.hmac, source: 'pick_made_email', medium: 'email')
+= league_url(@league, source: 'pick_made_email', medium: 'email')
 
 
 DRAFT SO FAR:

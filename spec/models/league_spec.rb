@@ -50,4 +50,16 @@ describe League do
       end
     end
   end
+
+  context "for NFL" do
+    subject { FactoryGirl.build(:nfl_league, id: 100) }
+
+    its(:team_class) { should == NFLTeam }
+  end
+
+  context "for NBA" do
+    subject { FactoryGirl.build(:nba_league, id: 100) }
+
+    its(:team_class) { should == NBATeam }
+  end
 end

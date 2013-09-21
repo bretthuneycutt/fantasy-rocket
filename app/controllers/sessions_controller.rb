@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
     user = User.find_by_email(email)
     if user && user.authenticate(params[:password])
-      cookies.permanent[:auth_token] = user.auth_token
+      login_user(user)
       redirect_to params[:redirect_to].presence || root_url
     else
       flash.now.alert = "Email or password is invalid"
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    cookies.delete(:auth_token)
+    logout
     redirect_to root_url
   end
 end
