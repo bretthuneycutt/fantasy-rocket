@@ -1,7 +1,7 @@
 class SplashController < ApplicationController
   def index
-    if current_user && current_user.leagues.size > 0
-      return redirect_to(current_user.leagues.first)
+    if current_user && league = current_user.leagues.where(sport: Sport.key).first
+      return redirect_to league
     end
   end
 end
