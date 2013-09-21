@@ -2,11 +2,11 @@ class LeaguesController < ApplicationController
   # TODO - ensure user is logged in before_filter
 
   def new
-    @league = League.build_by_sport
+    @league = League.new(sport: Sport.key)
   end
 
   def create
-    @league = League.build_by_sport
+    @league = League.new(sport: Sport.key)
     @league.commissioner = current_user
     @league.attributes = league_params
 

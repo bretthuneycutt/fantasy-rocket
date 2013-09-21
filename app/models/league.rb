@@ -53,10 +53,6 @@ class League < ActiveRecord::Base
     "nba"  if sport == :nba
   end
 
-  def self.build_by_sport
-    new(sport: Sport.key)
-  end
-
   def team_class
     case sport
     when :nba
