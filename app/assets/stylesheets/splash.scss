@@ -3,7 +3,10 @@
     color: white;
     text-align: center;
     height: 620px;
-    background: image-url('splash/banner.jpg') no-repeat center top;
+    background: image-url('nfl/banner.jpg') no-repeat center top;
+    &.nba {
+      background-image: image-url('nba/banner.jpg');
+    }
     @include background-size-cover;
     h1 {
       font-size: 44px;
@@ -37,7 +40,10 @@
     }
   }
   .how-it-works {
-    background: $dark-green image-url('bg_field.png') repeat;
+    background: $dark-green image-url('nfl/background.png') repeat;
+    &.nba {
+      background-image: image-url('nba/background.jpg');
+    }
     color: white;
     text-align: center;
     padding: 32px 0;

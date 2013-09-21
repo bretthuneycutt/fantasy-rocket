@@ -27,7 +27,7 @@
           %td.clearfix
             - if pick.team
               .team
-                .team-icon{class: pick.team.css_class}
+                .team-icon{class: [pick.team.css_class, Sport.key].join(" ")}
                 .team-name= pick.team.name
             - elsif pick == @draft.current_pick
               .notification Drafting now!
@@ -44,7 +44,7 @@
           %td.rank= team.expected_wins
           %td.clearfix
             .team
-              .team-icon{class: team.css_class}
+              .team-icon{class: [team.css_class, Sport.key].join(" ")}
               .team-name
                 = team.name
                 - if @league.season.started?
