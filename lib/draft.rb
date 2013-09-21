@@ -1,5 +1,6 @@
 class Draft
   attr_reader :league
+  delegate :team_class, to: :league
 
   def initialize(league)
     @league = league
@@ -30,14 +31,14 @@ class Draft
   def unavailable_teams
     return  unless status == :in_progress
 
-    @unavailable_teams ||= Team.all - available_teams
+    @unavailable_teams ||= team_class.all - available_teams
   end
 
   def available_teams
     return  unless status == :in_progress
 
-    @available_teams ||= Team.all.select do |team|
-        !picked_team_ids.include? team.id
+    @available_teams ||= team_class.all.select do |team|
+      !picked_team_ids.include? team.id
     end
   end
 

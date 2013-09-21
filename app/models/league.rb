@@ -36,6 +36,10 @@ class League < ActiveRecord::Base
     members << user
   end
 
+  def season
+    @season ||= Season.new(self)
+  end
+
   def standings
     @standings ||= members.map { |m| Standing.new(self, m) }.sort_by(&:win_count).reverse
   end
@@ -51,6 +55,15 @@ class League < ActiveRecord::Base
 
   def self.build_by_sport
     new(sport: Sport.key)
+  end
+
+  def team_class
+    case sport
+    when :nba
+      NBATeam
+    else
+      NFLTeam
+    end
   end
 
 private

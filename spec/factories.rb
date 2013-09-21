@@ -30,13 +30,24 @@ FactoryGirl.define do
     sport 'nba'
   end
 
-  factory :draft_pick do
+  factory :draft_pick, aliases: [:nfl_draft_pick] do
     league
     association :member, factory: :user
     order { rand(0..31) }
   end
 
-  factory :regular_season_game do
+  factory :nba_draft_pick, class: DraftPick do
+    association :league, factory: :nba_league
+    association :member, factory: :user
+    order { rand(0..31) }
+  end
+
+  factory :nfl_regular_season_game, aliases: [:regular_season_game], class: NFLRegularSeasonGame do
+    sequence(:winner_id) { |n| n }
+    week 1
+  end
+
+  factory :nba_regular_season_game, class: NBARegularSeasonGame do
     sequence(:winner_id) { |n| n }
     week 1
   end

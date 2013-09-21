@@ -1,28 +1,18 @@
 class Team
-  ARIZONA_CARDINALS = 26
-  DENVER_BRONCOS = 2
-  TOTAL_NUMBER = 32
-
   attr_reader :id, :name, :expected_wins
 
   def self.filename
-    case Sport.key
-    when :nba
-      "nba_teams"
-    else
-      "nfl_teams"
-    end
+    raise "Override in subclasses"
+  end
+
+  def self.win_counts
+    raise "Override in subclasses"
   end
 
   def self.all
     @all ||= YAML.load_file("./data/#{filename}.yml").map do |attributes|
-      Team.new(attributes)
+      new(attributes)
     end.sort_by(&:expected_wins).reverse
-  end
-
-  def self.win_counts
-    # TODO memoize
-    RegularSeasonGame.group(:winner_id).count
   end
 
   def initialize(attributes = {})
@@ -42,6 +32,33 @@ class Team
   end
 
   def win_count
-    Team.win_counts[id] || 0
+    self.class.win_counts[id] || 0
+  end
+end
+
+class NBATeam < Team
+  PHOENIX_SUNS = 27
+  TOTAL_NUMBER = 30
+
+  def self.filename
+    "nba_teams"
+  end
+
+  def self.win_counts
+    NBARegularSeasonGame.group(:winner_id).count
+  end
+end
+
+class NFLTeam < Team
+  ARIZONA_CARDINALS = 26
+  DENVER_BRONCOS = 2
+  TOTAL_NUMBER = 32
+
+  def self.filename
+    "nfl_teams"
+  end
+
+  def self.win_counts
+    NFLRegularSeasonGame.group(:winner_id).count
   end
 end

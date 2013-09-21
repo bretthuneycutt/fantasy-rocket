@@ -1,13 +1,18 @@
 require 'spec_helper'
 
-describe RegularSeasonGame do
+describe NFLRegularSeasonGame do
   it_behaves_like "a FactoryGirl class"
 
-  subject { FactoryGirl.build(:regular_season_game, winner_id: Team::ARIZONA_CARDINALS)}
+  subject { FactoryGirl.build(:nfl_regular_season_game, winner_id: NFLTeam::ARIZONA_CARDINALS) }
 
-  describe "#winner" do
-    it "is the AZ Cardinals" do
-      subject.winner.name.should == "Arizona Cardinals"
-    end
-  end
+  its(:winner) { subject.winner.name.should == "Arizona Cardinals"}
 end
+
+describe NBARegularSeasonGame do
+  it_behaves_like "a FactoryGirl class"
+
+  subject { FactoryGirl.build(:nba_regular_season_game, winner_id: NBATeam::PHOENIX_SUNS) }
+
+  its(:winner) { subject.winner.name.should == "Phoenix Suns"}
+end
+

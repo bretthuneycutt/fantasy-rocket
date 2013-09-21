@@ -12,7 +12,8 @@ FantasyRocket::Application.routes.draw do
   resources :sessions
   resources :password_resets
 
-  resources :regular_season_games
+  resources :nba_regular_season_games, controller: 'regular_season_games', type: 'nba'
+  resources :nfl_regular_season_games, controller: 'regular_season_games', type: 'nfl'
 
   mount Sidekiq::Web, at: '/sidekiq'
 

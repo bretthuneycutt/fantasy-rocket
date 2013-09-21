@@ -70,7 +70,7 @@ describe "DraftGenerator::DRAFT_POSITIONS_BY_LEAGUE_SIZE" do
       end
 
       it "maximizes picks_per_member" do
-        picks_per_member.values.min.should == Team::TOTAL_NUMBER / size
+        picks_per_member.values.min.should == NFLTeam::TOTAL_NUMBER / size
       end
 
       it "distributes same number of picks to members" do
@@ -105,7 +105,7 @@ describe "DraftGenerator::LEGACY_DRAFT_POSITIONS_BY_LEAGUE_SIZE" do
       end
 
       it "maximizes picks_per_member" do
-        picks_per_member.values.min.should == Team::TOTAL_NUMBER / size
+        picks_per_member.values.min.should == NFLTeam::TOTAL_NUMBER / size
       end
 
       it "distributes same number of picks to members" do
