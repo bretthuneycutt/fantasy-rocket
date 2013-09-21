@@ -27,7 +27,7 @@
           %td.clearfix
             - if pick.team
               .team
-                .team-icon{class: pick.team.css_class}
+                .team-icon{class: [pick.team.css_class, current_sport].join(" ")}
                 .team-name= pick.team.name
             - elsif pick == @draft.current_pick
               .notification Drafting now!
@@ -36,7 +36,7 @@
   %table.draft-table.table.available-view.hidden
     %thead
       %tr
-        %th.rank-header= link_to "Exp. wins", "http://www.cbssports.com/nfl/writer/pat-kirwan/23268807/nfl-teambyteam-record-predictions", target: "_blank"
+        %th.rank-header= link_to "Exp. wins", sport_t("draft.expected_wins_link"), target: "_blank"
         %th Team
     %tbody
       - @draft.available_teams.each_with_index do |team, i|
@@ -44,10 +44,10 @@
           %td.rank= team.expected_wins
           %td.clearfix
             .team
-              .team-icon{class: team.css_class}
+              .team-icon{class: [team.css_class, current_sport].join(" ")}
               .team-name
                 = team.name
-                - if Season.started?
+                - if @league.season.started?
                   (#{pluralize(team.win_count, 'win')} so far)
             - if current_user == @draft.current_picker
               = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "btn btn-main pick-link"

@@ -25,7 +25,7 @@ describe DraftMailer do
     end
 
     it 'includes league url in the body' do
-      subject.body.encoded.should include league_url(league, h: league.hmac)
+      subject.body.encoded.should include league_url(league, h: league.hmac, subdomain: league.subdomain)
     end
   end
 
@@ -33,7 +33,7 @@ describe DraftMailer do
     before :each do
       league.members << user
       DraftGenerator.new(league).generate_picks!
-      league.draft.current_pick.pick_team(Team::ARIZONA_CARDINALS)
+      league.draft.current_pick.pick_team(NFLTeam::ARIZONA_CARDINALS)
     end
 
     subject { DraftMailer.pick_made_email(league) }
@@ -51,7 +51,7 @@ describe DraftMailer do
     end
 
     it 'includes league url in the body' do
-      subject.body.encoded.should include league_url(league, h: league.hmac)
+      subject.body.encoded.should include league_url(league, h: league.hmac, subdomain: league.subdomain)
     end
   end
 
@@ -79,7 +79,7 @@ describe DraftMailer do
     end
 
     it 'includes league url in the body' do
-      subject.body.encoded.should include league_url(league, h: league.hmac)
+      subject.body.encoded.should include league_url(league, h: league.hmac, subdomain: league.subdomain)
     end
   end
 end

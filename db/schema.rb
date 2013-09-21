@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130914215813) do
+ActiveRecord::Schema.define(version: 20130921003740) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
@@ -52,8 +52,10 @@ ActiveRecord::Schema.define(version: 20130914215813) do
     t.integer  "week"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
+  add_index "regular_season_games", ["type"], name: "index_regular_season_games_on_type", using: :btree
   add_index "regular_season_games", ["winner_id", "week"], name: "index_regular_season_games_on_winner_id_and_week", unique: true, using: :btree
   add_index "regular_season_games", ["winner_id"], name: "index_regular_season_games_on_winner_id", using: :btree
 

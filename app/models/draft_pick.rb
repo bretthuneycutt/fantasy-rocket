@@ -4,19 +4,21 @@ class DraftPick < ActiveRecord::Base
 
   scope :picked, -> { where('team_id IS NOT NULL') }
 
+  delegate :team_class, to: :league
+
   # TODO rename to picked?
   def selected?
     !!team_id
   end
 
   def team
-    @team ||= Team.find_by_id(team_id)  if team_id
+    @team ||= team_class.find_by_id(team_id)  if team_id
   end
 
   delegate :draft, :to => :league
 
   def pick_team(team_id)
-    team = Team.find_by_id(team_id)
+    team = team_class.find_by_id(team_id)
     return  unless draft.available_teams.include? team
     update_attribute(:team_id, team_id)
   end

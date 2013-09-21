@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+shared_examples "a draft pick with selected team" do |team_name|
+  its(:selected?) { should be_true }
+  its(:team) { should be_a Team}
+end
+
 describe DraftPick do
   it_behaves_like "a FactoryGirl class"
 
@@ -14,16 +19,17 @@ describe DraftPick do
     its(:team) { should be_nil }
   end
 
-  context "with selected team" do
-    subject { FactoryGirl.build(:draft_pick, team_id: 26) }
+  context "with selected NBA team" do
+    subject { FactoryGirl.build(:nba_draft_pick, team_id: 26) }
 
-    its(:selected?) { should be_true }
+    it_behaves_like "a draft pick with selected team"
+    its(:team) { subject.team.name.should == "New Orleans Pelicans" }
+  end
 
-    describe "#team" do
-      it "is AZ Cardinals" do
-        subject.team.should be_a Team
-        subject.team.name.should == "Arizona Cardinals"
-      end
-    end
+  context "with selected NFL team" do
+    subject { FactoryGirl.build(:nfl_draft_pick, team_id: 26) }
+
+    it_behaves_like "a draft pick with selected team"
+    its(:team) { subject.team.name.should == "Arizona Cardinals" }
   end
 end
