@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :leagues, through: :league_memberships
   has_many :draft_picks, foreign_key: "member_id", inverse_of: :member
 
+  has_one :subscription
+
   before_create -> { self.email = email.downcase.strip  if email }
 
   before_create { generate_token(:auth_token) }

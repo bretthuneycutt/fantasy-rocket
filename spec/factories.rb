@@ -51,4 +51,8 @@ FactoryGirl.define do
     sequence(:winner_id) { |n| n }
     week 1
   end
+
+  factory :subscription do
+    user
+  end
 end
