@@ -56,7 +56,6 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
-    Sport.key = nil
   end
 end
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "splash/index" do
   context "when Sport is NFL" do
-    before(:each) { Sport.key = :nfl }
+    before(:each) { view.stub(:current_sport) { :nfl } }
 
     it "renders NFL copy" do
       render
@@ -12,7 +12,7 @@ describe "splash/index" do
   end
 
   context "when Sport is NBA" do
-    before(:each) { Sport.key = :nba }
+    before(:each) { view.stub(:current_sport) { :nba } }
 
     it "renders NBA copy" do
       render

@@ -1,6 +1,12 @@
 class Season
-  def self.started?
-    # returns true if a win has been recorded
-    Team.win_counts.values.any?{ |v| v > 0 }
+  attr_reader :league
+  delegate :team_class, to: :league
+
+  def initialize(league)
+    @league = league
+  end
+
+  def started?
+    team_class.win_counts.values.any?{ |v| v > 0 }
   end
 end

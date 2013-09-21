@@ -1,7 +1,7 @@
 .splash
-  .intro
-    %h1= t "#{Sport.key}.splash.title"
-    %h2= t "#{Sport.key}.splash.subtitle"
+  .intro{class: current_sport}
+    %h1= sport_t "splash.title"
+    %h2= sport_t "splash.subtitle"
     .create-league= link_to "Start a league<span class='hidden-for-mobile'>. It's not too late!</span>".html_safe, new_user_path, class: "btn btn-main btn-xlg"
   .quote
     .container
@@ -9,7 +9,7 @@
         .quote-text "I love this pool. My friends love this pool. And now, you can love this pool."
         .quote-author - Bill Simmons, ESPN, Grantland
       = link_to "Read more", "http://www.grantland.com/blog/the-triangle/post/_/id/36155/you-should-have-an-nfl-wins-pool", class: "read-more"
-  .how-it-works
+  .how-it-works{class: current_sport}
     .container
       .row
         .col-md-12
@@ -20,7 +20,7 @@
           %p Create a league, invite your friends (we allow between 2 and 15 players), and agree on an entry fee and prize money.
         .col-md-4
           %h4 2. Draft your teams
-          %p We randomly assign each league member a number that determines draft order. Each member picks the NFL teams they think will win the most games until there are no teams left. We use our special algorithm to determine when each member drafts in order to even the probability fairly.
+          %p We randomly assign each league member a number that determines draft order. Each member picks the teams they think will win the most games until there are no teams left. We use our special algorithm to determine when each member drafts in order to even the probability fairly.
         .col-md-4
           %h4 3. Win
           %p The member whose teams win the most regular season games wins the pool. And that's it! No agonizing over benching players every game day. Just sit back and watch who wins.

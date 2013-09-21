@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_sport
 
   include UrlHelper
+  include I18nHelper
+  include CurrentContextHelper
 
   rescue_from Unauthorized do
     render text: "Unauthorized (403)", status: 403
@@ -19,31 +20,15 @@ class ApplicationController < ActionController::Base
 
 private
 
-  def current_user
-    @current_user ||= if cookies[:auth_token]
-      User.find_by_auth_token!(cookies[:auth_token])
-    elsif session[:user_id]
-      # Legacy
-      # Cookies implemented 9/6/2013
-      # Can remove session a few weeks later
-
-      User.find(session[:user_id])
-    end
-  rescue ActiveRecord::RecordNotFound
-    reset_session
-    cookies.delete(:auth_token)
-    nil
+  def login_user(user)
+    cookies[:auth_token] = {
+      :value => user.auth_token,
+      :domain => request.domain.prepend("."),
+      :expires => 20.years.from_now.utc,
+    }
   end
-  helper_method :current_user
 
-  def set_sport
-    sport = case request.subdomain
-    when 'nba'
-      :nba
-    else
-      :nfl
-    end
-
-    Sport.key = sport
+  def logout
+    cookies.delete(:auth_token, domain: request.domain.prepend("."))
   end
 end

@@ -36,6 +36,10 @@ class League < ActiveRecord::Base
     members << user
   end
 
+  def season
+    @season ||= Season.new(self)
+  end
+
   def standings
     @standings ||= members.map { |m| Standing.new(self, m) }.sort_by(&:win_count).reverse
   end
@@ -43,14 +47,15 @@ class League < ActiveRecord::Base
   def sport
     read_attribute(:sport).andand.to_sym
   end
+  alias_method :subdomain, :sport
 
-  def subdomain
-    #TODO NFL
-    "nba"  if sport == :nba
-  end
-
-  def self.build_by_sport
-    new(sport: Sport.key)
+  def team_class
+    case sport
+    when :nba
+      NBATeam
+    else
+      NFLTeam
+    end
   end
 
 private
