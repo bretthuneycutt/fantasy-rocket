@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
   include I18nHelper
+  include CurrentContextHelper
 
   rescue_from Unauthorized do
     render text: "Unauthorized (403)", status: 403
@@ -18,31 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
 private
-
-  def current_user
-    @current_user ||= if cookies[:auth_token]
-      User.find_by_auth_token!(cookies[:auth_token])
-    elsif session[:user_id]
-      # Legacy
-      # Cookies implemented 9/6/2013
-      # Can remove session a few weeks later
-
-      User.find(session[:user_id])
-    end
-  rescue ActiveRecord::RecordNotFound
-    nil
-  end
-  helper_method :current_user
-
-  def current_sport
-    @sport ||= case request.subdomain.split(".").first
-    when 'nba'
-      :nba
-    else
-      :nfl
-    end
-  end
-  helper_method :sport
 
   def login_user(user)
     cookies[:auth_token] = {
