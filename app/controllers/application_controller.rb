@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_sport
 
   include UrlHelper
   include I18nHelper
@@ -35,16 +34,15 @@ private
   end
   helper_method :current_user
 
-  def set_sport
-    sport = case request.subdomain.split(".").first
+  def current_sport
+    @sport ||= case request.subdomain.split(".").first
     when 'nba'
       :nba
     else
       :nfl
     end
-
-    Sport.key = sport
   end
+  helper_method :sport
 
   def login_user(user)
     cookies[:auth_token] = {

@@ -29,7 +29,7 @@ private
   end
 
   def game_class
-    case Sport.key
+    case current_sport
     when :nba
       NBARegularSeasonGame
     else
@@ -38,7 +38,7 @@ private
   end
 
   def team_class
-    case Sport.key
+    case current_sport
     when :nba
       NBATeam
     else

@@ -1,5 +1,5 @@
 .splash
-  .intro{class: Sport.key}
+  .intro{class: current_sport}
     %h1= sport_t "splash.title"
     %h2= sport_t "splash.subtitle"
     .create-league= link_to "Start a league<span class='hidden-for-mobile'>. It's not too late!</span>".html_safe, new_user_path, class: "btn btn-main btn-xlg"
@@ -9,7 +9,7 @@
         .quote-text "I love this pool. My friends love this pool. And now, you can love this pool."
         .quote-author - Bill Simmons, ESPN, Grantland
       = link_to "Read more", "http://www.grantland.com/blog/the-triangle/post/_/id/36155/you-should-have-an-nfl-wins-pool", class: "read-more"
-  .how-it-works{class: Sport.key}
+  .how-it-works{class: current_sport}
     .container
       .row
         .col-md-12

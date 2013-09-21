@@ -9,7 +9,7 @@ describe SplashController do
 
         get :index
 
-        Sport.key.should == :nfl
+        subject.send(:current_sport).should == :nfl
       end
 
       it "returns NFL page on nfl subdomain" do
@@ -17,7 +17,7 @@ describe SplashController do
 
         get :index
 
-        Sport.key.should == :nfl
+        subject.send(:current_sport).should == :nfl
       end
 
       it "returns NBA page on nba subdomain" do
@@ -25,7 +25,7 @@ describe SplashController do
 
         get :index
 
-        Sport.key.should == :nba
+        subject.send(:current_sport).should == :nba
       end
     end
   end

@@ -21,7 +21,7 @@ describe RegularSeasonGamesController do
 
   describe "GET 'index' for nba" do
     it "renders correctly" do
-      Sport.stub(:key) { :nba }
+      subject.stub(:current_sport) { :nba }
 
       get :index
 
@@ -43,7 +43,7 @@ describe RegularSeasonGamesController do
 
   describe "GET 'new' for nba" do
     it "renders correctly" do
-      Sport.stub(:key) { :nba }
+      subject.stub(:current_sport) { :nba }
 
       get :new
 

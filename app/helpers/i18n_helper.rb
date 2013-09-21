@@ -1,5 +1,5 @@
 module I18nHelper
   def sport_t(string)
-    t [Sport.key,string].join(".")
+    t [current_sport,string].join(".")
   end
 end
