@@ -36,7 +36,7 @@ private
   helper_method :current_user
 
   def set_sport
-    sport = case request.subdomain
+    sport = case request.subdomain.split(".").first
     when 'nba'
       :nba
     else
