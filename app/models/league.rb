@@ -47,11 +47,7 @@ class League < ActiveRecord::Base
   def sport
     read_attribute(:sport).andand.to_sym
   end
-
-  def subdomain
-    #TODO NFL
-    "nba"  if sport == :nba
-  end
+  alias_method :subdomain, :sport
 
   def team_class
     case sport

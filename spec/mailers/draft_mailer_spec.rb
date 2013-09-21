@@ -25,7 +25,7 @@ describe DraftMailer do
     end
 
     it 'includes league url in the body' do
-      subject.body.encoded.should include league_url(league, h: league.hmac)
+      subject.body.encoded.should include league_url(league, h: league.hmac, subdomain: league.subdomain)
     end
   end
 
@@ -51,7 +51,7 @@ describe DraftMailer do
     end
 
     it 'includes league url in the body' do
-      subject.body.encoded.should include league_url(league, h: league.hmac)
+      subject.body.encoded.should include league_url(league, h: league.hmac, subdomain: league.subdomain)
     end
   end
 
@@ -79,7 +79,7 @@ describe DraftMailer do
     end
 
     it 'includes league url in the body' do
-      subject.body.encoded.should include league_url(league, h: league.hmac)
+      subject.body.encoded.should include league_url(league, h: league.hmac, subdomain: league.subdomain)
     end
   end
 end

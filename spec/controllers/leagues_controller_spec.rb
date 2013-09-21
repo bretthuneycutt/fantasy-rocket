@@ -64,6 +64,8 @@ describe LeaguesController do
 
   describe "GET 'show'" do
     let(:league) { FactoryGirl.create(:league) }
+    before(:each) { @request.host = "nfl.test.host" }
+
 
     context "with incorrect hmac" do
       it "returns 404" do
@@ -93,7 +95,7 @@ describe LeaguesController do
       end
 
       it "redirects to the right subdomain if on the right subdomain" do
-        @request.host = "nba." + @request.host
+        @request.host = "nba.test.host"
 
         get :show, :id => league.id, :h => league.hmac
 
