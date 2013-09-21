@@ -76,11 +76,6 @@ describe "DraftGenerator::DRAFT_POSITIONS_BY_LEAGUE_SIZE" do
       it "distributes same number of picks to members" do
         picks_per_member.values.min.should == picks_per_member.values.max
       end
-
-      # use empirical wins data from last 10 years instead of draft position
-      xit "distributes picks fairly to members (aggregate draft positions do not diverge by more than 1)" do
-        aggregate_draft_positions.max.should <=aggregate_draft_positions.min + 1
-      end
     end
   end
 end
