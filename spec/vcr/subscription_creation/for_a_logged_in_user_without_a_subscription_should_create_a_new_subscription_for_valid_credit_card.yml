@@ -1,0 +1,191 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: US-ASCII
+      string: description=3344&email=7460716636%40example.com&card=tok_102cKV2tINt34UTeZFpU90CP
+    headers:
+      accept:
+      - '*/*; q=0.5, application/xml'
+      accept-encoding:
+      - gzip, deflate
+      user-agent:
+      - Stripe/v1 RubyBindings/1.8.7
+      authorization:
+      - Bearer sk_test_Zt9yfN4fZCWlMyUFVtFsWcGx
+      content-type:
+      - application/x-www-form-urlencoded
+      x-stripe-client-user-agent:
+      - '{"bindings_version":"1.8.7","lang":"ruby","lang_version":"2.0.0 p247 (2013-06-27)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        bhuneycutt00.local 12.4.0 Darwin Kernel Version 12.4.0: Wed May  1 17:57:12
+        PDT 2013; root:xnu-2050.24.15~1/RELEASE_X86_64 x86_64"}'
+      content-length:
+      - '81'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 Sep 2013 05:56:35 GMT
+      content-type:
+      - application/json;charset=utf-8
+      content-length:
+      - '1042'
+      connection:
+      - keep-alive
+      cache-control:
+      - no-cache, no-store
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      access-control-max-age:
+      - '300'
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "object": "customer",
+          "created": 1379829395,
+          "id": "cus_2cKWE1oonVTxby",
+          "livemode": false,
+          "description": "3344",
+          "email": "7460716636@example.com",
+          "delinquent": false,
+          "subscription": null,
+          "discount": null,
+          "account_balance": 0,
+          "cards": {
+            "object": "list",
+            "count": 1,
+            "url": "/v1/customers/cus_2cKWE1oonVTxby/cards",
+            "data": [
+              {
+                "id": "card_102cKV2tINt34UTeuhObgRiN",
+                "object": "card",
+                "last4": "0010",
+                "type": "Visa",
+                "exp_month": 12,
+                "exp_year": 2016,
+                "fingerprint": "bzjnyeYGHSsEU6Tz",
+                "customer": "cus_2cKWE1oonVTxby",
+                "country": "US",
+                "name": null,
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": "pass",
+                "address_line1_check": null,
+                "address_zip_check": null
+              }
+            ]
+          },
+          "default_card": "card_102cKV2tINt34UTeuhObgRiN"
+        }
+    http_version: '1.1'
+  recorded_at: Sun, 22 Sep 2013 05:56:35 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: customer=cus_2cKWE1oonVTxby&amount=250&description=Fantasy%20Rocket%20Monthly%20Subscription&currency=usd
+    headers:
+      accept:
+      - '*/*; q=0.5, application/xml'
+      accept-encoding:
+      - gzip, deflate
+      user-agent:
+      - Stripe/v1 RubyBindings/1.8.7
+      authorization:
+      - Bearer sk_test_Zt9yfN4fZCWlMyUFVtFsWcGx
+      content-type:
+      - application/x-www-form-urlencoded
+      x-stripe-client-user-agent:
+      - '{"bindings_version":"1.8.7","lang":"ruby","lang_version":"2.0.0 p247 (2013-06-27)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        bhuneycutt00.local 12.4.0 Darwin Kernel Version 12.4.0: Wed May  1 17:57:12
+        PDT 2013; root:xnu-2050.24.15~1/RELEASE_X86_64 x86_64"}'
+      content-length:
+      - '105'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 22 Sep 2013 05:56:36 GMT
+      content-type:
+      - application/json;charset=utf-8
+      content-length:
+      - '1015'
+      connection:
+      - keep-alive
+      cache-control:
+      - no-cache, no-store
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      access-control-max-age:
+      - '300'
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "ch_102cKW2tINt34UTeIG8m6RF2",
+          "object": "charge",
+          "created": 1379829396,
+          "livemode": false,
+          "paid": true,
+          "amount": 250,
+          "currency": "usd",
+          "refunded": false,
+          "card": {
+            "id": "card_102cKV2tINt34UTeuhObgRiN",
+            "object": "card",
+            "last4": "0010",
+            "type": "Visa",
+            "exp_month": 12,
+            "exp_year": 2016,
+            "fingerprint": "bzjnyeYGHSsEU6Tz",
+            "customer": "cus_2cKWE1oonVTxby",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": "pass",
+            "address_line1_check": null,
+            "address_zip_check": null
+          },
+          "captured": true,
+          "refunds": [],
+          "balance_transaction": "txn_102cKW2tINt34UTetVY9vLN9",
+          "failure_message": null,
+          "failure_code": null,
+          "amount_refunded": 0,
+          "customer": "cus_2cKWE1oonVTxby",
+          "invoice": null,
+          "description": "Fantasy Rocket Monthly Subscription",
+          "dispute": null
+        }
+    http_version: '1.1'
+  recorded_at: Sun, 22 Sep 2013 05:56:36 GMT
+recorded_with: VCR 2.5.0
