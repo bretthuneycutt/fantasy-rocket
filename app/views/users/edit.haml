@@ -1,0 +1,24 @@
+- content_for(:title) { "Settings" }
+
+.centered-form
+  %h1.form-title Settings
+
+  = form_for current_user, url: users_url do |f|
+    - if current_user.errors.any?
+      .error_messages
+        %h2 Form is invalid
+        %ul
+        - current_user.errors.full_messages.each do |message|
+          %li= message
+
+    .form-group
+      = f.text_field :name, class: "form-control input-lg", placeholder: "First and Last name"
+    .form-group
+      = f.text_field :email, class: "form-control input-lg", placeholder: "Email address"
+    .form-group
+      = f.password_field :password, class: "form-control input-lg", placeholder: "Password"
+    .form-group
+      = f.password_field :password_confirmation, class: "form-control input-lg", placeholder: "Confirm password"
+
+    .actions
+      = f.submit "Save", class: "btn btn-main btn-xlg", disable_with: "Saving..."
