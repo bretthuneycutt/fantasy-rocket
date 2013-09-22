@@ -1,0 +1,11 @@
+.centered-form
+  %h1.form-title Subscribe to Fantasy Rocket
+
+  = form_for @subscription do |f|
+    = hidden_field_tag :redirect_to, params[:redirect_to]  if params[:redirect_to]
+    .actions
+      = f.submit "Subscribe", class: "btn btn-main btn-xlg", disable_with: "Subscribing..."
+
+
+-# TODO Add mixpanel tracking
+:javascript

@@ -13,6 +13,10 @@ module CurrentContextHelper
     nil
   end
 
+  def current_user!
+    redirect_to root_url, notice: "Must be logged in"  unless current_user
+  end
+
   def current_sport
     @sport ||= case request.subdomain.split(".").first
     when 'nba'
