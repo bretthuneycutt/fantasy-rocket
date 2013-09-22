@@ -3,6 +3,7 @@
 
   = form_for @subscription do |f|
     = hidden_field_tag :redirect_to, params[:redirect_to]  if params[:redirect_to]
+    = hidden_field_tag :stripeToken
 
     %span.payment-errors
 
@@ -18,7 +19,7 @@
       %input.input-lg{type: "text", size: "4", "data-stripe" => "exp-year", placeholder: "YYYY"}
 
     .actions
-      = f.submit "Subscribe", class: "btn btn-main btn-xlg", disable_with: "Subscribing..."
+      = f.submit "Subscribe", class: "btn btn-main btn-xlg", data: { disable_with: "Subscribing..." }
 
 
 = javascript_include_tag "https://js.stripe.com/v2/"
@@ -53,7 +54,7 @@
       // token contains id, last4, and card type
       var token = response.id;
       // Insert the token into the form so it gets submitted to the server
-      $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+      $("#stripeToken").val(token);
       // and submit
       $form.get(0).submit();
     }

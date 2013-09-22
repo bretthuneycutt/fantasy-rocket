@@ -7,7 +7,6 @@ class SubscriptionsController < ApplicationController
     @subscription = current_user.build_subscription
   end
 
-  # TODO rescue errors
   # TODO consider using a service object to encapsulate logic, e.g., Customer
   def create
     customer = Stripe::Customer.create({
@@ -28,6 +27,9 @@ class SubscriptionsController < ApplicationController
 
     current_user.create_subscription!
     redirect_to params[:redirect_to] || root_url, notice: "Thanks! You're now subscribed."
+  rescue Stripe::CardError => e
+    puts "error", e.message
+    redirect_to new_subscriptions_path, alert: e.message
   end
 
 private
