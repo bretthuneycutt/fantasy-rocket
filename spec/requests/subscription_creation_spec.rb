@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "SubscriptionCreation", :focus do
+describe "SubscriptionCreation" do
   let(:user) { FactoryGirl.create(:user) }
 
   context "for a logged in user without a subscription" do
