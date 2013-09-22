@@ -18,7 +18,7 @@
     .flash-messages
       - flash.each do |name, message|
         - if message.is_a?(String)
-          .flash-message{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          .flash-message{:class => "alert alert-#{name == :notice ? "success" : "warning"}"}
             %div{:id => "flash_#{name}"}= message
     .logo-wrap= link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_path
     .navbar.navbar-default
