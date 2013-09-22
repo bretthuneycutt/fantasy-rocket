@@ -68,26 +68,68 @@ describe SubscriptionsController do
       let(:user) { FactoryGirl.create(:user) }
       before(:each) { request.cookies[:auth_token] = user.auth_token }
 
-      it "creates a subscription for the current_user" do
-        user.subscription.should be_nil
+      context "with valid stripeToken" do
+        let(:options) { {stripeToken: "valid-token"} }
 
-        go!
+        before :each do
+          Stripe::Customer.stub(:create).with({
+              :description => user.id,
+              :email => user.email,
+              :card => "valid-token",
+          }) do
+            o = Object.new
+            o.stub(:id) { "stripe_id" }
+            o
+          end
 
-        user.reload.subscription.should_not be_nil
-      end
+          Stripe::Charge.stub(:create).with({
+            :customer => "stripe_id",
+            :amount => 250,
+            :description => 'Fantasy Rocket Monthly Subscription',
+            :currency => "usd",
+          })
+        end
 
-      it "redirects to the root_url" do
-        go!
+        it "saves stripe customer ID to user" do
+          user.stripe_id.should be_nil
 
-        response.should redirect_to(root_url)
-      end
+          go!(options)
 
-      it "redirects to specific URL if specified" do
-        league = FactoryGirl.create(:league)
+          user.reload.stripe_id.should == "stripe_id"
+        end
 
-        go!(redirect_to: league_url(league))
+        it "charges the customer" do
+          Stripe::Charge.should_receive(:create).with({
+            :customer => "stripe_id",
+            :amount => 250,
+            :description => 'Fantasy Rocket Monthly Subscription',
+            :currency => "usd",
+          })
 
-        response.should redirect_to(league_url(league))
+          go!(options)
+        end
+
+        it "creates a subscription for the current_user" do
+          user.subscription.should be_nil
+
+          go!(options)
+
+          user.reload.subscription.should_not be_nil
+        end
+
+        it "redirects to the root_url" do
+          go!(options)
+
+          response.should redirect_to(root_url)
+        end
+
+        it "redirects to specific URL if specified" do
+          league = FactoryGirl.create(:league)
+
+          go!(options.merge(redirect_to: league_url(league)))
+
+          response.should redirect_to(league_url(league))
+        end
       end
     end
   end
