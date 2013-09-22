@@ -47,7 +47,7 @@
                     %li.divider
                     %li= link_to "Log Out", session_path("current"), method: "delete"
             - else
-              %li= link_to "Start a league", new_user_path, class: "header-link create-league"
+              %li= link_to "Start a league", new_users_path, class: "header-link create-league"
               %li= link_to "Sign in", new_session_path, class: "header-link"
     = yield
 

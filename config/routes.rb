@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 FantasyRocket::Application.routes.draw do
-  resources :users
+  resource :users
   resource :subscriptions, constraints: {subdomain: 'secure'}
   # TODO impose https constraint?
 
