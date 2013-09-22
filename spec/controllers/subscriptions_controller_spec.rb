@@ -2,10 +2,10 @@ require 'spec_helper'
 
 shared_examples "endpoint that requires logged in user" do
   context "if logged out" do
-    it "redirects to root_url" do
+    it "returns 404" do
       go!
 
-      response.should redirect_to(root_url)
+      response.should be_not_found
     end
   end
 end
