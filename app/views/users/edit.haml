@@ -24,7 +24,8 @@
       = f.submit "Save", class: "btn btn-main btn-xlg", data: {disable_with: "Saving..."}
 
     -# TODO allow canceled, non-expired subscriptions to renew
-    - if current_user.subscriber?
-      = link_to "Cancel subscription", subscriptions_url, method: :delete
-    - else
-      = link_to "Subscribe", new_subscriptions_url
+    %p.link-to-subscribe
+      - if current_user.subscriber?
+        = link_to "Cancel subscription", subscriptions_url, method: :delete
+      - else
+        = link_to "Subscribe", new_subscriptions_url
