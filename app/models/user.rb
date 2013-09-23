@@ -12,14 +12,15 @@ class User < ActiveRecord::Base
   has_many :leagues, through: :league_memberships
   has_many :draft_picks, foreign_key: "member_id", inverse_of: :member
 
-  has_one :subscription
+  has_one :subscription, -> { where(:canceled_at => nil) }
+  has_one :canceled_subscription, -> { where('canceled_at IS NOT NULL').order('canceled_at DESC') }, class_name: "Subscription"
 
   before_create -> { self.email = email.downcase.strip  if email }
 
   before_create { generate_token(:auth_token) }
 
   def subscriber?
-    !!subscription
+    !!subscription or (canceled_subscription && !canceled_subscription.expired?)
   end
 
   def generate_token(column)

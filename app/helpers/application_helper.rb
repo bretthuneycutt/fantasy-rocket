@@ -13,7 +13,7 @@ module ApplicationHelper
         submit_tag "Join league", options
       end
     else
-      path = new_user_path(redirect_to: league_path(league), league_id: league.id, h: league.hmac)
+      path = new_users_path(redirect_to: league_path(league), league_id: league.id, h: league.hmac)
       options[:class] += " join-league-link"
       link_to text, path, options
     end
