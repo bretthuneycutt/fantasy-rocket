@@ -18,7 +18,7 @@
     .flash-messages
       - flash.each do |name, message|
         - if message.is_a?(String)
-          .flash-message{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          .flash-message{:class => "alert alert-#{name == :notice ? "success" : "warning"}"}
             %div{:id => "flash_#{name}"}= message
     .logo-wrap= link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_path
     .navbar.navbar-default
@@ -47,7 +47,7 @@
                     %li.divider
                     %li= link_to "Log Out", session_path("current"), method: "delete"
             - else
-              %li= link_to "Start a league", new_user_path, class: "header-link create-league"
+              %li= link_to "Start a league", new_users_path, class: "header-link create-league"
               %li= link_to "Sign in", new_session_path, class: "header-link"
     = yield
 
