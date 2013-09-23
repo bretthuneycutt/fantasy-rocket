@@ -75,4 +75,98 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET 'edit'" do
+    def go!
+      get :edit
+    end
+
+    it_behaves_like "endpoint that requires logged in user"
+
+    context "when logged in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before(:each) { request.cookies[:auth_token] = user.auth_token }
+
+      it "renders the edit page" do
+        go!
+
+        response.should render_template(:edit)
+      end
+    end
+  end
+
+  describe "PUT 'update'" do
+    def go!(options = {})
+      put :update, user: options
+    end
+
+    it_behaves_like "endpoint that requires logged in user"
+
+    context "when logged in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before(:each) { request.cookies[:auth_token] = user.auth_token }
+
+      context "with invalid email" do
+        let(:options) { {email: "invalid"} }
+
+        it "renders edit template" do
+          go!(options)
+
+          response.should render_template(:edit)
+        end
+
+        it "does not update the user" do
+          old_email = user.email
+
+          go!(options)
+
+          user.reload.email.should == old_email
+        end
+
+        it "displays errors" do
+          go!(options)
+
+          assigns(:current_user).errors.should_not be_empty
+        end
+      end
+
+      context "with valid email and name values and empty string password and confirmation" do
+        let(:options) { {name: "Rudy Poo", email: "rudy@poo.com", password: "", password_confirmation: ""} }
+
+        it "updates email and name values" do
+          go!(options)
+
+          user.reload
+          user.name.should == "Rudy Poo"
+          user.email.should == "rudy@poo.com"
+        end
+
+        it "does not change the password" do
+          user.authenticate("password").should be_true
+
+          go!(options)
+
+          user.reload.authenticate("password").should be_true
+        end
+
+        it "redirects to the root url" do
+          go!(options)
+
+          response.should redirect_to root_url
+        end
+      end
+
+      context "with new password values" do
+        let(:options) { {password: "yoyoyoyo", password_confirmation: "yoyoyoyo"} }
+
+        it "updates the password" do
+          user.authenticate("yoyoyoyo").should be_false
+
+          go!(options)
+
+          user.reload.authenticate("yoyoyoyo").should be_true
+        end
+      end
+    end
+  end
 end
