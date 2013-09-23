@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  validates :user_id, presence: true, uniqueness: {scope: :canceled_at, messaage: "should have only one subscription at a time"}
+  validates :user_id, presence: true, uniqueness: {scope: :canceled_at, message: "should have only one subscription at a time"}
   belongs_to :user
 
   scope :active, -> { where(canceled_at: nil) }
