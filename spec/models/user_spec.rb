@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  subject { FactoryGirl.create(:user) }
+
   it_behaves_like "a FactoryGirl class"
 
   it "downcases email on create" do
@@ -47,6 +49,42 @@ describe User do
       user.assimilate_user!(other_user)
 
       other_user.should be_destroyed
+    end
+  end
+
+  context "with multiple cancelled subscriptions" do
+    let!(:canceled1) { FactoryGirl.create(:subscription, user: subject, canceled_at: 1.year.ago) }
+    let!(:canceled2) { FactoryGirl.create(:subscription, user: subject, canceled_at: 1.day.ago) }
+    let!(:canceled3) { FactoryGirl.create(:subscription, user: subject, canceled_at: 6.months.ago) }
+
+    its(:canceled_subscription) { should == canceled2 }
+  end
+
+  describe "#subsciber?" do
+    it { should_not be_subscriber }
+
+    context "with a subscription" do
+      let!(:subscription) { FactoryGirl.create(:subscription, user: subject) }
+
+      it { should be_subscriber }
+    end
+
+    context "with a canceled subscription" do
+      let!(:canceled_subscription) { FactoryGirl.create(:canceled_subscription, user: subject) }
+
+      it { should_not be_subscriber }
+    end
+
+    context "with a canceled subscription that ends in the future" do
+      let!(:canceled_subscription) { FactoryGirl.create(:canceled_subscription, user: subject, expires_at: 1.week.from_now) }
+
+      it { should be_subscriber }
+    end
+
+    context "with a canceled subscription that ended in the past" do
+      let!(:canceled_subscription) { FactoryGirl.create(:canceled_subscription, user: subject, expires_at: 1.week.ago) }
+
+      it { should_not be_subscriber }
     end
   end
 end

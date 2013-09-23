@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :current_user!, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -17,6 +19,18 @@ class UsersController < ApplicationController
       redirect_to params[:redirect_to].presence || new_league_path, notice: "Thank you for signing up!"
     else
       render "new"
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if current_user.update_attributes(user_params)
+      redirect_to root_url, notice: "Thanks! We got your changes."
+    else
+      flash.now.alert = "That didn't work."
+      render "edit"
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921003740) do
+ActiveRecord::Schema.define(version: 20130922183538) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20130921003740) do
   add_index "regular_season_games", ["winner_id", "week"], name: "index_regular_season_games_on_winner_id_and_week", unique: true, using: :btree
   add_index "regular_season_games", ["winner_id"], name: "index_regular_season_games_on_winner_id", using: :btree
 
+  create_table "subscriptions", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "canceled_at"
+    t.datetime "expires_at",  default: '1970-01-01 00:00:00'
+  end
+
+  add_index "subscriptions", ["user_id", "canceled_at"], name: "index_subscriptions_on_user_id_and_canceled_at", unique: true, using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -68,8 +79,10 @@ ActiveRecord::Schema.define(version: 20130921003740) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "stripe_id"
   end
 
+  add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

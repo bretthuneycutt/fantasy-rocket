@@ -1,5 +1,5 @@
 module CurrentContextHelper
-  def current_user
+  def current_user!
     @current_user ||= if cookies[:auth_token]
       User.find_by_auth_token!(cookies[:auth_token])
     elsif session[:user_id]
@@ -8,7 +8,13 @@ module CurrentContextHelper
       # Can remove session a few weeks later
 
       User.find(session[:user_id])
+    else
+      raise ActiveRecord::RecordNotFound
     end
+  end
+
+  def current_user
+    current_user!
   rescue ActiveRecord::RecordNotFound
     nil
   end
