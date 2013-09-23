@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130922021055) do
+ActiveRecord::Schema.define(version: 20130922183538) do
 
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
@@ -63,8 +63,11 @@ ActiveRecord::Schema.define(version: 20130922021055) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "canceled_at"
+    t.datetime "expires_at",  default: '1970-01-01 00:00:00'
   end
 
+  add_index "subscriptions", ["user_id", "canceled_at"], name: "index_subscriptions_on_user_id_and_canceled_at", unique: true, using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

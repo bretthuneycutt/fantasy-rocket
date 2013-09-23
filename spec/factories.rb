@@ -16,6 +16,11 @@ FactoryGirl.define do
       before(:create) { |u| u.generate_token(:password_reset_token) }
       password_reset_sent_at { Time.now }
     end
+
+    factory :subscribed_user do
+      stripe_id { generate(:random_string) }
+      subscription
+    end
   end
 
   factory :league, aliases: [:nfl_league] do
@@ -54,5 +59,9 @@ FactoryGirl.define do
 
   factory :subscription do
     user
+
+    factory :canceled_subscription do
+      canceled_at { 1.month.ago }
+    end
   end
 end
