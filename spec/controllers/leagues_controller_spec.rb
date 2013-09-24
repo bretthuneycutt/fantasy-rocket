@@ -112,14 +112,25 @@ describe LeaguesController do
 
     let(:league) { FactoryGirl.create(:league, commissioner: commissioner) }
     let(:member) { FactoryGirl.create(:user) }
-    before :each do
-      league.members << member
+
+    context "for a member" do
+      before :each do
+        league.members << member
+      end
+
+      it "displays the draft_pick modal" do
+        get :show, id: league.id, h: league.hmac, member: member.id
+
+        response.body.should include "You've joined #{league.name}"
+      end
     end
 
-    it "displays the draft_pick modal" do
-      get :show, id: league.id, h: league.hmac, member: member.id
+    context "for a non-member" do
+      it "does not display the draft_pick modal" do
+        get :show, id: league.id, h: league.hmac, member: member.id
 
-      response.body.should include "You've joined #{league.name}"
+        response.body.should_not include "You've joined #{league.name}"
+      end
     end
   end
 
@@ -129,16 +140,30 @@ describe LeaguesController do
 
     let(:league) { FactoryGirl.create(:league, commissioner: commissioner) }
     let(:draft_pick) { league.draft_picks.first }
+
     before :each do
       league.members << FactoryGirl.create(:user)
       DraftGenerator.new(league).generate_picks!
-      draft_pick.pick_team(NFLTeam::ARIZONA_CARDINALS)
     end
 
-    it "displays the draft_pick modal" do
-      get :show, id: league.id, h: league.hmac, draft_pick: draft_pick.id
+    context "for a selected draft_pick" do
+      before :each do
+        draft_pick.pick_team(NFLTeam::ARIZONA_CARDINALS)
+      end
 
-      response.body.should include "You picked the Arizona Cardinals 1st"
+      it "displays the draft_pick modal" do
+        get :show, id: league.id, h: league.hmac, draft_pick: draft_pick.id
+
+        response.body.should include "You picked the Arizona Cardinals 1st"
+      end
+    end
+
+    context "for an unselected draft_pick" do
+      it "does not display the draft_pick modal" do
+        get :show, id: league.id, h: league.hmac, draft_pick: draft_pick.id
+
+        response.body.should_not include "You picked the Arizona Cardinals 1st"
+      end
     end
   end
 end
