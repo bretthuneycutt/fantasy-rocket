@@ -17,7 +17,7 @@ describe "splash/index" do
     it "renders NBA copy" do
       render
 
-      rendered.should include "Home of the NBA Wins Pool"
+      rendered.should include "NBA Fantasy Game"
     end
   end
 end
