@@ -31,6 +31,8 @@
           %td
             .member-name= member.name
 
+= render partial: "shared/share_modal", locals: {decorator: MembershipModalDecorator.new(@membership, request)}  if @membership
+
 :coffee
   mixpanel.track("League Show")
   mixpanel.track_links(".leagues-show .join-league-link", "League Join Click", data: {signed_in: false})

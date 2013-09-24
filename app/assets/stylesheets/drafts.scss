@@ -56,12 +56,12 @@
       font-size: 20px;
       line-height: $draft-table-line-height;
     }
-    .team, .notification {
+    .team, .drafting-now-notification {
       float: left;
       font-size: 20px;
       line-height: $draft-table-line-height;
     }
-    .notification {
+    .drafting-now-notification {
       text-transform: uppercase;
     }
     .team-name {

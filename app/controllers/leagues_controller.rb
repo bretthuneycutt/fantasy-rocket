@@ -19,10 +19,12 @@ class LeaguesController < ApplicationController
 
   def show
     @league = League.find(params[:id])
+    @draft_pick = @league.draft_picks.picked.where(id: params[:draft_pick]).first  if params[:draft_pick]
+    @membership = @league.league_memberships.where(member_id: params[:member]).first  if params[:member]
 
     raise ActiveRecord::RecordNotFound  unless params[:h] == @league.hmac
 
-    unless request.url == league_url(@league)
+    unless current_sport == @league.sport
       redirect_to league_url(@league), status: 301
       return
     end

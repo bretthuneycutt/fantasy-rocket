@@ -1,14 +1,21 @@
+.notification {
+  background: $light-gray;
+  color: black;
+  font-size: 16px;
+  padding: 20px 28px;
+  .url-input {
+    width: 50%;
+  }
+  &.social {
+    background: transparent;
+    color: white;
+    text-align: center;
+    border: 1px white solid;
+  }
+}
+
 .leagues-show {
   max-width: $narrow-page-width;
-  .notification {
-    background: $light-gray;
-    color: black;
-    font-size: 16px;
-    padding: 20px 28px;
-    .url-input {
-      width: 50%;
-    }
-  }
   .btn-main {
     margin: 16px 0 8px;
   }

@@ -58,6 +58,9 @@ class League < ActiveRecord::Base
     end
   end
 
+  def default_tweet(user)
+    # TODO write some good default tweets
+  end
 private
 
   def add_commissioner_as_member

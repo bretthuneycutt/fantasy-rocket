@@ -13,8 +13,8 @@ class DraftPicksController < ApplicationController
     @league = @draft_pick.league
     @draft = @league.draft
 
-    # send relevant email
     if @draft_pick.selected?
+      # send relevant email
       mailer_worker_class = case @draft.status
       when :in_progress
         DraftPickMadeMailerWorker
@@ -24,9 +24,10 @@ class DraftPicksController < ApplicationController
 
       mailer_worker_class.perform_async(@league.id)
 
+      # set draft to complete if appropriate
       @league.update_attributes!(draft_completed_at: Time.now)  if @draft.status == :complete
     end
 
-    redirect_to league_path(@league)
+    redirect_to league_path(@league, draft_pick: @draft_pick.id)
   end
 end
