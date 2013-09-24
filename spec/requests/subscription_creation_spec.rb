@@ -5,7 +5,7 @@ describe "SubscriptionCreation" do
 
   context "for a logged in user without a subscription" do
     before :each do
-      visit new_session_path
+      visit new_session_url
       fill_in "email", with: user.email
       fill_in "password", with: "password"
       click_on "Submit"

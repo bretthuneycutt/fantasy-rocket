@@ -37,7 +37,7 @@ describe DraftsController do
       it "redirects to the league page" do
         post :create, {:league_id => league.id}, {:user_id => league.commissioner_id}
 
-        expect(response).to redirect_to(league_path(league))
+        expect(response).to redirect_to(league_url(league))
       end
     end
 
@@ -57,7 +57,7 @@ describe DraftsController do
       it "redirects to the league page" do
         post :create, {:league_id => league.id}, {:user_id => league.commissioner_id}
 
-        expect(response).to redirect_to(league_path(league))
+        expect(response).to redirect_to(league_url(league))
       end
     end
   end

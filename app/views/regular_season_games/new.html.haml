@@ -1,7 +1,7 @@
 .centered-form
   %h1.form-title Select a winner and week
 
-  = form_for @regular_season_game, as: :regular_season_game, url: regular_season_games_path do |f|
+  = form_for @regular_season_game, as: :regular_season_game, url: regular_season_games_url do |f|
     .form-group
       = f.select :winner_id, options_for_select(team_class.all.sort_by(&:name).map { |t| [t.name, t.id ] })
     .form-group

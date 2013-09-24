@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe PasswordResetsController do
+  before(:each) { request.env['HTTPS'] = 'on' }
 
   describe "POST 'create'" do
     context "if the user exists" do
@@ -106,7 +107,7 @@ describe PasswordResetsController do
           password_confirmation: "new-password",
         }
 
-        expect(response).to redirect_to(new_password_reset_path)
+        expect(response).to redirect_to(new_password_reset_url)
       end
     end
   end

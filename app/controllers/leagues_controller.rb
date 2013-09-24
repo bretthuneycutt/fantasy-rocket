@@ -11,7 +11,7 @@ class LeaguesController < ApplicationController
     @league.attributes = league_params
 
     if @league.save
-      redirect_to league_path(@league), notice: "Your league has been created!"
+      redirect_to league_url(@league), notice: "Your league has been created!"
     else
       render "new"
     end

@@ -8,6 +8,6 @@ class DraftsController < ApplicationController
 
     DraftGenerator.new(@league).generate_picks!
 
-    redirect_to league_path(@league)
+    redirect_to league_url(@league)
   end
 end

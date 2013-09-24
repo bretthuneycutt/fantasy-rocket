@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  force_ssl  unless Rails.env.development?
   before_filter :current_user!, only: [:edit, :update]
 
   def new
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
         league.add_member(@user)  if league.hmac == params[:h]
       end
 
-      redirect_to params[:redirect_to].presence || new_league_path, notice: "Thank you for signing up!"
+      redirect_to params[:redirect_to].presence || new_league_url, notice: "Thank you for signing up!"
     else
       render "new"
     end

@@ -15,7 +15,7 @@ class RegularSeasonGamesController < ApplicationController
     @regular_season_game = game_class.new(game_params)
 
     if @regular_season_game.save
-      redirect_to regular_season_games_path
+      redirect_to regular_season_games_url
     else
       flash.now.alert = "Invalid"
       render :new
