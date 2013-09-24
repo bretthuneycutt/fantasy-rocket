@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 FantasyRocket::Application.routes.draw do
-  constraints subdomain: 'secure', protocol: 'https://' do
+  constraints subdomain: 'secure', protocol: Rails.env.development? ? 'http://' : 'https://' do
     resource :users
     resource :subscriptions
     resources :sessions
