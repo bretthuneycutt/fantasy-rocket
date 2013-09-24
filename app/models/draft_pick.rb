@@ -26,4 +26,10 @@ class DraftPick < ActiveRecord::Base
   def as_ordinal
     (order + 1).ordinalize
   end
+
+  def default_tweet
+    return  unless team
+
+    "I picked the #{team.name} #{as_ordinal}"
+  end
 end

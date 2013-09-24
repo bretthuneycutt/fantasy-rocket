@@ -15,4 +15,21 @@ module UrlHelper
     options[:only_path] = true
     league_url(league, options)
   end
+
+  def share_on_twitter_url(options = {})
+    params = {
+      :url => options[:url],
+      :text => options[:text],
+      :related => "fantasyrocket",
+    }
+
+    "https://twitter.com/share?#{params.to_param}"
+  end
+
+  def share_on_facebook_url(options = {})
+    params = {
+      :u => options[:url],
+    }
+    "https://www.facebook.com/sharer/sharer.php?#{params.to_param}"
+  end
 end

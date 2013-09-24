@@ -17,6 +17,7 @@ describe DraftPick do
 
     its(:selected?) { should be_false }
     its(:team) { should be_nil }
+    its(:default_tweet) { should be_nil }
   end
 
   context "with selected NBA team" do
@@ -24,6 +25,7 @@ describe DraftPick do
 
     it_behaves_like "a draft pick with selected team"
     its(:team) { subject.team.name.should == "New Orleans Pelicans" }
+    its(:default_tweet) { should == "I picked the New Orleans Pelicans #{subject.as_ordinal}" }
   end
 
   context "with selected NFL team" do
@@ -31,5 +33,6 @@ describe DraftPick do
 
     it_behaves_like "a draft pick with selected team"
     its(:team) { subject.team.name.should == "Arizona Cardinals" }
+    its(:default_tweet) { should == "I picked the Arizona Cardinals #{subject.as_ordinal}" }
   end
 end
