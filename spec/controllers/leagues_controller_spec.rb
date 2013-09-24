@@ -106,6 +106,23 @@ describe LeaguesController do
     end
   end
 
+  describe "GET 'show' before draft with member parameter" do
+    render_views
+    before(:each) { @request.host = "nfl.test.host" }
+
+    let(:league) { FactoryGirl.create(:league, commissioner: commissioner) }
+    let(:member) { FactoryGirl.create(:user) }
+    before :each do
+      league.members << member
+    end
+
+    it "displays the draft_pick modal" do
+      get :show, id: league.id, h: league.hmac, member: member.id
+
+      response.body.should include "You've joined #{league.name}"
+    end
+  end
+
   describe "GET 'show' during draft with draft_pick parameter" do
     render_views
     before(:each) { @request.host = "nfl.test.host" }

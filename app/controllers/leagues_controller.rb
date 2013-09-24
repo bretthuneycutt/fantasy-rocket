@@ -20,6 +20,7 @@ class LeaguesController < ApplicationController
   def show
     @league = League.find(params[:id])
     @draft_pick = @league.draft_picks.picked.where(id: params[:draft_pick]).first  if params[:draft_pick]
+    @membership = @league.league_memberships.where(member_id: params[:member]).first  if params[:member]
 
     raise ActiveRecord::RecordNotFound  unless params[:h] == @league.hmac
 

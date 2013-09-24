@@ -64,4 +64,9 @@ FactoryGirl.define do
       canceled_at { 1.month.ago }
     end
   end
+
+  factory :league_membership do
+    league
+    association :member, factory: :user
+  end
 end
