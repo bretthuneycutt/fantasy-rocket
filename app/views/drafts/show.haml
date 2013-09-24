@@ -30,7 +30,7 @@
                 .team-icon{class: [pick.team.css_class, current_sport].join(" ")}
                 .team-name= pick.team.name
             - elsif pick == @draft.current_pick
-              .notification Drafting now!
+              .drafting-now-notification Drafting now!
             .member-name= pick.member.name
 
   %table.draft-table.table.available-view.hidden
