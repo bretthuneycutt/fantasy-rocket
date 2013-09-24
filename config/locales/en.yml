@@ -28,6 +28,7 @@ en:
     splash:
       title: "Home of the NFL Wins Pool"
       subtitle: "NFL Wins Pool is one of the simplest and most addictive fantasy games you can play with your friends. And it's free!"
+      sub_cta: "It's not too late!"
     draft:
       expected_wins_link: "http://www.cbssports.com/nfl/writer/pat-kirwan/23268807/nfl-teambyteam-record-predictions"
 
@@ -35,7 +36,8 @@ en:
   nba:
     league: "NBA"
     splash:
-      title: "Home of the NBA Wins Pool"
-      subtitle: "NBA Wins Pool is one of the simplest and most addictive fantasy games you can play with your friends. And it's free!"
+      title: "The Simplest, Most Addictive<br /> NBA Fantasy Game of them all."
+      subtitle: ""
+      sub_cta: "It's free!"
     draft:
       expected_wins_link: "http://bleacherreport.com/articles/1713891-full-win-loss-predictions-for-each-nba-team-in-2013-14-post-free-agency-edition"

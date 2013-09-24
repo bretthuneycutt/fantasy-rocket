@@ -1,8 +1,8 @@
 .splash
   .intro{class: current_sport}
-    %h1= sport_t "splash.title"
+    %h1= sport_t("splash.title").html_safe
     %h2= sport_t "splash.subtitle"
-    .create-league= link_to "Start a league<span class='hidden-for-mobile'>. It's not too late!</span>".html_safe, new_users_path, class: "btn btn-main btn-xlg"
+    .create-league= link_to "Start a league<span class='hidden-for-mobile'>. #{sport_t "splash.sub_cta"}</span>".html_safe, new_users_path, class: "btn btn-main btn-xlg"
   .quote
     .container
       .clearfix
@@ -24,7 +24,7 @@
         .col-md-4
           %h4 3. Win
           %p The member whose teams win the most regular season games wins the pool. And that's it! No agonizing over benching players every game day. Just sit back and watch who wins.
-    .create-league= link_to "Start a league<span class='hidden-for-mobile'>. It's not too late!</span>".html_safe, new_users_path, class: "btn btn-main btn-xlg"
+    .create-league= link_to "Start a league<span class='hidden-for-mobile'>. #{sport_t "splash.sub_cta"}</span>".html_safe, new_users_path, class: "btn btn-main btn-xlg"
 
 :coffee
   mixpanel.track("Splash Show")
