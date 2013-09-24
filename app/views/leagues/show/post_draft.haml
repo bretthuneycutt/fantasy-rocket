@@ -1,17 +1,13 @@
 .container.container-under-header.leagues-show
-  .notification.social
-    - if @league.members.include? current_user
+  - if @league.members.include? current_user
+    .notification.social
       %h2 Share the latest standings!
       .actions
         -# TODO open in small window (not full-size window)
         = link_to "Share on Facebook", share_on_facebook_url(url: league_url(@league)), class: "btn btn-lg btn-share btn-facebook", target: '_blank'
         = link_to "Share on Twitter", share_on_twitter_url(url: league_url(@league), text: @league.default_tweet(current_user)), class: "btn btn-lg btn-share btn-twitter", target: "_blank"
 
-    - elsif !current_user
-      -# TODO add prompt to sign up on the draft page
-
-      %h2 Play #{sport_t 'league'} Wins Pool with your friends!
-      .create-league= link_to "Start a league<span class='hidden-for-mobile'>. #{sport_t "splash.sub_cta"}</span>".html_safe, new_users_path, class: "btn btn-main btn-xlg"
+  = render "shared/create_league_notification"  unless current_user
 
   .league-header
     %h1.league-name= @league.name

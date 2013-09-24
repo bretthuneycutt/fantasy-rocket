@@ -1,4 +1,6 @@
 .drafts-show.container.container-under-header
+  = render "shared/create_league_notification"  unless current_user
+
   .league-header
     %h1.league-name= @league.name
     .member-count #{@league.members.size} players
