@@ -35,7 +35,7 @@ describe DraftPicksController do
         it "redirects to the draft page" do
           put :update, {:id => pick.id, :team_id => 1}, {:user_id => pick.member_id}
 
-          expect(response).to redirect_to(league_path(pick.league))
+          expect(response).to redirect_to(league_path(pick.league, draft_pick: pick.id))
         end
       end
 
