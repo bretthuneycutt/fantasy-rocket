@@ -52,6 +52,22 @@
             - if current_user == @draft.current_picker
               = link_to "+ Pick", draft_pick_path(@draft.current_pick, team_id: team.id), method: "put", class: "btn btn-main pick-link"
 
+- if @draft_pick
+  .modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header.clearfix
+          %button.close{:type =>   'button', :'data-dismiss' => 'modal', :'aria-hidden' => 'true'} Close &times;
+        .modal-body
+          %p You picked the #{@draft_pick.team.name} #{@draft_pick.as_ordinal}
+          %h3 Share your pick with friends!
+          .actions
+            = link_to "Share on Facebook", share_on_facebook_url(url: league_url(@league)), class: "btn btn-lg btn-share btn-facebook", target: '_blank'
+            = link_to "Share on Twitter", share_on_twitter_url(url: league_url(@league), text: @draft_pick.default_tweet), class: "btn btn-lg btn-share btn-twitter", target: "_blank"
+  :coffee
+    $ ->
+      $('.modal').modal()
+
 :coffee
   $ ->
     new DraftView()

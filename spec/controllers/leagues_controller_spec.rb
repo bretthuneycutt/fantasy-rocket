@@ -105,4 +105,23 @@ describe LeaguesController do
       end
     end
   end
+
+  describe "GET 'show' during draft with draft_pick parameter" do
+    render_views
+    before(:each) { @request.host = "nfl.test.host" }
+
+    let(:league) { FactoryGirl.create(:league, commissioner: commissioner) }
+    let(:draft_pick) { league.draft_picks.first }
+    before :each do
+      league.members << FactoryGirl.create(:user)
+      DraftGenerator.new(league).generate_picks!
+      draft_pick.pick_team(NFLTeam::ARIZONA_CARDINALS)
+    end
+
+    it "displays the draft_pick modal" do
+      get :show, id: league.id, h: league.hmac, draft_pick: draft_pick.id
+
+      response.body.should include "You picked the Arizona Cardinals 1st"
+    end
+  end
 end
