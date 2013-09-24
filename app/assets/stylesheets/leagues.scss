@@ -8,6 +8,13 @@
     .url-input {
       width: 50%;
     }
+    &.social {
+      background: transparent;
+      color: white;
+      text-align: center;
+      border: 1px white solid;
+    }
+
   }
   .btn-main {
     margin: 16px 0 8px;
