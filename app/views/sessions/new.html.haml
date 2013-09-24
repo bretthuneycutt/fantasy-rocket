@@ -1,12 +1,12 @@
 .centered-form
   %h1.form-title Sign in
 
-  = form_tag sessions_path do
+  = form_tag sessions_url do
     = hidden_field_tag :redirect_to, params[:redirect_to]
     .form-group
       = text_field_tag :email, params[:email], class: "form-control input-lg", placeholder: "Email address"
     .form-group
       = password_field_tag :password, nil, class: "form-control input-lg", placeholder: "Password"
-      %p.forgot-password= link_to "forgot password?", new_password_reset_path
+      %p.forgot-password= link_to "forgot password?", new_password_reset_url
     .actions
       = submit_tag "Submit", class: "btn btn-main btn-xlg"

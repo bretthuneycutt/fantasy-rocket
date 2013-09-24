@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe SessionsController do
+  before(:each) { request.env['HTTPS'] = 'on' }
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -52,7 +53,7 @@ describe SessionsController do
           'password' => "password",
         }
 
-        expect(response).to redirect_to("/")
+        expect(response).to redirect_to(root_url)
       end
 
       context "and redirect_to specified" do

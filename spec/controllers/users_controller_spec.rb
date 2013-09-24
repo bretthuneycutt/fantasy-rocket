@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UsersController do
+  before(:each) { request.env['HTTPS'] = 'on' }
+
   describe "POST create" do
     context "with valid parameters" do
       it "redirects to create a new league" do
@@ -11,7 +13,7 @@ describe UsersController do
           'password_confirmation' => 'password',
         }
 
-        expect(response).to redirect_to(new_league_path)
+        expect(response).to redirect_to(new_league_url)
       end
 
       context "with league_id specified" do

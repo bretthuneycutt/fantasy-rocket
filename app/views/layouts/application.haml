@@ -20,7 +20,7 @@
         - if message.is_a?(String)
           .flash-message{:class => "alert alert-#{name == :notice ? "success" : "warning"}"}
             %div{:id => "flash_#{name}"}= message
-    .logo-wrap= link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_path
+    .logo-wrap= link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_url
     .navbar.navbar-default
       .container
         .navbar-header
@@ -43,13 +43,13 @@
                       - current_user.leagues.each do |league|
                         %li= link_to league.name, league
                       %li.divider
-                    %li= link_to "+ Start a League", new_league_path, class: "dropdown-create-league"
+                    %li= link_to "+ Start a League", new_league_url, class: "dropdown-create-league"
                     %li.divider
                     %li= link_to "Settings", edit_users_url
-                    %li= link_to "Log Out", session_path("current"), method: "delete"
+                    %li= link_to "Log Out", session_url("current"), method: "delete"
             - else
-              %li= link_to "Start a league", new_users_path, class: "header-link create-league"
-              %li= link_to "Sign in", new_session_path, class: "header-link"
+              %li= link_to "Start a league", new_users_url, class: "header-link create-league"
+              %li= link_to "Sign in", new_session_url, class: "header-link"
     = yield
 
     :javascript
