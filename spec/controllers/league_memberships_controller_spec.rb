@@ -21,7 +21,7 @@ describe LeagueMembershipsController do
       it "redirects to league page" do
         go!
 
-        expect(response).to redirect_to(league_path(league, member: user.id))
+        expect(response).to redirect_to(league_url(league, member: user.id))
       end
     end
 
@@ -45,7 +45,7 @@ describe LeagueMembershipsController do
       it "redirects to league page" do
         go!
 
-        expect(response).to redirect_to(league_path(league, member: user.id))
+        expect(response).to redirect_to(league_url(league, member: user.id))
       end
     end
   end

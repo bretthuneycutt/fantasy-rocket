@@ -8,12 +8,12 @@ module ApplicationHelper
     }
 
     if current_user
-      path = league_memberships_path(@league)
-      form_tag league_memberships_path(@league), :method => 'post', :class => 'join-league-form' do
+      path = league_memberships_url(@league)
+      form_tag league_memberships_url(@league), :method => 'post', :class => 'join-league-form' do
         submit_tag "Join league", options
       end
     else
-      path = new_users_path(redirect_to: league_path(league), league_id: league.id, h: league.hmac)
+      path = new_users_url(redirect_to: league_url(league), league_id: league.id, h: league.hmac)
       options[:class] += " join-league-link"
       link_to text, path, options
     end

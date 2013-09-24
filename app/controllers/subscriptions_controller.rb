@@ -28,7 +28,7 @@ class SubscriptionsController < ApplicationController
     current_user.create_subscription!
     redirect_to params[:redirect_to] || root_url, notice: "Thanks! You're now subscribed."
   rescue Stripe::CardError => e
-    redirect_to new_subscriptions_path, alert: e.message
+    redirect_to new_subscriptions_url, alert: e.message
   end
 
   def destroy

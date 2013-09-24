@@ -21,7 +21,7 @@ describe LeaguesController do
           'name' => "League name",
         }
 
-        expect(response).to redirect_to(league_path(assigns(:league)))
+        expect(response).to redirect_to(league_url(assigns(:league)))
       end
 
       it "creates an nfl league" do

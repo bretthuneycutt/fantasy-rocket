@@ -15,7 +15,7 @@
     %h1.league-name= @league.name
     .member-count #{@league.members.size} players
     - if current_user == @league.commissioner && @league.members.size > 1 && @draft.ready_to_start?
-      = link_to "Start the draft", league_drafts_path(@league), method: "post", class: "btn btn-main btn-xlg"
+      = link_to "Start the draft", league_drafts_url(@league), method: "post", class: "btn btn-main btn-xlg"
       .start-draft-description Press "start the draft" after all your friends have joined.
     - if @league.eligible_to_be_member?(current_user)
       = link_to_join_league(@league)

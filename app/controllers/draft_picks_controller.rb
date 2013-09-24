@@ -28,6 +28,6 @@ class DraftPicksController < ApplicationController
       @league.update_attributes!(draft_completed_at: Time.now)  if @draft.status == :complete
     end
 
-    redirect_to league_path(@league, draft_pick: @draft_pick.id)
+    redirect_to league_url(@league, draft_pick: @draft_pick.id)
   end
 end

@@ -26,6 +26,6 @@
     -# TODO allow canceled, non-expired subscriptions to renew
     %p.link-to-subscribe
       - if current_user.subscriber?
-        = link_to "Cancel subscription", subscriptions_url(protocol: 'https'), method: :delete
+        = link_to "Cancel subscription", subscriptions_url, method: :delete
       - else
-        = link_to "Subscribe", new_subscriptions_url(protocol: 'https')
+        = link_to "Subscribe", new_subscriptions_url
