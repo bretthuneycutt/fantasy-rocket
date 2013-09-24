@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  force_ssl  unless Rails.env.development?
+  # force_ssl  unless Rails.env.development?
   before_filter :current_user!
   before_filter :redirect_subscribers, :if => Proc.new { current_user.subscriber? }, :only => [:new, :create]
 
