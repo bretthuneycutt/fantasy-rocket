@@ -6,9 +6,9 @@
       .modal-body
         %p.what-happened= decorator.what_happened
         %p.call-to-action= decorator.call_to_action
-        .actions
-          = link_to "Share on Facebook", share_on_facebook_url(url: decorator.url), class: "btn btn-lg btn-share btn-facebook", target: '_blank'
-          = link_to "Share on Twitter", share_on_twitter_url(url: decorator.url, text: decorator.default_tweet), class: "btn btn-lg btn-share btn-twitter", target: "_blank"
+        .social-buttons
+          = link_to "Share on Facebook", share_on_facebook_url(url: decorator.url), class: "btn btn-xlg btn-share btn-facebook", target: '_blank'
+          = link_to "Share on Twitter", share_on_twitter_url(url: decorator.url, text: decorator.default_tweet), class: "btn btn-xlg btn-share btn-twitter", target: "_blank"
 :coffee
   $ ->
     $('.modal').modal()

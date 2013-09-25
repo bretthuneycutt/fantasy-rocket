@@ -29,16 +29,29 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+.social-buttons {
+  margin: 16px 0;
+}
+
 .btn.btn-share {
   color: white;
+  background-image: image-url('share-buttons.png');
+  background-repeat: no-repeat;
+  padding-left: 55px;
+  padding-right: 20px;
+  font-size: 16px;
+
   &.btn-facebook {
     background-color: $facebook-blue;
+    background-position: 20px 19px;
     &:hover {
       background-color: darken($facebook-blue, 3%);
     }
+    margin-right: 10px;
   }
   &.btn-twitter {
     background-color: $twitter-blue;
+    background-position: 20px -80px;
     &:hover {
       background-color: darken($twitter-blue, 3%);
     }
