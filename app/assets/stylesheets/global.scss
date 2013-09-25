@@ -29,19 +29,62 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+.social-buttons {
+  margin: 16px 0;
+}
+
 .btn.btn-share {
   color: white;
+  background-image: image-url('share-buttons.png');
+  background-repeat: no-repeat;
+  padding-left: 55px;
+  padding-right: 20px;
+  font-size: 16px;
+
   &.btn-facebook {
     background-color: $facebook-blue;
+    background-position: 20px 19px;
     &:hover {
       background-color: darken($facebook-blue, 3%);
     }
+    margin-right: 10px;
   }
   &.btn-twitter {
     background-color: $twitter-blue;
+    background-position: 20px -80px;
     &:hover {
       background-color: darken($twitter-blue, 3%);
     }
+  }
+}
+
+.modal-backdrop {
+  background: #000;
+  &.fade.in {
+    opacity: 0.5;
+  }
+}
+.modal {
+  .modal-header {
+    background-color: $light-gray;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    button {
+      text-transform: uppercase;
+      font-size: 16px;
+      color: black;
+      opacity: 0.6;
+    }
+  }
+  color: black;
+  .what-happened {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  .call-to-action {
+    font-size: 28px;
+    margin: -10px 0 20px;
+    font-weight: bold;
   }
 }
 
@@ -87,4 +130,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .link-to-subscribe {
   margin: 10px 0;
+}
+
+.notification {
+  background: $dark-gray;
+  color: white;
+  font-size: 16px;
+  padding: 20px 28px;
+  .url-input {
+    width: 50%;
+  }
+  &.social {
+    text-align: center;
+  }
 }
