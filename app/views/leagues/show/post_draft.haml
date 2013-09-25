@@ -2,10 +2,10 @@
   - if @league.members.include? current_user
     .notification.social
       %h2 Share the latest standings!
-      .actions
+      .social-buttons
         -# TODO open in small window (not full-size window)
-        = link_to "Share on Facebook", share_on_facebook_url(url: league_url(@league)), class: "btn btn-lg btn-share btn-facebook", target: '_blank'
-        = link_to "Share on Twitter", share_on_twitter_url(url: league_url(@league), text: @league.default_tweet(current_user)), class: "btn btn-lg btn-share btn-twitter", target: "_blank"
+        = link_to "Share on Facebook", share_on_facebook_url(url: league_url(@league)), class: "btn btn-xlg btn-share btn-facebook", target: '_blank'
+        = link_to "Share on Twitter", share_on_twitter_url(url: league_url(@league), text: @league.default_tweet(current_user)), class: "btn btn-xlg btn-share btn-twitter", target: "_blank"
 
   = render "shared/create_league_notification"  unless current_user
 
