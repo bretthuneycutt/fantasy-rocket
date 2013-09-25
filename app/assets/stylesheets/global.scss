@@ -45,6 +45,36 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
+.modal-backdrop {
+  background: #000;
+  &.fade.in {
+    opacity: 0.5;
+  }
+}
+.modal {
+  .modal-header {
+    background-color: $light-gray;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    button {
+      text-transform: uppercase;
+      font-size: 16px;
+      color: black;
+      opacity: 0.6;
+    }
+  }
+  color: black;
+  .what-happened {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  .call-to-action {
+    font-size: 28px;
+    margin: -10px 0 20px;
+    font-weight: bold;
+  }
+}
+
 .input-lg {
   height: 60px;
   font-size: 18px;
