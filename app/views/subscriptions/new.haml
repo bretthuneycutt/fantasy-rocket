@@ -1,25 +1,50 @@
-.centered-form
-  %h1.form-title Subscribe to Fantasy Rocket
+.container.container-under-header.checkout
+  %h1.form-title Checkout
 
-  = form_for @subscription do |f|
-    = hidden_field_tag :redirect_to, params[:redirect_to]  if params[:redirect_to]
-    = hidden_field_tag :stripeToken
+  .checkout-form
+    = form_for @subscription do |f|
+      = hidden_field_tag :redirect_to, params[:redirect_to]  if params[:redirect_to]
+      = hidden_field_tag :stripeToken
 
-    %span.payment-errors
+      %span.payment-errors
 
-    .form-group
-      %input.form-control.input-lg{type: "text", size: "20", "data-stripe" => "number", placeholder: "Number"}
+      %table
+        %tbody
+          %tr
+            %td.hidden-for-mobile Membership type
+            %td.item-to-purchase
+              %p.membership-type Premium access - $2.50/month
+              %p.details Available immediately upon successful completion, recurs monthly until canceled.
 
-    .form-group
-      %input.form-control.input-lg{type: "text", size: "20", "data-stripe" => "cvc", placeholder: "CVC"}
+          %tr
+            %td.hidden-for-mobile Credit card / CVV
+            %td
+              %input.input-lg{type: "text", size: "20", "data-stripe" => "number", placeholder: "Number"}
+              %input.input-lg{type: "text", size: "4", "data-stripe" => "cvc", placeholder: "CVC"}
 
-    .form-group
-      %input.input-lg{type: "text", size: "2", "data-stripe" => "exp-month", placeholder: "MM"}
-      %span /
-      %input.input-lg{type: "text", size: "4", "data-stripe" => "exp-year", placeholder: "YYYY"}
+          %tr
+            %td.hidden-for-mobile Expires
+            %td
+              %input.input-lg{type: "text", size: "2", "data-stripe" => "exp-month", placeholder: "MM"}
+              %span.slash /
+              %input.input-lg{type: "text", size: "4", "data-stripe" => "exp-year", placeholder: "YYYY"}
 
-    .actions
-      = f.submit "Subscribe", class: "btn btn-main btn-xlg", data: { disable_with: "Subscribing..." }
+          %tr
+            %td.hidden-for-mobile
+            %td
+              = f.submit "Submit order", class: "btn btn-main btn-xlg", data: { disable_with: "Submitting..." }
+              = link_to "https://stripe.com", class: "stripe" do
+                = image_tag "stripe.png"
+              %p.tos By clicking "Submit order," you agree to our Terms of Service and Privacy Policy
+
+  %h2 Access
+  %p All of our premium products feature a recurring charge that will recur one month after your initial payment. You will be given immediate access to the product upon successful completion of your transaction. You will receive an email receipt that will also contain links to the premium features, as well as a confirmation number of your subscription.
+
+  %h2 Refund policy
+  %p Unfortunately, due to the time-sensitivity of our products, we cannot offer refunds. However, for any problems, concerns and requests for your premium services, please email our Customer Support team at hi@fantasyrocket.com
+  = image_tag "30-days-guarantee.png"
+  = link_to "http://www.rapidssl.com/learn-ssl/ssl-faq/" do
+    = image_tag "rapidssl.gif"
 
 
 = javascript_include_tag "https://js.stripe.com/v2/"
