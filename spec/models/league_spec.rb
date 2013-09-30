@@ -62,4 +62,17 @@ describe League do
 
     its(:team_class) { should == NBATeam }
   end
+
+  describe "#default_tweet" do
+    subject { FactoryGirl.create(:league) }
+    let(:member) { FactoryGirl.create(:user) }
+    before :each do
+      subject.members << member
+      Standing.any_instance.stub(:rank) { 2 }
+    end
+
+    it "returns sentence with ranking" do
+      subject.default_tweet(member).should == "I'm 2nd in my NFL wins pool"
+    end
+  end
 end

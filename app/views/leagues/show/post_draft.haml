@@ -4,8 +4,12 @@
       %h2 Share the latest standings!
       .social-buttons
         -# TODO open in small window (not full-size window)
-        = link_to "Share on Facebook", share_on_facebook_url(url: league_url(@league)), class: "btn btn-xlg btn-share btn-facebook", target: '_blank'
-        = link_to "Share on Twitter", share_on_twitter_url(url: league_url(@league), text: @league.default_tweet(current_user)), class: "btn btn-xlg btn-share btn-twitter", target: "_blank"
+        = link_to share_on_facebook_url(url: league_url(@league)), class: "btn btn-xlg btn-share btn-facebook", target: '_blank' do
+          Share
+          %span.hidden-for-mobile on Facebook
+        = link_to share_on_twitter_url(url: league_url(@league), text: @league.default_tweet(current_user)), class: "btn btn-xlg btn-share btn-twitter", target: "_blank" do
+          Share
+          %span.hidden-for-mobile on Twitter
 
   = render "shared/create_league_notification"  unless current_user
 
