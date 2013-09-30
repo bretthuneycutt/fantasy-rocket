@@ -32,4 +32,12 @@ module UrlHelper
     }
     "https://www.facebook.com/sharer/sharer.php?#{params.to_param}"
   end
+
+  def new_user_subscriptions_url(user)
+    if user
+      new_subscriptions_url
+    else
+      new_users_url(redirect_to: new_subscriptions_url)
+    end
+  end
 end
