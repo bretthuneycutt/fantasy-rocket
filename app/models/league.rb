@@ -59,7 +59,8 @@ class League < ActiveRecord::Base
   end
 
   def default_tweet(user)
-    # TODO write some good default tweets
+    standing = standings.detect { |s| s.member == user }
+    "I'm #{standing.rank.ordinalize} in my #{I18n.t "#{sport}.league"} wins pool"
   end
 private
 
