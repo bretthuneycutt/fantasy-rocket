@@ -4,4 +4,7 @@ class SplashController < ApplicationController
       return redirect_to league
     end
   end
+
+  def pricing
+  end
 end

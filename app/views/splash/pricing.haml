@@ -1,0 +1,26 @@
+.container.container-under-header.pricing
+  %table.table.black-table.pricing-table
+    %thead
+      %tr
+        %th Free
+        %th.focus Premium
+      %tbody
+        %tr
+          %td
+            %ul.checkmarks
+              %li Draft
+              %li Standings
+              %li Weekly emails
+          %td
+            %ul.checkmarks
+              %li Draft
+              %li Standings
+              %li Weekly emails
+              %li Expected wins
+              %li Team schedules
+              %li Average draft positions
+              %li Trade analysis
+              %li Create multiple pools
+            - unless current_user.andand.subscriber?
+              = link_to "Sign up", new_user_subscriptions_url(current_user), class: "btn btn-xlg btn-main"
+  .price
