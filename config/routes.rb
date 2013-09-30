@@ -21,7 +21,7 @@ FantasyRocket::Application.routes.draw do
     mount Sidekiq::Web, at: '/sidekiq'
 
     constraints subdomain: 'www' do
-      get 'pricing', to: 'splash#pricing'
+      get 'pricing', to: 'splash#pricing', as: 'pricing'
     end
 
     root 'splash#index'
