@@ -23,10 +23,10 @@
     .logo-wrap= link_to image_tag('logo.png', alt: t(:site_name), class: "logo"), root_url
     .navbar.navbar-default
       .container
-        - if current_user && !current_user.subscriber?
-          = link_to "Upgrade <span class='hidden-for-mobile'>to premium</span>".html_safe, pricing_url, class: "btn btn-upgrade"
-
         .navbar-header
+          - if current_user && !current_user.subscriber?
+            = link_to "Upgrade <span class='hidden-for-mobile'>to premium</span>".html_safe, pricing_url, class: "btn btn-upgrade"
+
           %button.navbar-toggle{type: "button", 'data-toggle' => "collapse", 'data-target' => ".navbar-right-links-collapse"}
             %span.icon-bar
             %span.icon-bar
