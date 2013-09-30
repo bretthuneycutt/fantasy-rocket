@@ -1,0 +1,53 @@
+.pricing {
+  max-width: $narrow-page-width;
+  .pricing-table {
+    @include black-table;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 300;
+
+    th {
+      text-align: center;
+      font-weight: 300;
+      height: 60px;
+      vertical-align: middle;
+    }
+    th, td {
+      width: 50%;
+    }
+    td {
+      padding: 0 30px 30px;
+    }
+    .focus {
+      background-color: $orange;
+    }
+  }
+  .btn-main {
+    width: 100%;
+  }
+
+  position: relative;
+
+  .price {
+    background: image-url('price.png');
+    height: 94px;
+    width: 94px;
+    position: absolute;
+    right: 9px;
+    top: -8px;
+  }
+}
+
+
+.checkmarks {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style-type: none;
+    margin: 20px 0;
+    &:before {
+      content:"\2713\0020";
+    }
+  }
+}
+
