@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SubscriptionsController do
+describe SubscriptionsController, :broken do
   before(:each) { request.env['HTTPS'] = 'on' }
 
   describe "GET 'new'" do

@@ -2,7 +2,6 @@ require 'sidekiq/web'
 
 FantasyRocket::Application.routes.draw do
   resource :users
-  resource :subscriptions
   resources :sessions
   resources :password_resets
 
@@ -16,10 +15,6 @@ FantasyRocket::Application.routes.draw do
   resources :regular_season_games
 
   mount Sidekiq::Web, at: '/sidekiq'
-
-  constraints subdomain: 'www' do
-    get 'pricing', to: 'splash#pricing', as: 'pricing'
-  end
 
   root 'splash#index'
 

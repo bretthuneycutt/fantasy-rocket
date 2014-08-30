@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "users/edit" do
+describe "users/edit", :broken do
   before(:each) { view.stub(:current_user) { user } }
   let(:user) { FactoryGirl.create(:user) }
 
