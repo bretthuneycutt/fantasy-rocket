@@ -57,6 +57,7 @@ end
 group :test do
   gem 'capybara'
   gem 'vcr'
+  gem 'autotest'
 end
 
 group :production do
