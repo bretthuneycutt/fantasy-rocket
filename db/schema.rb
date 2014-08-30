@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140830203030) do
     t.datetime "draft_started_at"
     t.datetime "draft_completed_at"
     t.string   "sport",              default: "nfl"
-    t.string   "season",             default: "f"
+    t.string   "season"
   end
 
   add_index "leagues", ["commissioner_id"], name: "index_leagues_on_commissioner_id", using: :btree
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140830203030) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.string   "season",     default: "f"
+    t.string   "season"
   end
 
   add_index "regular_season_games", ["season"], name: "index_regular_season_games_on_season", using: :btree

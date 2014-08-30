@@ -20,7 +20,7 @@ class League < ActiveRecord::Base
   scope :draft_complete, -> { where('draft_completed_at IS NOT NULL') }
 
   default_scope { where(season: ENV['CURRENT_SEASON']) }
-
+  validates :season, presence: true
   before_validation :set_season
 
   def draft

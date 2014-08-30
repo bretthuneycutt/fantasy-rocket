@@ -5,7 +5,7 @@ class RegularSeasonGame < ActiveRecord::Base
   validates :week, presence: true, inclusion: { in: 1..17, message: "should span 1 to 17"}
 
   default_scope { where(season: ENV['CURRENT_SEASON']) }
-
+  validates :season, presence: true
   before_validation :set_season
 
   def winner
