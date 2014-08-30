@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130922183538) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "draft_picks", force: true do |t|
     t.integer  "league_id",  null: false
     t.integer  "member_id",  null: false
