@@ -58,6 +58,7 @@ group :test do
   gem 'capybara'
   gem 'vcr'
   gem 'autotest'
+  gem 'rspec-its'
 end
 
 group :production do

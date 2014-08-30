@@ -65,7 +65,7 @@ describe PasswordResetsController do
           password_confirmation: "new-password",
         }
 
-        user.reload.authenticate("new-password").should be_true
+        user.reload.authenticate("new-password").should be_truthy
       end
 
       it "redirects to the root url" do
@@ -98,7 +98,7 @@ describe PasswordResetsController do
           password_confirmation: "new-password",
         }
 
-        user.reload.authenticate("new-password").should be_false
+        user.reload.authenticate("new-password").should be_falsey
       end
 
       it "redirects to new_password_reset path" do
