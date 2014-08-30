@@ -1,8 +1,7 @@
 ruby '2.1.2'
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.5'
 gem "pg"
 gem 'email_validator'
 gem 'haml-rails'
