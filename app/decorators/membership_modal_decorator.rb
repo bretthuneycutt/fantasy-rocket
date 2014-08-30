@@ -8,6 +8,6 @@ class MembershipModalDecorator < ModalDecorator
   end
 
   def url
-    league_url(model.league, host: request.host)
+    league_url(model.league, h: model.league.hmac, host: request.host)
   end
 end
