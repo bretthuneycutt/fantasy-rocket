@@ -65,5 +65,5 @@ describe NFLTeam do
     end
   end
 
-  its(:css_class) { should == "atlanta-falcons" }
+  its(:css_class) { should == "san-francisco-49ers" }
 end
