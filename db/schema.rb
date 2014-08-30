@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130922183538) do
+ActiveRecord::Schema.define(version: 20140830203030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,11 @@ ActiveRecord::Schema.define(version: 20130922183538) do
     t.datetime "draft_started_at"
     t.datetime "draft_completed_at"
     t.string   "sport",              default: "nfl"
+    t.string   "season",             default: "f"
   end
 
   add_index "leagues", ["commissioner_id"], name: "index_leagues_on_commissioner_id", using: :btree
+  add_index "leagues", ["season"], name: "index_leagues_on_season", using: :btree
 
   create_table "regular_season_games", force: true do |t|
     t.integer  "winner_id"
@@ -56,8 +58,10 @@ ActiveRecord::Schema.define(version: 20130922183538) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.string   "season",     default: "f"
   end
 
+  add_index "regular_season_games", ["season"], name: "index_regular_season_games_on_season", using: :btree
   add_index "regular_season_games", ["type"], name: "index_regular_season_games_on_type", using: :btree
   add_index "regular_season_games", ["winner_id", "week"], name: "index_regular_season_games_on_winner_id_and_week", unique: true, using: :btree
   add_index "regular_season_games", ["winner_id"], name: "index_regular_season_games_on_winner_id", using: :btree
