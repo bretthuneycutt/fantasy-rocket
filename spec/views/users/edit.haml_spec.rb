@@ -8,7 +8,7 @@ describe "users/edit" do
     it "links to new_subscriptions_path" do
       render
 
-      rendered.should include "Subscribe", new_subscriptions_url(protocol: 'https')
+      rendered.should include "Subscribe", new_subscriptions_url
     end
   end
 
@@ -18,13 +18,13 @@ describe "users/edit" do
     it "links to cancel subscription" do
       render
 
-      render.should include "Cancel subscription", subscriptions_url(protocol: 'https')
+      render.should include "Cancel subscription", subscriptions_url
     end
 
     it "does not link to new subscription" do
       render
 
-      rendered.should_not include "Subscribe", new_subscriptions_url(protocol: 'https')
+      rendered.should_not include "Subscribe", new_subscriptions_url
     end
   end
 

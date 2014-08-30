@@ -1,6 +1,4 @@
 class PasswordResetsController < ApplicationController
-  force_ssl  unless Rails.env.development?
-
   def create
     if user = User.find_by_email(params[:email].andand.downcase)
       user.generate_token(:password_reset_token)

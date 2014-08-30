@@ -1,31 +1,27 @@
 require 'sidekiq/web'
 
 FantasyRocket::Application.routes.draw do
-  constraints subdomain: 'secure', protocol: Rails.env.development? ? 'http://' : 'https://' do
-    resource :users
-    resource :subscriptions
-    resources :sessions
-    resources :password_resets
+  resource :users
+  resource :subscriptions
+  resources :sessions
+  resources :password_resets
+
+  resources :leagues do
+    resources :league_memberships, as: 'memberships'
+    resource :drafts
   end
 
-  constraints protocol: 'http://' do
-    resources :leagues do
-      resources :league_memberships, as: 'memberships'
-      resource :drafts
-    end
+  resources :draft_picks
 
-    resources :draft_picks
+  resources :regular_season_games
 
-    resources :regular_season_games
+  mount Sidekiq::Web, at: '/sidekiq'
 
-    mount Sidekiq::Web, at: '/sidekiq'
-
-    constraints subdomain: 'www' do
-      get 'pricing', to: 'splash#pricing', as: 'pricing'
-    end
-
-    root 'splash#index'
+  constraints subdomain: 'www' do
+    get 'pricing', to: 'splash#pricing', as: 'pricing'
   end
+
+  root 'splash#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
