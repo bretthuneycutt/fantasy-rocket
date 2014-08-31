@@ -18,10 +18,14 @@ class League < ActiveRecord::Base
   after_create :add_commissioner_as_member
 
   scope :draft_complete, -> { where('draft_completed_at IS NOT NULL') }
+  scope :season, ->(season) { unscoped.where(season: season) }
 
   default_scope { where(season: ENV['CURRENT_SEASON']) }
   validates :season, presence: true
   before_validation :set_season
+
+  has_one :next, class_name: "League", foreign_key: "previous_id", inverse_of: :previous
+  belongs_to :previous, class_name: "League", inverse_of: :next
 
   def draft
     @draft = Draft.new(self)
