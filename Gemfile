@@ -66,7 +66,7 @@ group :production do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
