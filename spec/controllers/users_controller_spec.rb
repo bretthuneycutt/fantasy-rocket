@@ -76,6 +76,21 @@ describe UsersController do
         expect(response).to render_template("new")
       end
     end
+
+    context "for existing user" do
+      let!(:user) { FactoryGirl.create(:user) }
+
+      it "renders the sign up page with a flash" do
+        post :create, 'user' => {
+          'name' => user.name,
+          'email' => user.email,
+          'password' => 'password',
+          'password_confirmation' => 'password',
+        }
+
+        expect(response.body).to include("That email has already been registered")
+      end
+    end
   end
 
   describe "GET 'edit'" do

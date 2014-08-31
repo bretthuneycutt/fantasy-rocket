@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
       redirect_to params[:redirect_to].presence || new_league_url, notice: "Thank you for signing up!"
     else
-      render "new"
+      render template: "users/new"
     end
   end
 

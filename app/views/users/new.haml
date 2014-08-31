@@ -1,5 +1,8 @@
 .centered-form
   %h1.form-title Sign Up
+  %p
+    Already use Fantasy Rocket?
+    = link_to "Login", new_session_path(redirect_to: params[:redirect_to], league_id: params[:league_id], h: params[:h])
 
   = form_for @user do |f|
     = hidden_field_tag :redirect_to, params[:redirect_to]
