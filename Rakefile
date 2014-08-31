@@ -33,12 +33,14 @@ namespace :leagues do
   task :create_2014 => :environment do
     League.season('2013').find_each do |l|
       unless l.next
+        league_2014 = nil
+
         league_2014 = l.create_next({
           name: "#{l.name} - 2014",
           commissioner_id: l.commissioner_id,
           sport: l.sport,
           season: '2014',
-        })
+        })  if l.commissioner
 
         if league_2014
           puts "SUCCESS League: #{l.name}"
