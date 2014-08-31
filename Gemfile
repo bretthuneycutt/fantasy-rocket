@@ -8,7 +8,6 @@ gem 'haml-rails'
 gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'andand'
-gem 'honeybadger'
 
 # sidekiq
 gem 'sidekiq'
@@ -37,6 +36,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'rollbar'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
