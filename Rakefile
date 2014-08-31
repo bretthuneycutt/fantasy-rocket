@@ -32,23 +32,32 @@ namespace :leagues do
   desc 'Create 2014 leagues'
   task :create_2014 => :environment do
     League.season('2013').find_each do |l|
-      l.create_next!({
-        name: "#{l.name} - 2014",
-        commissioner_id: l.commissioner_id,
-        sport: l.sport,
-        season: '2014',
-      })
+      unless l.next
+        league_2014 = l.create_next({
+          name: "#{l.name} - 2014",
+          commissioner_id: l.commissioner_id,
+          sport: l.sport,
+          season: '2014',
+        })
 
-      puts "League: #{l.name}"
+        if league_2014
+          puts "SUCCESS League: #{l.name}"
+        else
+          puts "FAILURE League: #{l.name}"
+        end
+      end
     end
   end
 
   desc 'Send 2014 email'
   task :email_2014 => :environment do
     League.season('2013').find_each do |l|
-      SeasonMailerWorker.perform_async(l.id)
-
-      puts "League: #{l.name}"
+      if l.next
+        SeasonMailerWorker.perform_async(l.id)
+        puts "League: #{l.name}"
+      else
+        puts "SKIPPING League: #{l.name}"
+      end
     end
   end
 end
