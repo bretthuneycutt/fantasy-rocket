@@ -36,9 +36,19 @@ namespace :leagues do
         name: "#{l.name} - 2014",
         commissioner_id: l.commissioner_id,
         sport: l.sport,
+        season: '2014',
       })
 
-      puts "League: l.name"
+      puts "League: #{l.name}"
+    end
+  end
+
+  desc 'Send 2014 email'
+  task :email_2014 => :environment do
+    League.season('2013').find_each do |l|
+      SeasonMailerWorker.perform_async(l.id)
+
+      puts "League: #{l.name}"
     end
   end
 end
