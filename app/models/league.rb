@@ -19,6 +19,10 @@ class League < ActiveRecord::Base
 
   scope :draft_complete, -> { where('draft_completed_at IS NOT NULL') }
 
+  default_scope { where(season: ENV['CURRENT_SEASON']) }
+  validates :season, presence: true
+  before_validation :set_season
+
   def draft
     @draft = Draft.new(self)
   end
@@ -34,10 +38,6 @@ class League < ActiveRecord::Base
   def add_member(user)
     return  unless eligible_to_be_member?(user)
     members << user
-  end
-
-  def season
-    @season ||= Season.new(self)
   end
 
   def standings
@@ -62,9 +62,17 @@ class League < ActiveRecord::Base
     standing = standings.detect { |s| s.member == user }
     "I'm #{standing.rank.ordinalize} in my #{I18n.t "#{sport}.league"} wins pool"
   end
+
+  def season_started?
+    team_class.win_counts.values.any?{ |v| v > 0 }
+  end
 private
 
   def add_commissioner_as_member
     add_member commissioner
+  end
+
+  def set_season
+    self.season ||= ENV['CURRENT_SEASON']
   end
 end

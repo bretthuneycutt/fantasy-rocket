@@ -144,11 +144,11 @@ describe UsersController do
         end
 
         it "does not change the password" do
-          user.authenticate("password").should be_true
+          user.authenticate("password").should be_truthy
 
           go!(options)
 
-          user.reload.authenticate("password").should be_true
+          user.reload.authenticate("password").should be_truthy
         end
 
         it "redirects to the root url" do
@@ -162,11 +162,11 @@ describe UsersController do
         let(:options) { {password: "yoyoyoyo", password_confirmation: "yoyoyoyo"} }
 
         it "updates the password" do
-          user.authenticate("yoyoyoyo").should be_false
+          user.authenticate("yoyoyoyo").should be_falsey
 
           go!(options)
 
-          user.reload.authenticate("yoyoyoyo").should be_true
+          user.reload.authenticate("yoyoyoyo").should be_truthy
         end
       end
     end

@@ -11,7 +11,7 @@ describe Draft do
     its(:current_pick) { should be_nil }
 
     context "with only one member" do
-      its(:ready_to_start?) { should be_false }
+      its(:ready_to_start?) { should be_falsey }
     end
 
     context "with multiple members" do
@@ -20,7 +20,7 @@ describe Draft do
         league.members << FactoryGirl.create(:user)
       end
 
-      its(:ready_to_start?) { should be_true }
+      its(:ready_to_start?) { should be_truthy }
     end
 
     its(:last_pick) { should be_nil }
@@ -38,7 +38,7 @@ describe Draft do
     let!(:pick3) { FactoryGirl.create(:draft_pick, league: league, member: commissioner, order: 3) }
 
     its(:status) { should == :in_progress}
-    its(:ready_to_start?) { should be_false }
+    its(:ready_to_start?) { should be_falsey }
 
     describe "#available_teams" do
       it "returns all teams not selected" do
@@ -69,7 +69,7 @@ describe Draft do
     its(:status) { should == :complete}
     its(:available_teams) { should be_nil }
     its(:current_pick) { should be_nil }
-    its(:ready_to_start?) { should be_false }
+    its(:ready_to_start?) { should be_falsey }
     its(:last_pick) { should be_nil }
   end
 end

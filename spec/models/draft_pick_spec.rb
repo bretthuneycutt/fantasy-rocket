@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 shared_examples "a draft pick with selected team" do |team_name|
-  its(:selected?) { should be_true }
+  its(:selected?) { should be_truthy }
   its(:team) { should be_a Team}
 end
 
@@ -15,7 +15,7 @@ describe DraftPick do
   context "with team not yet selected" do
     subject { FactoryGirl.build(:draft_pick) }
 
-    its(:selected?) { should be_false }
+    its(:selected?) { should be_falsey }
     its(:team) { should be_nil }
     its(:default_tweet) { should be_nil }
   end

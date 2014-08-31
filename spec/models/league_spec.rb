@@ -75,4 +75,14 @@ describe League do
       subject.default_tweet(member).should == "I'm 2nd in my NFL wins pool"
     end
   end
+
+  context "when a win hasn't been registered" do
+    it { should_not be_season_started }
+  end
+
+  context "when a win has been registered" do
+    before(:each) { FactoryGirl.create(:regular_season_game) }
+
+    it { should be_season_started }
+  end
 end

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  force_ssl  unless Rails.env.development?
   before_filter :current_user!, only: [:edit, :update]
 
   def new
