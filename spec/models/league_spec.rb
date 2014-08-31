@@ -85,4 +85,15 @@ describe League do
 
     it { should be_season_started }
   end
+
+  describe "#previous" do
+    let!(:previous_league) { FactoryGirl.create(:league) }
+    let!(:next_league) { FactoryGirl.create(:league, previous: previous_league) }
+
+
+    it "returns previous league" do
+      next_league.reload.previous.should == previous_league
+      previous_league.reload.next.should == next_league
+    end
+  end
 end

@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20140830203030) do
+ActiveRecord::Schema.define(version: 20140831140838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,9 +48,11 @@ ActiveRecord::Schema.define(version: 20140830203030) do
     t.datetime "draft_completed_at"
     t.string   "sport",              default: "nfl"
     t.string   "season"
+    t.integer  "previous_id"
   end
 
   add_index "leagues", ["commissioner_id"], name: "index_leagues_on_commissioner_id", using: :btree
+  add_index "leagues", ["previous_id"], name: "index_leagues_on_previous_id", using: :btree
   add_index "leagues", ["season"], name: "index_leagues_on_season", using: :btree
 
   create_table "regular_season_games", force: true do |t|

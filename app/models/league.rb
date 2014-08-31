@@ -23,6 +23,9 @@ class League < ActiveRecord::Base
   validates :season, presence: true
   before_validation :set_season
 
+  has_one :next, class_name: "League", foreign_key: "previous_id", inverse_of: :previous
+  belongs_to :previous, class_name: "League", inverse_of: :next
+
   def draft
     @draft = Draft.new(self)
   end
