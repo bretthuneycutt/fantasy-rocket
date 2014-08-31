@@ -4,7 +4,7 @@
   = form_tag sessions_url do
     = hidden_field_tag :redirect_to, params[:redirect_to]
     .form-group
-      = text_field_tag :email, params[:email], class: "form-control input-lg", placeholder: "Email address"
+      = text_field_tag :email, params[:email], class: "form-control input-lg", placeholder: "Email address", type: 'email'
     .form-group
       = password_field_tag :password, nil, class: "form-control input-lg", placeholder: "Password"
       %p.forgot-password= link_to "forgot password?", new_password_reset_url
