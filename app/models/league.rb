@@ -18,6 +18,7 @@ class League < ActiveRecord::Base
   after_create :add_commissioner_as_member
 
   scope :draft_complete, -> { where('draft_completed_at IS NOT NULL') }
+  scope :season, ->(season) { unscoped.where(season: season) }
 
   default_scope { where(season: ENV['CURRENT_SEASON']) }
   validates :season, presence: true

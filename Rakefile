@@ -28,3 +28,18 @@ namespace :digest do
   end
 end
 
+namespace :leagues do
+  desc 'Create 2014 leagues'
+  task :create_2014 => :environment do
+    League.season('2013').find_each do |l|
+      l.create_next!({
+        name: "#{l.name} - 2014",
+        commissioner_id: l.commissioner_id,
+        sport: l.sport,
+      })
+
+      puts "League: l.name"
+    end
+  end
+end
+
