@@ -10,10 +10,6 @@ class GamesCreatorsController < ApplicationController
 
 private
 
-  def games_creator_params
-    params[:nfl_games_creator] || params[:nba_games_creator]
-  end
-
   def games_creator_class
     case current_sport
     when :nba
