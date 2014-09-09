@@ -30,27 +30,4 @@ describe RegularSeasonGamesController do
       response.body.should include("Phoenix Suns")
     end
   end
-
-  describe "GET 'new' for nfl" do
-    it "renders correctly" do
-      get :new
-
-      response.should render_template(:new)
-      response.body.should include("Arizona Cardinals", "Denver Broncos")
-      response.body.should_not include("Phoenix Suns")
-    end
-  end
-
-  describe "GET 'new' for nba" do
-    it "renders correctly" do
-      subject.stub(:current_sport) { :nba }
-
-      get :new
-
-      response.should render_template(:new)
-      response.body.should_not include("Arizona Cardinals", "Denver Broncos")
-      response.body.should include("Phoenix Suns")
-    end
-  end
-
 end

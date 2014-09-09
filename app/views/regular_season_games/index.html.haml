@@ -1,5 +1,16 @@
 .container.container-under-header.regular-season-games-index
-  %p= link_to "add a new game", new_regular_season_game_url
+  %h1.form-title Select week and winners
+
+  = form_for GamesCreator.new do |f|
+    .form-group
+      = f.select :week, options_for_select(1..17)
+    .form-group
+      - team_class_for_current_sport.all.sort_by(&:name).each do |t|
+        %p
+          = f.check_box "team_#{t.id}"
+          = f.label "team_#{t.id}", t.name
+    .actions
+      = submit_tag "Submit", class: "btn btn-main btn-xlg"
 
   %ul
     - @games.each do |g|

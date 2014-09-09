@@ -7,10 +7,6 @@ class RegularSeasonGamesController < ApplicationController
     @games = game_class.all
   end
 
-  def new
-    @regular_season_game = game_class.new
-  end
-
   def create
     @regular_season_game = game_class.new(game_params)
 

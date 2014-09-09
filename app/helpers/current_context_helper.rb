@@ -27,4 +27,13 @@ module CurrentContextHelper
       :nfl
     end
   end
+
+  def team_class_for_current_sport
+    case current_sport
+    when :nba
+      NBATeam
+    else
+      NFLTeam
+    end
+  end
 end

@@ -14,6 +14,8 @@ FantasyRocket::Application.routes.draw do
 
   resources :regular_season_games
 
+  resources :games_creators, only: [:create]
+
   mount Sidekiq::Web, at: '/sidekiq'
 
   root 'splash#index'
