@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830203030) do
-ActiveRecord::Schema.define(version: 20140831140838) do
+ActiveRecord::Schema.define(version: 20140910051452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +65,6 @@ ActiveRecord::Schema.define(version: 20140831140838) do
 
   add_index "regular_season_games", ["season"], name: "index_regular_season_games_on_season", using: :btree
   add_index "regular_season_games", ["type"], name: "index_regular_season_games_on_type", using: :btree
-  add_index "regular_season_games", ["winner_id", "week"], name: "index_regular_season_games_on_winner_id_and_week", unique: true, using: :btree
   add_index "regular_season_games", ["winner_id"], name: "index_regular_season_games_on_winner_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
